@@ -26,13 +26,13 @@
 https://youtu.be/ZPnhZ7DFwTM
 ```
 ### TODO:
--[ ] Create basic layout.
--[ ] Make API to fetch data from google and save it in Firebase.
--[ ] Make use of Google TTS to pronounce words.
--[ ] Progress bar to check progress of student.
--[ ] Seperate login portal for parent and student.
--[ ] Place to add new words in the databse.
--[ ] Voice recorder and repeater system.
+- [ ] Create basic layout.
+- [ ] Make API to fetch data from google and save it in Firebase.
+- [ ] Make use of Google TTS to pronounce words.
+- [ ] Progress bar to check progress of student.
+- [ ] Seperate login portal for parent and student.
+- [ ] Place to add new words in the databse.
+- [ ] Voice recorder and repeater system.
 
 ### Install and contribute
 
