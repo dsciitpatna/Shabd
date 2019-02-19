@@ -25,6 +25,9 @@
 ```sh
 https://youtu.be/ZPnhZ7DFwTM
 ```
+
+### Impact on Society
+The app is available completely at free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge. Kids at younger age can use this app to increase their knowledge in communication. 
 ### TODO:
 - [ ] Create basic layout.
 - [ ] Make API to fetch data from google and save it in Firebase.
