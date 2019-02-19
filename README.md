@@ -41,7 +41,7 @@ $ git clone https://github.com/dsciitpatna/Awaaz.git
 ```
 Then open in Android Studio.
 #### Rules for contribution
-* Raise an issue before making Pr.
-* Make all the Pr's in development branch.
+* Raise an issue before making PR.
+* Make all the PR's in development branch.
 * Contact the mentors at Gitter or Slack channel before contributing.
 
