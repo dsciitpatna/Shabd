@@ -19,11 +19,6 @@
 * Visualize the metrics that show you how your child is developing.
 * It is open source and free to use.
 
-## Watch a prototype app
-
-```sh
-https://youtu.be/ZPnhZ7DFwTM
-```
 
 ### Impact on Society
 The app is available completely at free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge. Kids at younger age can use this app to increase their knowledge in communication. 
