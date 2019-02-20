@@ -11,7 +11,7 @@
 
 ## Join us at
 ```
- Gitter: https://gitter.im/dsciitpatna
+ Gitter: https://gitter.im/dsciitpatna/Shabd
  Slack: https://bit.ly/2S1adeD
 ```
 ## Features
