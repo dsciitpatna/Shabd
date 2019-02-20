@@ -13,12 +13,11 @@
  Slack: https://bit.ly/2S1adeD
 ```
 ## Features
-* A graded, consistent and research based vocabulary that's fast and efficient.
-* Convert it to a book, so your child can use it even without an iPad!
-* It takes mere seconds to add new words from your child's life into Awaaz.
+* vocabulary that's fast and efficient.
+* It takes mere seconds to add new words from your child's life into Shabd.
 * Awaaz shows you where to find words in the vocabulary so you can model effectively.
 * Visualize the metrics that show you how your child is developing.
-* Its free to use.
+* It is open source and free to use.
 
 ## Watch a prototype app
 
