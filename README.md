@@ -6,7 +6,7 @@
 ![django](https://user-images.githubusercontent.com/43731599/53021010-39196500-347e-11e9-86dc-e32b7a0f7eda.png)
 
 # Overview
-"Autism is a complex neurobehavioral condition that includes impairments in social interaction and developmental language and communication skills combined with rigid, repetitive behavior". To overcome this problem we came up with an educational app that helps this people to get educated via a completely free platform. This app can also be used to educated the kids. The UI of the app is user friendly. The app acts like an all time friend for the autism patients, who are often neglected by the society.
+"Autism is a complex neurobehavioral condition that includes impairments in social interaction and developmental language and communication skills combined with rigid, repetitive behavior". To overcome this problem we came up with an educational app that helps this people to get educated via a completely free platform. This app can also be used to educate the kids. The UI of the app is user friendly. The app acts like an all time friend for the autism patients, who are often neglected by the society.
 
 
 ## Join us at
@@ -26,7 +26,7 @@
 
 
 ### Impact on Society
-The app is mainly made to educate the people those who are suffering from auitsm. It is available completely in free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge of communication. Also they would get something that will accompany them all the time, so that they wont feel lonely. Normal kids at younger age can also use this app to increase their knowledge in communication. 
+The app is mainly made to educate the people those who are suffering from auitsm. It is available completely in free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge of communication. Also they would get something that will accompany them all the time, so that they won't feel lonely. Normal kids at younger age can also use this app to increase their knowledge in communication. 
 ### TODO:
 - [ ] Create basic layout.
 - [ ] Make API to fetch data from google and save it in Firebase.
