@@ -17,9 +17,12 @@
 ## Features
 * Vocabulary that's fast and efficient.
 * It takes mere seconds to add new words from your child's life into Shabd.
-* Awaaz shows you where to find words in the vocabulary so you can model effectively.
+* Shabd shows you where to find words in the vocabulary so you can model effectively.
 * Visualize the metrics that show you how your child is developing.
+* Learn words from images.
+* Pronounce the word and check whether it is correct or not.
 * It is open source and free to use.
+
 
 
 ### Impact on Society
@@ -36,7 +39,7 @@ The app is mainly made to educate the people those who are suffering from auitsm
 ### Install and contribute
 
 ```sh
-$ git clone https://github.com/dsciitpatna/Awaaz.git
+$ git clone https://github.com/dsciitpatna/Shabd.git
 ```
 Then open in Android Studio.
 #### Rules for contribution
