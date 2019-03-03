@@ -10,10 +10,12 @@
 
 
 ## Join us at
-```
- Gitter: https://gitter.im/dsciitpatna/Shabd
- Slack: https://bit.ly/2S1adeD
-```
+ 
+ Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://github.com/fatih/color/blob/master/LICENSE.md)
+ 
+ Slack:[`https://bit.ly/2S1adeD`](https://bit.ly/2S1adeD)
+ 
+  
 ## Features
 * Vocabulary that's fast and efficient.
 * It takes mere seconds to add new words from your child's life into Shabd.
