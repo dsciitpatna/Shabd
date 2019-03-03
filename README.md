@@ -11,7 +11,7 @@
 
 ## Join us at
  
- Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://github.com/fatih/color/blob/master/LICENSE.md)
+ Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://gitter.im/dsciitpatna/Shabd)
  
  Slack:[`https://bit.ly/2S1adeD`](https://bit.ly/2S1adeD)
  
