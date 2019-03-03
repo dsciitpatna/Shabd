@@ -13,8 +13,6 @@
  
  Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://gitter.im/dsciitpatna/Shabd)
  
- Slack:[`https://bit.ly/2S1adeD`](https://bit.ly/2S1adeD)
- 
   
 ## Features
 * Vocabulary that's fast and efficient.
