@@ -10,10 +10,12 @@
 
 
 ## Join us at
-```
- Gitter: https://gitter.im/dsciitpatna/Shabd
- Slack: https://bit.ly/2S1adeD
-```
+ 
+ Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://github.com/fatih/color/blob/master/LICENSE.md)
+ 
+ Slack:[`https://bit.ly/2S1adeD`](https://bit.ly/2S1adeD)
+ 
+  
 ## Features
 * Vocabulary that's fast and efficient.
 * It takes mere seconds to add new words from your child's life into Shabd.
@@ -42,6 +44,18 @@ The app is mainly made to educate the people those who are suffering from auitsm
 $ git clone https://github.com/dsciitpatna/Shabd.git
 ```
 Then open in Android Studio.
+### Branch Policy
+We have the following branches:
+* **master**
+The master branch contains all the stable and bug-free working code. The development branch once complete will be merged with this branch.
+
+* **development**
+All the contributions should be pushed to this branch. If you're making a contribution,
+you are supposed to make a pull request to development.
+It is advisable to clone only the development branch using the following command:
+
+    `git clone -b <branch> <remote_repo>`
+     
 #### Rules for contribution
 * Raise an issue before making PR.
 * Make all the PR's in development branch.
