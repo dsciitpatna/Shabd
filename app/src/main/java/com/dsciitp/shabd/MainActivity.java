@@ -20,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_quick:
+                    mTextMessage.setText(R.string.title_quick);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_dictionary:
+                    mTextMessage.setText(R.string.title_dictionary);
+                    return true;
+                case R.id.navigation_settings:
+                    mTextMessage.setText(R.string.title_settings);
+                    return true;
+                case R.id.navigation_learn:
+                    mTextMessage.setText(R.string.title_learn);
                     return true;
             }
             return false;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
     }
 
 }
