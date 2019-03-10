@@ -27,6 +27,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+
     //firebase ui dependencies
     implementation 'com.firebaseui:firebase-ui-firestore:4.3.1'
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
@@ -35,4 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.firebase:firebase-messaging:17.4.0'
     implementation 'com.google.firebase:firebase-firestore:18.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
 }
+apply plugin: 'com.google.gms.google-services'
