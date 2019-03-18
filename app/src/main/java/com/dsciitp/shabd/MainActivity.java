@@ -1,16 +1,16 @@
 package com.dsciitp.shabd;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener {
+import com.dsciitp.shabd.home.HomeFragment;
+
+public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -78,14 +78,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
       
     }
 
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof HomeFragment){
-            HomeFragment homeFragment = (HomeFragment) fragment;
-            homeFragment.setOnCategorySelectedListener(this);
-        }
-    }
 
 
     public void onCategorySelected(int position){
