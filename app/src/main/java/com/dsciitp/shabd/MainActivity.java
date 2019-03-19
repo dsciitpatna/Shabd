@@ -1,19 +1,32 @@
 package com.dsciitp.shabd;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener {
 
     private TextView mTextMessage;
-
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    public static final int RC_SIGN_IN = 1;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -44,16 +57,83 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        FirebaseApp.initializeApp(this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
-
         setBaseFragment(savedInstanceState);
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Toast.makeText(MainActivity.this, "You're now signed in. Welcome to Shabd App", Toast.LENGTH_SHORT).show();
+                } else {
+                    // User is signed out
+                    SignIn();
+                }
+            }
+        };
     }
 
-    private void setBaseFragment(Bundle savedInstanceState){
+    public void SignIn() {
+        // [START auth_fui_create_intent]
+        // Choose authentication providers
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        // Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                RC_SIGN_IN);
+        // [END auth_fui_create_intent]
+    }
+
+    public void signout() {
+        AuthUI.getInstance().signOut(this);
+        Toast.makeText(this, "You are signed out", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK)
+                Toast.makeText(this, "You're now signed in. Welcome to Shabd App", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseApp.initializeApp(this);
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onStart() {
+        FirebaseApp.initializeApp(this);
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mAuthStateListener != null) {
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
+    }
+
+    private void setBaseFragment(Bundle savedInstanceState) {
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -75,20 +155,20 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
         }
-      
+
     }
 
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof HomeFragment){
+        if (fragment instanceof HomeFragment) {
             HomeFragment homeFragment = (HomeFragment) fragment;
             homeFragment.setOnCategorySelectedListener(this);
         }
     }
 
 
-    public void onCategorySelected(int position){
+    public void onCategorySelected(int position) {
         CategoryFragment categoryFragment = new CategoryFragment();
 
         Bundle args = new Bundle();
