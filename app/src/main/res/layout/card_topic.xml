@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <android.support.v7.widget.CardView xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,4 +19,5 @@
             android:textSize="64sp"
             android:textStyle="bold"
             tools:text="Holi" />
+
     </android.support.v7.widget.CardView>
