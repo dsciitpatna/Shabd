@@ -17,21 +17,10 @@
             android:id="@+id/card_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:background="@drawable/card_gradient"
             android:padding="15dp"
             android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/card_caps_text"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="TEXT" />
 
         <TextView
             android:id="@+id/card_small_text"
@@ -39,8 +28,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18sp"
-            tools:text="text" />
+            tools:text="text"
+            android:textColor="#000"
+            android:textSize="22sp" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>
