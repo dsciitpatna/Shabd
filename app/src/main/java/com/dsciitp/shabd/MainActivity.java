@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +22,20 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.List;
 import java.util.Arrays;
 
+import com.dsciitp.shabd.Category.CategoryFragment;
+import com.dsciitp.shabd.Dictionary.DictionaryActivity;
+import com.dsciitp.shabd.Home.HomeFragment;
+import com.dsciitp.shabd.Learn.LearnActivity;
+import com.dsciitp.shabd.QuickActions.QuickActionFragment;
+import com.dsciitp.shabd.Setting.SettingFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener {
 
     private TextView mTextMessage;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     public static final int RC_SIGN_IN = 1;
+
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener{
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -34,19 +43,19 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    updateFragment(new HomeFragment(), 0);
                     return true;
                 case R.id.navigation_quick:
-                    mTextMessage.setText(R.string.title_quick);
+                    updateFragment(new QuickActionFragment(), 1);
                     return true;
                 case R.id.navigation_dictionary:
-                    mTextMessage.setText(R.string.title_dictionary);
+                    startActivity(new Intent(MainActivity.this, DictionaryActivity.class));
                     return true;
                 case R.id.navigation_settings:
-                    mTextMessage.setText(R.string.title_settings);
+                    updateFragment(new SettingFragment(), 1);
                     return true;
                 case R.id.navigation_learn:
-                    mTextMessage.setText(R.string.title_learn);
+                    startActivity(new Intent(MainActivity.this, LearnActivity.class));
                     return true;
             }
             return false;
@@ -57,9 +66,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         FirebaseApp.initializeApp(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mTextMessage = (TextView) findViewById(R.id.message);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
@@ -158,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
 
     }
 
-
     @Override
     public void onAttachFragment(Fragment fragment) {
         if (fragment instanceof HomeFragment) {
@@ -167,21 +177,32 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
         }
     }
 
-
     public void onCategorySelected(int position) {
-        CategoryFragment categoryFragment = new CategoryFragment();
 
+        CategoryFragment categoryFragment = new CategoryFragment();
         Bundle args = new Bundle();
         categoryFragment.setArguments(args);
+        transactFragment(categoryFragment);
+    }
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    private void transactFragment(Fragment frag){
+        FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
+        fragmentManager.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out)
+                .replace(R.id.fragment_container, frag, frag.getTag())
+                .addToBackStack(frag.getTag())
+                .commit();
+    }
+    private void updateFragment(Fragment fragment, int bStack) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        manager.popBackStackImmediate(1,1);
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.fragment_container, categoryFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
+        if (bStack == 1) {
+            transaction.addToBackStack(fragment.getTag());
+        } else if (bStack == 0){
+            manager.popBackStackImmediate();
+        }
         transaction.commit();
     }
 }

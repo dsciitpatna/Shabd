@@ -54,3 +54,5 @@ captures/
 
 # Version control
 vcs.xml
+
+.DS_Store
