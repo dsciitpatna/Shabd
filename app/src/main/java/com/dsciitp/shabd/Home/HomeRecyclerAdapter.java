@@ -59,7 +59,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         Glide.with(context)
                 .load(topicList.get(position).getImageUrl())
                 .centerCrop()
-                .placeholder(R.color.cardBackground)
+                .placeholder(R.drawable.default_card_placeholder)
                 .into(holder.topicBackground);
 
     }
