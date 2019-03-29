@@ -1,6 +1,7 @@
 package com.dsciitp.shabd.Home;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dsciitp.shabd.R;
 import com.google.firebase.firestore.CollectionReference;
@@ -24,6 +34,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class HomeFragment extends Fragment{
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,6 +80,7 @@ public class HomeFragment extends Fragment{
         mQuery = mFirestore.collection("topic_card")
                 .orderBy("position");
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

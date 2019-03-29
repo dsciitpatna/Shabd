@@ -3,6 +3,7 @@ package com.dsciitp.shabd;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
 import com.dsciitp.shabd.Home.HomeFragment;
@@ -21,9 +27,16 @@ import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
 
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
 
+    TextToSpeech t1;
+    EditText speakbar;
+    ImageView play;
+    ImageView del;
+    RelativeLayout topbar;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -31,15 +44,21 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    topbar=findViewById(R.id.bar);
+                    topbar.setVisibility(View.VISIBLE);
                     updateFragment(new HomeFragment(), 0);
                     return true;
                 case R.id.navigation_quick:
+                    topbar=findViewById(R.id.bar);
+                    topbar.setVisibility(View.VISIBLE);
                     updateFragment(new QuickActionFragment(), 1);
                     return true;
                 case R.id.navigation_dictionary:
                     startActivity(new Intent(MainActivity.this, DictionaryActivity.class));
                     return true;
                 case R.id.navigation_settings:
+                    topbar=findViewById(R.id.bar);
+                    topbar.setVisibility(View.GONE);
                     updateFragment(new SettingFragment(), 1);
                     return true;
                 case R.id.navigation_learn:
@@ -60,6 +79,46 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         navigation.setSelectedItemId(R.id.navigation_home);
 
         setBaseFragment(savedInstanceState);
+        speakbar = (EditText) findViewById(R.id.speak);
+        play = (ImageView) findViewById(R.id.play);
+        del = (ImageView) findViewById(R.id.del);
+
+        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.US);
+                }
+            }
+        });
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toSpeak = speakbar.getText().toString();
+                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+        del.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String textString = speakbar.getText().toString();
+                if (textString.length() > 0) {
+                    speakbar.setText("");
+                    speakbar.setSelection(speakbar.getText().length());
+                }
+                return false;
+            }
+        });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textString = speakbar.getText().toString();
+                if (textString.length() > 0) {
+                    speakbar.setText(textString.substring(0, textString.length() - 1));
+                    speakbar.setSelection(speakbar.getText().length());//position cursor at the end of the line
+                }
+            }
+        });
     }
 
     private void setBaseFragment(Bundle savedInstanceState){
