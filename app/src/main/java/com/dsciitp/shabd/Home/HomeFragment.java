@@ -1,7 +1,5 @@
 package com.dsciitp.shabd.Home;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,19 +9,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class HomeFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
@@ -35,10 +33,12 @@ public class HomeFragment extends Fragment{
     private String mParam1;
     private String mParam2;
 
-    FirestoreRecyclerAdapter adapter;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference topicReference;
+    private Query mQuery;
 
-    OnCategorySelectedListener callback;
-
+    private HomeRecyclerAdapter recyclerAdapter;
+    private List<TopicModel> topicList;
 
     public HomeFragment() {
     }
@@ -60,112 +60,64 @@ public class HomeFragment extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        initFirestore();
     }
 
+    private void initFirestore() {
+        mFirestore = FirebaseFirestore.getInstance();
+
+        mQuery = mFirestore.collection("topic_card")
+                .orderBy("position");
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.topic_title_recycler_view);
+        topicList = new ArrayList<>();
 
-        Query query = FirebaseFirestore.getInstance()
-                .collection("topic_card")
-                .orderBy("position");
+        RecyclerView recyclerView = view.findViewById(R.id.topic_title_recycler_view);
 
-        FirestoreRecyclerOptions<GetTitle> options = new FirestoreRecyclerOptions.Builder<GetTitle>()
-                .setQuery(query, GetTitle.class)
-                .build();
-
-        adapter = new FirestoreRecyclerAdapter<GetTitle, TopicHolder>(options) {
-
-            @Override
-            protected void onBindViewHolder(@NonNull TopicHolder holder, int position, @NonNull GetTitle model) {
-                holder.mTopicTitleName.setText(model.getTitle());
-
-                Glide.with(Objects.requireNonNull(getActivity()))
-                        .load("https://i.imgur.com/VaCGIRI.jpg")
-                        .centerCrop()
-                        .placeholder(R.color.cardBackground)
-                        .into(holder.mTopicTitleBackground);
-                holder.mTopicTitleName.setOnClickListener(holder);
-            }
-
-            @NonNull
-            @Override
-            public TopicHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_topic, viewGroup,false);
-
-                return new TopicHolder(view);
-            }
-        };
-
-//        adapter.startListening();
-
-        recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
+
+        topicList.add(new TopicModel("Basic", "Basic Words", "https://i.imgur.com/VaCGIRI.jpg"));
+        topicList.add(new TopicModel("Advanced", "Advanced Words", "https://i.imgur.com/VaCGIRI.jpg"));
+
+        recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener)getActivity());
+        recyclerView.setAdapter(recyclerAdapter);
+
+        populateRecycler();
 
         return view;
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
+    public void onDestroyView() {
+        super.onDestroyView();
+        topicList.clear();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+    private void populateRecycler(){
 
-    class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView mTopicTitleName;
-        ImageView mTopicTitleBackground;
+        mQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null){
+                    Log.d("MainActivity", "Error getting Snapshots");
+                    return;
+                }
+                List<TopicModel> topicModels = null;
+                if (queryDocumentSnapshots != null) {
+                    topicModels = queryDocumentSnapshots.toObjects(TopicModel.class);
+                    topicList.addAll(topicModels);
+                    Log.e("mylogmessage", topicList.toString());
+                    recyclerAdapter.notifyDataSetChanged();
+                }
 
-        TopicHolder(@NonNull View itemView) {
-            super(itemView);
-            mTopicTitleName = itemView.findViewById(R.id.topic_title_name);
-            mTopicTitleBackground = itemView.findViewById(R.id.topic_title_background);
-            itemView.setOnClickListener(this);
-        }
-
-
-        @Override
-        public void onClick(View v) {
-            Log.e("mylogmessage", "hello");
-
-            if (!mTopicTitleName.getText().toString().isEmpty()) {
-                callback.onTopicSelected(mTopicTitleName.getText().toString());
             }
-        }
+        });
+
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnCategorySelectedListener) {
-            callback = (OnCategorySelectedListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        callback = null;
-    }
-
-    public interface OnCategorySelectedListener {
-        void onTopicSelected(String title);
-    }
-
-    public void setOnCategorySelectedListener(Activity activity) {
-        callback = (OnCategorySelectedListener) activity;
-    }
 }

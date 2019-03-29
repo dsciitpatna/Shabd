@@ -16,12 +16,13 @@ import android.widget.Toast;
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
 import com.dsciitp.shabd.Home.HomeFragment;
+import com.dsciitp.shabd.Home.HomeRecyclerAdapter;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
 
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,14 +85,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
                     .add(R.id.fragment_container, firstFragment).commit();
         }
       
-    }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof HomeFragment){
-            HomeFragment homeFragment = (HomeFragment) fragment;
-            homeFragment.setOnCategorySelectedListener(this);
-        }
     }
 
     @Override

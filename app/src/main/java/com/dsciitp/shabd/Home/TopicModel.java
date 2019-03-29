@@ -1,16 +1,16 @@
 package com.dsciitp.shabd.Home;
 
-public class GetTitle {
+public class TopicModel {
 
     private String title;
     private String description;
     private String imageUrl;
 
-    public GetTitle(){
+    public TopicModel(){
 
     }
 
-    public GetTitle(String title, String description, String imageUrl) {
+    public TopicModel(String title, String description, String imageUrl) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
