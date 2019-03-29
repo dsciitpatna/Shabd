@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
@@ -91,7 +92,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
         }
     }
 
-    public void onCategorySelected(int position){
+    @Override
+    public void onTopicSelected(int categoryId) {
+        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
         CategoryFragment categoryFragment = new CategoryFragment();
         Bundle args = new Bundle();
         categoryFragment.setArguments(args);
@@ -118,4 +121,5 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
         }
         transaction.commit();
     }
+
 }

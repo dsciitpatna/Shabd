@@ -7,10 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dsciitp.shabd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -18,7 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,7 +66,8 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.topic_title_recycler_view);
 
         Query query = FirebaseFirestore.getInstance()
-                .collection("topic_card");
+                .collection("topic_card")
+                .orderBy("position");
 
         FirestoreRecyclerOptions<GetTitle> options = new FirestoreRecyclerOptions.Builder<GetTitle>()
                 .setQuery(query, GetTitle.class)
@@ -74,6 +78,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull TopicHolder holder, int position, @NonNull GetTitle model) {
                 holder.mTopicTitleName.setText(model.getTitle());
+//                holder.mTopicTitleName.setOnClickListener();
             }
 
             @NonNull
@@ -106,21 +111,23 @@ public class HomeFragment extends Fragment {
         adapter.startListening();
     }
 
-    private class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView mTopicTitleName;
+    class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        Button mTopicTitleName;
 
         TopicHolder(@NonNull View itemView) {
             super(itemView);
             mTopicTitleName = itemView.findViewById(R.id.topic_title_name);
+            itemView.setOnClickListener(this);
         }
 
-        public void bindView(int position){
-
-        }
 
         @Override
         public void onClick(View v) {
+            Log.e("mylogmessage", "hello");
+            int position = getAdapterPosition();
+            Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
 
+            callback.onTopicSelected(555);
         }
     }
 
@@ -146,12 +153,7 @@ public class HomeFragment extends Fragment {
 //    interface with activity
 
     public interface OnCategorySelectedListener {
-        void onCategorySelected(int categoryId);
-    }
-
-    public void onCategorySelected(int categoryId) {
-//        TODO: implement when a category is clicked
-        callback.onCategorySelected(categoryId);
+        void onTopicSelected(int categoryId);
     }
 
     public void setOnCategorySelectedListener(Activity activity) {

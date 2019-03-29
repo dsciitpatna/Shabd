@@ -16,7 +16,7 @@
             android:background="@drawable/card_gradient"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="64sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:text="Holi" />
 
