@@ -9,14 +9,21 @@
     card_view:cardCornerRadius="10dp"
     android:elevation="90dp">
 
-        <Button
+    <ImageView
+        android:id="@+id/topic_title_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/cardBackground"
+        android:contentDescription="Card Background" />
+
+    <TextView
             android:id="@+id/topic_title_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/card_gradient"
             android:gravity="center"
             android:textColor="#fff"
-            android:textSize="64sp"
+            android:textSize="24sp"
+            android:textAllCaps="true"
             android:textStyle="bold"
             tools:text="Holi" />
 

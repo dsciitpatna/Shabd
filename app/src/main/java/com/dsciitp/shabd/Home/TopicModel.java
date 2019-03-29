@@ -1,17 +1,19 @@
 package com.dsciitp.shabd.Home;
 
-public class GetTitle {
+public class TopicModel {
 
     private String title;
     private String description;
+    private String imageUrl;
 
-    public GetTitle(){
+    public TopicModel(){
 
     }
 
-    public GetTitle(String title, String description) {
+    public TopicModel(String title, String description, String imageUrl) {
         this.title = title;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle(){
@@ -28,5 +30,13 @@ public class GetTitle {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

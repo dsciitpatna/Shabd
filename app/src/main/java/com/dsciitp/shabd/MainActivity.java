@@ -1,6 +1,7 @@
 package com.dsciitp.shabd;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -9,7 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +22,7 @@ import android.widget.RelativeLayout;
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
 import com.dsciitp.shabd.Home.HomeFragment;
+import com.dsciitp.shabd.Home.HomeRecyclerAdapter;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
@@ -25,7 +30,7 @@ import com.dsciitp.shabd.Setting.SettingFragment;
 import java.util.Locale;
 
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener{
+public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
 
     TextToSpeech t1;
     EditText speakbar;
@@ -142,17 +147,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
     }
 
     @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof HomeFragment){
-            HomeFragment homeFragment = (HomeFragment) fragment;
-            homeFragment.setOnCategorySelectedListener(this);
-        }
-    }
-
-    public void onCategorySelected(int position){
-        CategoryFragment categoryFragment = new CategoryFragment();
-        Bundle args = new Bundle();
-        categoryFragment.setArguments(args);
+    public void onTopicSelected(String title) {
+        Log.e("mylogmessage", "heyb");
+        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        CategoryFragment categoryFragment = CategoryFragment.newInstance(title);
         transactFragment(categoryFragment);
     }
 
@@ -175,5 +173,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
             manager.popBackStackImmediate();
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
