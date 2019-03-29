@@ -1,61 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.HomeFragment">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/topic_title_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:padding="2dp"
-            android:background="@drawable/speakbar"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dip"
-                app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
-
-            <EditText
-                android:id="@+id/speak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/play"
-                android:background="@null"
-                android:cursorVisible="false"
-                android:hint="@string/welcome"
-                android:padding="10dip"
-                android:textSize="19sp"
-                android:textColor="#0d5bdd">
-                <requestFocus />
-            </EditText>
-
-            <ImageView
-                android:id="@+id/del"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/speak"
-                android:layout_alignParentEnd="true"
-                android:padding="10dip"
-                app:srcCompat="@drawable/ic_cancel_black_24dp" />
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/topic_title_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+    </android.support.v7.widget.RecyclerView>
 </FrameLayout>
