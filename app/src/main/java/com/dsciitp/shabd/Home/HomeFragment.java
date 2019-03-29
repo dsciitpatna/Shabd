@@ -12,14 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
@@ -78,7 +82,13 @@ public class HomeFragment extends Fragment{
             @Override
             protected void onBindViewHolder(@NonNull TopicHolder holder, int position, @NonNull GetTitle model) {
                 holder.mTopicTitleName.setText(model.getTitle());
-//                holder.mTopicTitleName.setOnClickListener();
+
+                Glide.with(Objects.requireNonNull(getActivity()))
+                        .load("https://i.imgur.com/VaCGIRI.jpg")
+                        .centerCrop()
+                        .placeholder(R.color.cardBackground)
+                        .into(holder.mTopicTitleBackground);
+                holder.mTopicTitleName.setOnClickListener(holder);
             }
 
             @NonNull
@@ -112,11 +122,13 @@ public class HomeFragment extends Fragment{
     }
 
     class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        Button mTopicTitleName;
+        TextView mTopicTitleName;
+        ImageView mTopicTitleBackground;
 
         TopicHolder(@NonNull View itemView) {
             super(itemView);
             mTopicTitleName = itemView.findViewById(R.id.topic_title_name);
+            mTopicTitleBackground = itemView.findViewById(R.id.topic_title_background);
             itemView.setOnClickListener(this);
         }
 
@@ -124,10 +136,10 @@ public class HomeFragment extends Fragment{
         @Override
         public void onClick(View v) {
             Log.e("mylogmessage", "hello");
-            int position = getAdapterPosition();
-            Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
 
-            callback.onTopicSelected(555);
+            if (!mTopicTitleName.getText().toString().isEmpty()) {
+                callback.onTopicSelected(mTopicTitleName.getText().toString());
+            }
         }
     }
 
@@ -149,11 +161,8 @@ public class HomeFragment extends Fragment{
         callback = null;
     }
 
-//    http://developer.android.com/training/basics/fragments/communicating.html
-//    interface with activity
-
     public interface OnCategorySelectedListener {
-        void onTopicSelected(int categoryId);
+        void onTopicSelected(String title);
     }
 
     public void setOnCategorySelectedListener(Activity activity) {

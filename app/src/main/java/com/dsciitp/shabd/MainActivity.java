@@ -1,6 +1,7 @@
 package com.dsciitp.shabd;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
 
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener{
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -93,11 +95,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
     }
 
     @Override
-    public void onTopicSelected(int categoryId) {
-        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
-        CategoryFragment categoryFragment = new CategoryFragment();
-        Bundle args = new Bundle();
-        categoryFragment.setArguments(args);
+    public void onTopicSelected(String title) {
+        Log.e("mylogmessage", "heyb");
+        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        CategoryFragment categoryFragment = CategoryFragment.newInstance(title);
         transactFragment(categoryFragment);
     }
 
@@ -122,4 +123,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnCa
         transaction.commit();
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
