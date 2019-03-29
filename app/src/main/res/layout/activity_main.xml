@@ -7,11 +7,56 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar"
+        android:visibility="visible"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="2dp"
+        android:background="@drawable/speakbar"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+        <EditText
+            android:id="@+id/speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/play"
+            android:layout_toStartOf="@id/del"
+            android:background="@null"
+            android:inputType="text"
+            android:cursorVisible="false"
+            android:hint="@string/welcome"
+            android:padding="10dip"
+            android:textSize="19sp"
+            android:textColor="#0d5bdd">
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="10dip"
+            app:srcCompat="@drawable/ic_cancel_black_24dp" />
+    </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragment_container"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bar"
         android:layout_marginTop="8dp">
 
     </FrameLayout>

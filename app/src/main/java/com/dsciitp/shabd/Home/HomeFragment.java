@@ -37,10 +37,6 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    TextToSpeech t1;
-    EditText speakbar;
-    ImageView play;
-    ImageView del;
     FirestoreRecyclerAdapter adapter;
     OnCategorySelectedListener callback;
 
@@ -103,46 +99,7 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        speakbar = (EditText) view.findViewById(R.id.speak);
-        play = (ImageView) view.findViewById(R.id.play);
-        del = (ImageView) view.findViewById(R.id.del);
 
-        t1 = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    t1.setLanguage(Locale.US);
-                }
-            }
-        });
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String toSpeak = speakbar.getText().toString();
-                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-        del.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                String textString = speakbar.getText().toString();
-                if (textString.length() > 0) {
-                    speakbar.setText("");
-                    speakbar.setSelection(speakbar.getText().length());
-                }
-                return false;
-            }
-        });
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String textString = speakbar.getText().toString();
-                if (textString.length() > 0) {
-                    speakbar.setText(textString.substring(0, textString.length() - 1));
-                    speakbar.setSelection(speakbar.getText().length());//position cursor at the end of the line
-                }
-            }
-        });
         return view;
     }
 
@@ -158,7 +115,7 @@ public class HomeFragment extends Fragment {
         adapter.startListening();
     }
 
-    private class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTopicTitleName;
 
         TopicHolder(@NonNull View itemView) {
