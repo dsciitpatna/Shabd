@@ -52,7 +52,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         holder.topicTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onTopicSelected(topicList.get(holder.getAdapterPosition()).getTitle());
+                callback.onTopicSelected(topicList.get(holder.getAdapterPosition()).getReturnText());
             }
         });
 

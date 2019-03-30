@@ -23,7 +23,6 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
     final private OnSubCategorySelectedListener callback;
     private Context context;
     private List<TopicModel> topicList;
-    private String categoryName;
 
     public interface OnSubCategorySelectedListener {
         void onSubTopicSelected(String title);
@@ -48,12 +47,11 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
         Log.d(TAG, "#" + position);
 
         holder.wordTitle.setText(topicList.get(position).getTitle());
-        categoryName = topicList.get(position).getTitle();
 
         holder.wordImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()).getTitle());
+                callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()).getReturnText());
             }
         });
 

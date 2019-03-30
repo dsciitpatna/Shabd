@@ -11,4 +11,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome To Shabd</string>
+
+    <string-array name="Basic_array">
+        <item>भोजन</item>
+        <item>कपड़ा</item>
+        <item>पीना</item>
+        <item>खेलना</item>
+    </string-array>
 </resources>
