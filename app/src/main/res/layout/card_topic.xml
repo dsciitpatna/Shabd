@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="10dp"
-    card_view:cardCornerRadius="10dp"
-    android:elevation="90dp">
+    card_view:cardCornerRadius="10dp">
 
     <ImageView
         android:id="@+id/topic_title_background"
