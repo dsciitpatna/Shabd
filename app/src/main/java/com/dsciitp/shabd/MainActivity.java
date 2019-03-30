@@ -28,8 +28,6 @@ import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
 
@@ -86,9 +84,6 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
         setBaseFragment(savedInstanceState);
         initSpeakBar();
-        List<String> words = Arrays.asList(getResources().getStringArray(R.array.basic_array));
-
-        Toast.makeText(this, String.valueOf(words.size()), Toast.LENGTH_SHORT).show();
     }
 
     private void setBaseFragment(Bundle savedInstanceState){

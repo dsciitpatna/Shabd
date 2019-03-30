@@ -10,17 +10,50 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome To Shabd</string>
 
-    <string-array name="basic_array">
+    <string-array name="Basic_array">
         <item>Food</item>
         <item>Clothes</item>
         <item>Drink</item>
         <item>Play</item>
     </string-array>
 
-    <string-array name="basic_array_res" tools:ignore="TypographyDashes">
+    <string-array name="Basic_array_res" tools:ignore="TypographyDashes">
         <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
         <item>default_card_placeholder</item>
-        <item>default_card_placeholder</item>
+        <item>card_gradient</item>
         <item>default_card_placeholder</item>
     </string-array>
+
+    <string-array name="Food_array">
+
+    </string-array>
+
+    <string-array name="Food_array_res">
+
+    </string-array>
+
+    <string-array name="Drink_array">
+
+    </string-array>
+
+    <string-array name="Drink_array_res">
+
+    </string-array>
+
+    <string-array name="Clothes_array">
+
+    </string-array>
+
+    <string-array name="Clothes_array_res">
+
+    </string-array>
+
+    <string-array name="Play_array">
+
+    </string-array>
+
+    <string-array name="Play_array_res">
+
+    </string-array>
+
 </resources>

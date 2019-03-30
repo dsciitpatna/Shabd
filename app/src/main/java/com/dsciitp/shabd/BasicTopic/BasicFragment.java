@@ -71,12 +71,12 @@ public class BasicFragment extends Fragment {
 
     private void populateData(){
         topicList = new ArrayList<>();
+        Resources res = getContext().getResources();
 
-        List<String> words = Arrays.asList(getResources().getStringArray(R.array.basic_array));
-        List<String> resID = Arrays.asList(getResources().getStringArray(R.array.basic_array_res));
+        List<String> words = Arrays.asList(getResources().getStringArray(res.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
+        List<String> resID = Arrays.asList(getResources().getStringArray(res.getIdentifier(wordTitle+"_array_res", "array", getContext().getPackageName())));
 
         for (int i = 0; i < words.size(); i++) {
-            Resources res = getContext().getResources();
 
             if (res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()) != 0) {
                 topicList.add(new TopicModel(words.get(i), res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName())));

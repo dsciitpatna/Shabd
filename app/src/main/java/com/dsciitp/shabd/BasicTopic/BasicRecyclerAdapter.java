@@ -50,7 +50,7 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
         holder.wordTitle.setText(topicList.get(position).getTitle());
         categoryName = topicList.get(position).getTitle();
 
-        holder.wordTitle.setOnClickListener(new View.OnClickListener() {
+        holder.wordImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()).getTitle());
