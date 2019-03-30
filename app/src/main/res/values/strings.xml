@@ -10,8 +10,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome To Shabd</string>
 
-    <string name="url">https://googledictionaryapi.eu-gb.mybluemix.net/?define="</string>
-    <string name="query">"</string>
     <string-array name="alphabets">
         <item>A</item>
         <item>B</item>

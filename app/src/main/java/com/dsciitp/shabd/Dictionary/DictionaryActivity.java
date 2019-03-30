@@ -2,48 +2,38 @@ package com.dsciitp.shabd.Dictionary;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.dsciitp.shabd.R;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Locale;
 
-import javax.net.ssl.HttpsURLConnection;
-
-public class DictionaryActivity extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener {
 
     EditText word;
     TextView meaning;
-    String results;
+    ImageView del;
+    TextToSpeech t1;
+    private static final String TTS_SPEAK_ID = "SPEAK";
     String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
     final static String PARAM_QUERY = "define";
-    private RecyclerView rview;
     private RecyclerView.LayoutManager layoutManager;
-    private DictionaryAdapter madapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +42,15 @@ public class DictionaryActivity extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         if (bar != null)
             getSupportActionBar().hide();
-        rview = findViewById(R.id.topic_dict_recycler_view);
+        RecyclerView rview = findViewById(R.id.topic_dict_recycler_view);
         layoutManager = new GridLayoutManager(this, 3);
         rview.setLayoutManager(layoutManager);
         ArrayList mylist  = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
-        madapter = new DictionaryAdapter(mylist,this);
+        DictionaryAdapter madapter = new DictionaryAdapter(mylist, this, this);
 
         rview.setAdapter(madapter);
         word = findViewById(R.id.speak);
+        del = findViewById(R.id.deld);
         meaning = findViewById(R.id.mean);
         ImageView search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +59,42 @@ public class DictionaryActivity extends AppCompatActivity {
                 new Callback().execute(dictionaryEntries(word.getText().toString()));
             }
         });
-
+        del.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String textString = word.getText().toString();
+                if (textString.length() > 0) {
+                    word.setText("");
+                    word.setSelection(word.getText().length());
+                }
+                return false;
+            }
+        });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textString = word.getText().toString();
+                if (textString.length() > 0) {
+                    word.setText(textString.substring(0, textString.length() - 1));
+                    word.setSelection(word.getText().length());//position cursor at the end of the line
+                }
+            }
+        });
+        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.US);
+                }
+            }
+        });
+        FloatingActionButton fab1 =  findViewById(R.id.playd);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.speak(word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+            }
+        });
     }
 
     private URL dictionaryEntries(String search) {
@@ -84,13 +110,19 @@ public class DictionaryActivity extends AppCompatActivity {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        if( url != null)
         Log.d("uri", url.toString());
         return url;
     }
 
+    @Override
+    public void onTopicSelected(String title) {
+        t1.speak(title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+        word.append(title);
+    }
 
 
-    public class Callback extends AsyncTask<URL, Void, String> {
+    public  class Callback extends AsyncTask<URL, Void, String> {
 
         // COMPLETED (26) Override onPreExecute to set the loading indicator to visible
         @Override
