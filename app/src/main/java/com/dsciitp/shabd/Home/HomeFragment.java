@@ -83,8 +83,8 @@ public class HomeFragment extends Fragment{
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        topicList.add(new TopicModel("Basic", "Basic Words", ""));
-        topicList.add(new TopicModel("Advanced", "Advanced Words", ""));
+        topicList.add(new TopicModel("Basic", "", "Basic Words"));
+        topicList.add(new TopicModel("Advanced", "", "Advanced Words"));
 
         recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener)getActivity());
         recyclerView.setAdapter(recyclerAdapter);
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment{
                     Log.d("MainActivity", "Error getting Snapshots");
                     return;
                 }
-                List<TopicModel> topicModels = null;
+                List<TopicModel> topicModels;
                 if (queryDocumentSnapshots != null) {
                     topicModels = queryDocumentSnapshots.toObjects(TopicModel.class);
                     topicList.addAll(topicModels);
@@ -121,5 +121,4 @@ public class HomeFragment extends Fragment{
         });
 
     }
-
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Shabd</string>
     <string name="title_home">Home</string>
 
@@ -7,7 +7,53 @@
     <string name="title_settings">Settings</string>
     <string name="title_quick">Quick</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome To Shabd</string>
+
+    <string-array name="Basic_array">
+        <item>Food</item>
+        <item>Clothes</item>
+        <item>Drink</item>
+        <item>Play</item>
+    </string-array>
+
+    <string-array name="Basic_array_res" tools:ignore="TypographyDashes">
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>default_card_placeholder</item>
+        <item>card_gradient</item>
+        <item>default_card_placeholder</item>
+    </string-array>
+
+    <string-array name="Food_array">
+
+    </string-array>
+
+    <string-array name="Food_array_res">
+
+    </string-array>
+
+    <string-array name="Drink_array">
+
+    </string-array>
+
+    <string-array name="Drink_array_res">
+
+    </string-array>
+
+    <string-array name="Clothes_array">
+
+    </string-array>
+
+    <string-array name="Clothes_array_res">
+
+    </string-array>
+
+    <string-array name="Play_array">
+
+    </string-array>
+
+    <string-array name="Play_array_res">
+
+    </string-array>
+
 </resources>

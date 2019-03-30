@@ -12,13 +12,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.dsciitp.shabd.BasicTopic.BasicFragment;
+import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
 import com.dsciitp.shabd.Home.HomeFragment;
@@ -30,13 +31,16 @@ import com.dsciitp.shabd.Setting.SettingFragment;
 import java.util.Locale;
 
 
-public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener, CategoryFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener,
+        CategoryFragment.OnFragmentInteractionListener, BasicRecyclerAdapter.OnSubCategorySelectedListener {
 
     TextToSpeech t1;
     EditText speakbar;
     ImageView play;
     ImageView del;
     RelativeLayout topbar;
+    private static final String TTS_SPEAK_ID = "SPEAK";
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -74,51 +78,12 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
 
         setBaseFragment(savedInstanceState);
-        speakbar = (EditText) findViewById(R.id.speak);
-        play = (ImageView) findViewById(R.id.play);
-        del = (ImageView) findViewById(R.id.del);
-
-        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    t1.setLanguage(Locale.US);
-                }
-            }
-        });
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String toSpeak = speakbar.getText().toString();
-                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-        del.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                String textString = speakbar.getText().toString();
-                if (textString.length() > 0) {
-                    speakbar.setText("");
-                    speakbar.setSelection(speakbar.getText().length());
-                }
-                return false;
-            }
-        });
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String textString = speakbar.getText().toString();
-                if (textString.length() > 0) {
-                    speakbar.setText(textString.substring(0, textString.length() - 1));
-                    speakbar.setSelection(speakbar.getText().length());//position cursor at the end of the line
-                }
-            }
-        });
+        initSpeakBar();
     }
 
     private void setBaseFragment(Bundle savedInstanceState){
@@ -146,12 +111,63 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
       
     }
 
+    private void initSpeakBar(){
+        speakbar = findViewById(R.id.speak);
+        play = findViewById(R.id.play);
+        del = findViewById(R.id.del);
+
+        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.US);
+                }
+            }
+        });
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toSpeak = speakbar.getText().toString();
+                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+            }
+        });
+        del.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String textString = speakbar.getText().toString();
+                if (textString.length() > 0) {
+                    speakbar.setText("");
+                    speakbar.setSelection(speakbar.getText().length());
+                }
+                return false;
+            }
+        });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textString = speakbar.getText().toString();
+                if (textString.length() > 0) {
+                    speakbar.setText(textString.substring(0, textString.length() - 1));
+                    speakbar.setSelection(speakbar.getText().length());//position cursor at the end of the line
+                }
+            }
+        });
+    }
+
     @Override
     public void onTopicSelected(String title) {
         Log.e("mylogmessage", "heyb");
         Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-        CategoryFragment categoryFragment = CategoryFragment.newInstance(title);
-        transactFragment(categoryFragment);
+        BasicFragment basicFragment = BasicFragment.newInstance(title);
+        transactFragment(basicFragment);
+    }
+
+    @Override
+    public void onSubTopicSelected(String title) {
+        Log.e("mylogmessage", "heyb");
+        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        BasicFragment basicFragment = BasicFragment.newInstance(title);
+        transactFragment(basicFragment);
     }
 
     private void transactFragment(Fragment frag){
