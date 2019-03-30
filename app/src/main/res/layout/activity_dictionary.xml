@@ -5,5 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Dictionary.DictionaryActivity">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bardict"
+        android:visibility="visible"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="2dp"
+        android:background="@drawable/speakbar"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp">
 
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        <EditText
+            android:id="@+id/speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/search"
+            android:layout_toStartOf="@id/del"
+            android:background="@null"
+            android:inputType="text"
+            android:cursorVisible="false"
+            android:hint="@string/welcome"
+            android:padding="10dip"
+            android:textSize="19sp"
+            android:textColor="#0d5bdd">
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/save"
+            android:padding="10dip"
+            app:srcCompat="@drawable/ic_cancel_black_24dp" />
+        <ImageView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:padding="10dip"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_library_add_black_24dp" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mean"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/bardict"
+        app:layout_constraintTop_toBottomOf="@id/bardict"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/topic_dict_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:padding="8dp"
+        app:layout_constraintStart_toEndOf="@id/mean"
+        app:layout_constraintTop_toBottomOf="@id/mean">
+    </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
