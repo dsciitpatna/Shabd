@@ -4,13 +4,24 @@ public class TopicModel {
 
     private String title;
     private String description;
-    private String imageUrl;
+    private String imageUrl = "-1";
+    private int backgroundId;
 
     public TopicModel(){
 
     }
 
-    public TopicModel(String title, String description, String imageUrl) {
+    public TopicModel(String title, int backgroundId){
+        this.title = title;
+        this.backgroundId = backgroundId;
+    }
+
+    public TopicModel(String title, String imageUrl){
+        this.title = title;
+        this.imageUrl = imageUrl;
+    }
+
+    public TopicModel(String title, String imageUrl, String description) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -38,5 +49,17 @@ public class TopicModel {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getBackgroundId() {
+        return backgroundId;
+    }
+
+    public void setBackgroundId(int backgroundId) {
+        this.backgroundId = backgroundId;
+    }
+
+    public boolean hasImage() {
+        return !(imageUrl.equals("-1"));
     }
 }

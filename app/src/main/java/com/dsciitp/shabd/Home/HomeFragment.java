@@ -1,7 +1,6 @@
 package com.dsciitp.shabd.Home;
 
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,15 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dsciitp.shabd.R;
 import com.google.firebase.firestore.CollectionReference;
@@ -93,8 +83,8 @@ public class HomeFragment extends Fragment{
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        topicList.add(new TopicModel("Basic", "Basic Words", "https://i.imgur.com/VaCGIRI.jpg"));
-        topicList.add(new TopicModel("Advanced", "Advanced Words", "https://i.imgur.com/VaCGIRI.jpg"));
+        topicList.add(new TopicModel("Basic", "", "Basic Words"));
+        topicList.add(new TopicModel("Advanced", "", "Advanced Words"));
 
         recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener)getActivity());
         recyclerView.setAdapter(recyclerAdapter);
@@ -119,7 +109,7 @@ public class HomeFragment extends Fragment{
                     Log.d("MainActivity", "Error getting Snapshots");
                     return;
                 }
-                List<TopicModel> topicModels = null;
+                List<TopicModel> topicModels;
                 if (queryDocumentSnapshots != null) {
                     topicModels = queryDocumentSnapshots.toObjects(TopicModel.class);
                     topicList.addAll(topicModels);
@@ -131,5 +121,4 @@ public class HomeFragment extends Fragment{
         });
 
     }
-
 }
