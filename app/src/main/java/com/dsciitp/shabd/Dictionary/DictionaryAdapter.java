@@ -1,6 +1,7 @@
 package com.dsciitp.shabd.Dictionary;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,23 +13,37 @@ import java.util.ArrayList;
 
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.MyHolder> {
-    ArrayList<String> mylist;
 
-    public DictionaryAdapter(ArrayList<String> mylist, Context context) {
+
+    final private OnCategorySelectedListener callback;
+    private ArrayList<String> mylist;
+
+    DictionaryAdapter(ArrayList<String> mylist, Context context,DictionaryAdapter.OnCategorySelectedListener listener) {
         this.mylist = mylist;
+        callback = listener;
+    }
+    public interface OnCategorySelectedListener {
+        void onTopicSelected(String title);
     }
 
-
+    @NonNull
     @Override
-    public DictionaryAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DictionaryAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_topic, parent, false);
-        MyHolder holder = new MyHolder(view);
-        return holder;
+        return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyHolder holder, final int position) {
+
         holder.topicTitle.setText(mylist.get(position));
+        holder.topicTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onTopicSelected(mylist.get(holder.getAdapterPosition()));
+            }
+        });
+
     }
 
     @Override
@@ -36,11 +51,11 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.My
         return mylist.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    class MyHolder extends RecyclerView.ViewHolder {
         TextView topicTitle;
         ImageView topicBackground;
 
-        public MyHolder(View itemView) {
+        MyHolder(View itemView) {
             super(itemView);
             topicTitle = itemView.findViewById(R.id.topic_title_name);
             topicBackground = itemView.findViewById(R.id.topic_title_background);
