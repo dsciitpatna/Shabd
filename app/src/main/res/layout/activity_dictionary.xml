@@ -4,33 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/dictionary_main"
     tools:context=".Dictionary.DictionaryActivity">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bardict"
         android:visibility="visible"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginRight="16dp"
         android:padding="2dp"
         android:background="@drawable/speakbar"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp">
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dip"
-            app:srcCompat="@drawable/ic_search_black_24dp" />
+        android:layout_marginTop="18dp">
 
         <EditText
             android:id="@+id/speak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/search"
             android:layout_toStartOf="@id/deld"
             android:background="@null"
             android:inputType="text"
@@ -70,12 +63,21 @@
         android:id="@+id/topic_dict_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="8dp"
         android:padding="8dp"
         app:layout_constraintStart_toEndOf="@id/mean"
         app:layout_constraintTop_toBottomOf="@id/mean">
     </android.support.v7.widget.RecyclerView>
-
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_search_black_24dp"
+        app:elevation="4dp"
+        app:backgroundTint="@color/cardBackground"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/playd"/>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

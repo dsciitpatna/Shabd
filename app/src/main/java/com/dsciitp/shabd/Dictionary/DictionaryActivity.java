@@ -30,10 +30,10 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     TextView meaning;
     ImageView del;
     TextToSpeech t1;
+    View v;
     private static final String TTS_SPEAK_ID = "SPEAK";
     String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
     final static String PARAM_QUERY = "define";
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,12 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         if (bar != null)
             getSupportActionBar().hide();
         RecyclerView rview = findViewById(R.id.topic_dict_recycler_view);
-        layoutManager = new GridLayoutManager(this, 3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
         rview.setLayoutManager(layoutManager);
-        ArrayList mylist  = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
+        ArrayList mylist = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
         DictionaryAdapter madapter = new DictionaryAdapter(mylist, this, this);
-
         rview.setAdapter(madapter);
+        v=findViewById(R.id.dictionary_main);
         word = findViewById(R.id.speak);
         del = findViewById(R.id.deld);
         meaning = findViewById(R.id.mean);
@@ -88,7 +88,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 }
             }
         });
-        FloatingActionButton fab1 =  findViewById(R.id.playd);
+        FloatingActionButton fab1 = findViewById(R.id.playd);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,25 +96,21 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             }
         });
     }
-
     private URL dictionaryEntries(String search) {
         String language = "en";
-        //word id is case sensitive and lowercase is required
         Uri builtUri = Uri.parse(base).buildUpon()
                 .appendQueryParameter(PARAM_QUERY, search)
                 .build();
-
         URL url = null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        if( url != null)
-        Log.d("uri", url.toString());
+        if (url != null)
+            Log.d("uri", url.toString());
         return url;
     }
-
     @Override
     public void onTopicSelected(String title) {
         t1.speak(title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
@@ -122,8 +118,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     }
 
 
-    public  class Callback extends AsyncTask<URL, Void, String> {
-
+    public class Callback extends AsyncTask<URL, Void, String> {
         // COMPLETED (26) Override onPreExecute to set the loading indicator to visible
         @Override
         protected void onPreExecute() {
@@ -141,7 +136,6 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             }
             return Results;
         }
-
         @Override
         protected void onPostExecute(String result) {
             // COMPLETED (27) As soon as the loading is complete, hide the loading indicator
@@ -159,7 +153,6 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
     }
 }
