@@ -83,8 +83,8 @@ public class HomeFragment extends Fragment{
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        topicList.add(new TopicModel("Basic", "", "Basic Words"));
-        topicList.add(new TopicModel("Advanced", "", "Advanced Words"));
+        topicList.add(new TopicModel("Basic", "", "Basic Words", "Basic"));
+        topicList.add(new TopicModel("Advanced", "", "Advanced Words", "Advanced"));
 
         recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener)getActivity());
         recyclerView.setAdapter(recyclerAdapter);

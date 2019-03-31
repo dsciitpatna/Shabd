@@ -1,11 +1,12 @@
 package com.dsciitp.shabd.BasicTopic;
 
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.dsciitp.shabd.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class BasicFragment extends Fragment {
 
@@ -24,7 +27,7 @@ public class BasicFragment extends Fragment {
     private String wordTitle;
 
     private List<TopicModel> topicList;
-    private BasicRecyclerAdapter recyclerAdapter;
+    Resources res;
 
     public BasicFragment() {
         // Required empty public constructor
@@ -44,10 +47,11 @@ public class BasicFragment extends Fragment {
         if (getArguments() != null) {
             wordTitle = getArguments().getString(WORD_TITLE);
         }
+        res = Objects.requireNonNull(getContext()).getResources();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_basic, container, false);
         populateData();
@@ -57,7 +61,7 @@ public class BasicFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerAdapter = new BasicRecyclerAdapter(getContext(), topicList, (BasicRecyclerAdapter.OnSubCategorySelectedListener)getActivity());
+        BasicRecyclerAdapter recyclerAdapter = new BasicRecyclerAdapter(getContext(), topicList, (BasicRecyclerAdapter.OnSubCategorySelectedListener) getActivity());
         recyclerView.setAdapter(recyclerAdapter);
 
         return view;
@@ -71,21 +75,27 @@ public class BasicFragment extends Fragment {
 
     private void populateData(){
         topicList = new ArrayList<>();
-        Resources res = getContext().getResources();
 
-        List<String> words = Arrays.asList(getResources().getStringArray(res.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
-        List<String> resID = Arrays.asList(getResources().getStringArray(res.getIdentifier(wordTitle+"_array_res", "array", getContext().getPackageName())));
+        List<String> words = Arrays.asList(res.getStringArray(
+                res.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
+        List<String> resID = Arrays.asList(res.getStringArray(
+                res.getIdentifier(wordTitle+"_array_res", "array", getContext().getPackageName())));
+
+        Configuration conf = new Configuration(res.getConfiguration());
+        conf.setLocale(Locale.ENGLISH);
+        Resources res1 = new Resources(res.getAssets(), res.getDisplayMetrics(), conf);
+        List<String> returnText = Arrays.asList(res1.getStringArray(
+                res1.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
 
         for (int i = 0; i < words.size(); i++) {
 
             if (res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()) != 0) {
-                topicList.add(new TopicModel(words.get(i), res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName())));
+                topicList.add(new TopicModel(words.get(i),
+                        res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()), returnText.get(i)));
             } else {
-                topicList.add(new TopicModel(words.get(i), resID.get(i)));
+                topicList.add(new TopicModel(words.get(i), resID.get(i), returnText.get(i)));
             }
-            Log.e("mylogmessage", String.valueOf(res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName())));
 
         }
-
     }
 }

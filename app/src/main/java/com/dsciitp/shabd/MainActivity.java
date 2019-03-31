@@ -1,6 +1,7 @@
 package com.dsciitp.shabd;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     ImageView play;
     ImageView del;
     RelativeLayout topbar;
+    Resources res;
     private static final String TTS_SPEAK_ID = "SPEAK";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
         setBaseFragment(savedInstanceState);
         initSpeakBar();
+        res = getResources();
+
     }
 
     private void setBaseFragment(Bundle savedInstanceState){
@@ -166,8 +170,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     public void onSubTopicSelected(String title) {
         Log.e("mylogmessage", "heyb");
         Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-        BasicFragment basicFragment = BasicFragment.newInstance(title);
-        transactFragment(basicFragment);
+
+        if (res.getIdentifier(title + "_array", "array", getPackageName()) != 0){
+            BasicFragment basicFragment = BasicFragment.newInstance(title);
+            transactFragment(basicFragment);
+        } else {
+            speakbar.append(title.toUpperCase() + " ");
+        }
     }
 
     private void transactFragment(Fragment frag){
