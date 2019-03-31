@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="43dp"
     android:layout_margin="10dp"
     card_view:cardCornerRadius="10dp">
 
@@ -12,7 +12,7 @@
         android:id="@+id/topic_title_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/cardBackground"
+        android:src="@drawable/default_card_placeholder"
         android:contentDescription="Card Background" />
 
     <TextView
