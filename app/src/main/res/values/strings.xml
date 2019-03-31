@@ -104,4 +104,6 @@
 
     </string-array>
 
+    <string name="default_notification_channel_id" translatable="false">notify</string>
+
 </resources>
