@@ -61,3 +61,12 @@ It is advisable to clone only the development branch using the following command
 * Make all the PR's in development branch.
 * Contact the mentors at Gitter or Slack channel before contributing.
 
+#### Current state of app
+!['home activity'](app/src/main/res/drawable-v24/home_activity.png)
+!['dictionary activity'](app/src/main/res/drawable-v24/dictionary_activity_Ss.png)
+!['learn activity'](app/src/main/res/drawable-v24/learn_activity_ss.png)
+!['quick fragment'](app/src/main/res/drawable-v24/fragment_quick_ss.png)
+!['setting fragment'](app/src/main/res/drawable-v24/setting_fragment_ss.png)
+!['basic activity'](app/src/main/res/drawable-v24/basic_activity_ss.png)
+!['food activity'](app/src/main/res/drawable-v24/food_activity_ss.png)
+!['home activity animation'](app/src/main/res/drawable-v24/food_activity_animation_ss.png)
