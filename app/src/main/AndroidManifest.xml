@@ -12,7 +12,6 @@
         <activity
             android:name=".Dictionary.DictionaryActivity"
             android:label="Dictionary"
-            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
