@@ -63,7 +63,7 @@ It is advisable to clone only the development branch using the following command
 
 #### Current state of app
 !['home activity'](app/src/main/res/drawable-v24/home_activity.png)
-!['dictionary activity'](app/src/main/res/drawable-v24/dictionary_activity_Ss.png)
+!['dictionary activity'](app/src/main/res/drawable-v24/dictionary_activity_ss.png)
 !['learn activity'](app/src/main/res/drawable-v24/learn_activity_ss.png)
 !['quick fragment'](app/src/main/res/drawable-v24/fragment_quick_ss.png)
 !['setting fragment'](app/src/main/res/drawable-v24/setting_fragment_ss.png)
