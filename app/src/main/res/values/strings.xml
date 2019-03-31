@@ -31,7 +31,6 @@
         <item>Drink</item>
         <item>Play</item>
     </string-array>
-
     <string-array name="Basic_array_res" tools:ignore="TypographyDashes">
         <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
         <item>default_card_placeholder</item>
@@ -39,34 +38,68 @@
         <item>default_card_placeholder</item>
     </string-array>
 
+    <!--Food Array-->
     <string-array name="Food_array">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>I am hungry</item>
+        <item>I want food</item>
+        <item>I love eating</item>
+        <item>I want sweets cuz i like them</item>
+    </string-array>
+    <string-array name="Food_array_res" tools:ignore="TypographyDashes">
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+        <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
+    </string-array>
+
+    <string-array name="Breakfast_array">
+
+    </string-array>
+    <string-array name="Breakfast_array_res">
 
     </string-array>
 
-    <string-array name="Food_array_res">
+    <string-array name="Lunch_array">
+
+    </string-array>
+    <string-array name="Lunch_array_res">
 
     </string-array>
 
+    <string-array name="Dinner_array">
+
+    </string-array>
+
+    <string-array name="Dinner_array_res">
+
+    </string-array>
+
+    <!--Drink Array-->
     <string-array name="Drink_array">
 
     </string-array>
-
     <string-array name="Drink_array_res">
 
     </string-array>
 
+    <!--Clothes Array-->
     <string-array name="Clothes_array">
 
     </string-array>
-
     <string-array name="Clothes_array_res">
 
     </string-array>
 
+    <!--Play Array-->
     <string-array name="Play_array">
 
     </string-array>
-
     <string-array name="Play_array_res">
 
     </string-array>

@@ -10,7 +10,9 @@
         android:id="@+id/basic_frag_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp">
     </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
