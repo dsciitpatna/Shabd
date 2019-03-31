@@ -29,7 +29,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.My
     @NonNull
     @Override
     public DictionaryAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_topic, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_dictionary, parent, false);
         return new MyHolder(view);
     }
 
