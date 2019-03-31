@@ -1,7 +1,4 @@
-package com.dsciitp.shabd.Dictionary;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+package com.dsciitp.shabd.dictionary;
 
 import java.io.IOException;
 import java.io.InputStream;

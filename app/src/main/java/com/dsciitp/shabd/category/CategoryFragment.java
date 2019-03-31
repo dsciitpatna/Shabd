@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Category;
+package com.dsciitp.shabd.category;
 
 import android.content.Context;
 import android.net.Uri;

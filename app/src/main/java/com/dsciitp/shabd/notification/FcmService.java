@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Notification;
+package com.dsciitp.shabd.notification;
 
 import android.app.Notification;
 import android.app.PendingIntent;

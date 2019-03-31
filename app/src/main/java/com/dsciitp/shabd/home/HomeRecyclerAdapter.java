@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.BasicTopic;
+package com.dsciitp.shabd.home;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,24 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.R;
 
 import java.util.List;
 
-public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdapter.TopicHolder> {
+public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapter.TopicHolder> {
 
-    private static final String TAG = BasicRecyclerAdapter.class.getSimpleName();
+    private static final String TAG = HomeRecyclerAdapter.class.getSimpleName();
 
-    final private OnSubCategorySelectedListener callback;
+    final private OnCategorySelectedListener callback;
     private Context context;
     private List<TopicModel> topicList;
+    private String categoryName;
 
-    public interface OnSubCategorySelectedListener {
-        void onSubTopicSelected(String title);
+    public interface OnCategorySelectedListener {
+        void onTopicSelected(String title);
     }
 
-    BasicRecyclerAdapter(Context context, List<TopicModel> topicList, OnSubCategorySelectedListener listener) {
+    HomeRecyclerAdapter(Context context, List<TopicModel> topicList, OnCategorySelectedListener listener) {
         this.context = context;
         callback = listener;
         this.topicList = topicList;
@@ -37,7 +37,7 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
     @Override
     public TopicHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_word, viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_topic, viewGroup,false);
 
         return new TopicHolder(view);
     }
@@ -46,12 +46,13 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
     public void onBindViewHolder(final TopicHolder holder, int position) {
         Log.d(TAG, "#" + position);
 
-        holder.wordTitle.setText(topicList.get(position).getTitle());
+        holder.topicTitle.setText(topicList.get(position).getTitle());
+        categoryName = topicList.get(position).getTitle();
 
-        holder.wordImage.setOnClickListener(new View.OnClickListener() {
+        holder.topicTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()).getReturnText());
+                callback.onTopicSelected(topicList.get(holder.getAdapterPosition()).getReturnText());
             }
         });
 
@@ -60,11 +61,10 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
                     .load(topicList.get(position).getImageUrl())
                     .centerCrop()
                     .placeholder(R.drawable.default_card_placeholder)
-                    .into(holder.wordImage);
+                    .into(holder.topicBackground);
         } else {
-            holder.wordImage.setImageResource(topicList.get(holder.getAdapterPosition()).getBackgroundId());
+            holder.topicBackground.setImageResource(topicList.get(holder.getAdapterPosition()).getBackgroundId());
         }
-
     }
 
     @Override
@@ -75,13 +75,13 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
 
 
     class TopicHolder extends RecyclerView.ViewHolder{
-        TextView wordTitle;
-        ImageView wordImage;
+        TextView topicTitle;
+        ImageView topicBackground;
 
         TopicHolder(@NonNull View itemView) {
             super(itemView);
-            wordTitle = itemView.findViewById(R.id.word_card_text);
-            wordImage = itemView.findViewById(R.id.word_card_image);
+            topicTitle = itemView.findViewById(R.id.topic_title_name);
+            topicBackground = itemView.findViewById(R.id.topic_title_background);
         }
 
     }

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Dictionary.DictionaryActivity"
+            android:name=".dictionary.DictionaryActivity"
             android:label="Dictionary"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -18,7 +18,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Learn.LearnActivity"
+            android:name=".learn.LearnActivity"
             android:label="Dictionary"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Notification.FcmService" android:exported="false">
+        <service android:name=".notification.FcmService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

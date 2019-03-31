@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Learn;
+package com.dsciitp.shabd.learn;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

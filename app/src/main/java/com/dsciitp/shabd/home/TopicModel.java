@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Home;
+package com.dsciitp.shabd.home;
 
 public class TopicModel {
 

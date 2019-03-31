@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.BasicTopic;
+package com.dsciitp.shabd.basicTopic;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dsciitp.shabd.Home.TopicModel;
+import com.dsciitp.shabd.home.TopicModel;
 import com.dsciitp.shabd.R;
 
 import java.util.ArrayList;

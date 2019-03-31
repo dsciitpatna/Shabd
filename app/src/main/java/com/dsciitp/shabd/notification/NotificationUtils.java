@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Notification;
+package com.dsciitp.shabd.notification;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

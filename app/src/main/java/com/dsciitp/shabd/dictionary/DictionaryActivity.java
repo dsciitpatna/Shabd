@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Dictionary;
+package com.dsciitp.shabd.dictionary;
 
 import android.net.Uri;
 import android.os.AsyncTask;

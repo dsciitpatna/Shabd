@@ -1,4 +1,4 @@
-package com.dsciitp.shabd.Home;
+package com.dsciitp.shabd.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

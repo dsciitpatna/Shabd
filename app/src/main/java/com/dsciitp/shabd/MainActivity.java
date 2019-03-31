@@ -19,15 +19,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.dsciitp.shabd.BasicTopic.BasicFragment;
-import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
-import com.dsciitp.shabd.Category.CategoryFragment;
-import com.dsciitp.shabd.Dictionary.DictionaryActivity;
-import com.dsciitp.shabd.Home.HomeFragment;
-import com.dsciitp.shabd.Home.HomeRecyclerAdapter;
-import com.dsciitp.shabd.Learn.LearnActivity;
-import com.dsciitp.shabd.QuickActions.QuickActionFragment;
-import com.dsciitp.shabd.Setting.SettingFragment;
+import com.dsciitp.shabd.basicTopic.BasicFragment;
+import com.dsciitp.shabd.basicTopic.BasicRecyclerAdapter;
+import com.dsciitp.shabd.category.CategoryFragment;
+import com.dsciitp.shabd.dictionary.DictionaryActivity;
+import com.dsciitp.shabd.home.HomeFragment;
+import com.dsciitp.shabd.home.HomeRecyclerAdapter;
+import com.dsciitp.shabd.learn.LearnActivity;
+import com.dsciitp.shabd.quickActions.QuickActionFragment;
+import com.dsciitp.shabd.setting.SettingFragment;
 
 import java.util.Locale;
 
