@@ -155,9 +155,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     @Override
     public void onTopicSelected(String title) {
         Log.e("mylogmessage", "heyb");
-        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-        BasicFragment basicFragment = BasicFragment.newInstance(title);
-        transactFragment(basicFragment);
+        if (res.getIdentifier(title + "_array", "array", getPackageName()) != 0) {
+            Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+            BasicFragment basicFragment = BasicFragment.newInstance(title);
+            transactFragment(basicFragment);
+        } else {
+            Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
