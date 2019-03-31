@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_text_button">14sp</dimen>
+    <dimen name="material_text_overline">10sp</dimen>
+    <dimen name="material_text_caption">12sp</dimen>
+    <dimen name="material_text_body1">16sp</dimen>
+    <dimen name="material_text_body2">14sp</dimen>
+    <dimen name="material_text_subtitle2">14sp</dimen>
+    <dimen name="material_text_subtitle1">16sp</dimen>
+    <dimen name="material_text_title_h6">20sp</dimen>
+    <dimen name="material_text_headline_h5">24sp</dimen>
+    <dimen name="material_text_display_h4">34sp</dimen>
+    <dimen name="material_text_display_h3">48sp</dimen>
+    <dimen name="material_text_display_h2">60sp</dimen>
+    <dimen name="material_text_display_h1">96sp</dimen>
+</resources>
