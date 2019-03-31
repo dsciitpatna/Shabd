@@ -8,19 +8,19 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
+        android:id="@+id/bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bar"
-        android:visibility="visible"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
-        android:padding="2dp"
         android:background="@drawable/speakbar"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="2dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/play"
@@ -33,15 +33,16 @@
             android:id="@+id/speak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/play"
             android:layout_toStartOf="@id/del"
+            android:layout_toEndOf="@id/play"
             android:background="@null"
-            android:inputType="text"
             android:cursorVisible="false"
             android:hint="@string/welcome"
+            android:inputType="text"
             android:padding="10dip"
-            android:textSize="19sp"
-            android:textColor="@android:color/black">
+            android:textColor="@android:color/black"
+            android:textSize="19sp">
+
             <requestFocus />
         </EditText>
 
@@ -53,13 +54,16 @@
             android:padding="10dip"
             app:srcCompat="@drawable/ic_cancel_black_24dp" />
     </RelativeLayout>
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintTop_toBottomOf="@id/bar"
-        android:layout_marginBottom="55dp"
-        android:layout_marginTop="8dp">
+        app:layout_constraintVertical_weight="1">
 
     </FrameLayout>
 

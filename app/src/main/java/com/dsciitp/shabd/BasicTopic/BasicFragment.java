@@ -73,19 +73,19 @@ public class BasicFragment extends Fragment {
         topicList.clear();
     }
 
-    private void populateData(){
+    private void populateData() {
         topicList = new ArrayList<>();
 
         List<String> words = Arrays.asList(res.getStringArray(
-                res.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
+                res.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
         List<String> resID = Arrays.asList(res.getStringArray(
-                res.getIdentifier(wordTitle+"_array_res", "array", getContext().getPackageName())));
+                res.getIdentifier(wordTitle + "_array_res", "array", getContext().getPackageName())));
 
         Configuration conf = new Configuration(res.getConfiguration());
         conf.setLocale(Locale.ENGLISH);
         Resources res1 = new Resources(res.getAssets(), res.getDisplayMetrics(), conf);
         List<String> returnText = Arrays.asList(res1.getStringArray(
-                res1.getIdentifier(wordTitle+"_array", "array", getContext().getPackageName())));
+                res1.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
 
         for (int i = 0; i < words.size(); i++) {
 

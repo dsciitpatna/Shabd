@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
+    android:id="@+id/card_word_ll"
     android:layout_margin="4dp"
     card_view:cardElevation="4dp"
     card_view:cardCornerRadius="8dp">
