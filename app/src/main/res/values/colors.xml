@@ -3,5 +3,8 @@
     <color name="colorPrimary">#CCFF9800</color>
     <color name="colorPrimaryDark">#FF9800</color>
     <color name="colorAccent">#009688</color>
+    <color name="light_orange">#FFB785</color>
+    <color name="dark_orange">#e65c00</color>
+    <color name="crimson_red">#ff8000</color>
     <color name="cardBackground">#1330CE</color>
 </resources>
