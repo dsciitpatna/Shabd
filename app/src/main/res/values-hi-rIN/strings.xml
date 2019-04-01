@@ -7,6 +7,7 @@
     <string name="title_dictionary">Dictionary</string>
     <string name="title_settings">Settings</string>
     <string name="title_quick">Quick</string>
+    <string name="Overview">ऑटिज्म एक जटिल न्यूरोबेवियरल स्थिति है जिसमें सामाजिक सहभागिता और विकासात्मक भाषा में संचार और कठोर, दोहराव वाले व्यवहार के साथ संचार कौशल शामिल हैं। "इस समस्या को दूर करने के लिए हम एक शैक्षिक ऐप के साथ आए जो इस लोगों को पूरी तरह से मुक्त मंच के माध्यम से शिक्षित होने में मदद करता है। इस ऐप का उपयोग बच्चों को शिक्षित करने के लिए भी किया जा सकता है। ऐप का यूआई उपयोगकर्ता के अनुकूल है। ऐप ऑटिज़्म रोगियों के लिए एक सर्वकालिक मित्र की तरह काम करता है, जिन्हें अक्सर समाज द्वारा उपेक्षित किया जाता है।</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
