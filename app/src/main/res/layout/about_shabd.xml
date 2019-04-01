@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SHABD"
+            android:text="@string/shabd"
             android:textAlignment="center"
             android:textSize="50sp"
             android:textStyle="bold"
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Overview"
+            android:text="@string/overview"
             android:gravity="center"
             android:textSize="22sp"
             android:textColor="#000000"/>
@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Developer"
+            android:text="@string/developer"
             android:gravity="center"
             android:textSize="22sp"
             android:textColor="#000000"/>
