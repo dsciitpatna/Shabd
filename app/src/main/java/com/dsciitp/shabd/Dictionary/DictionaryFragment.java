@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.dsciitp.shabd.R;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,7 +29,6 @@ public class DictionaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
-
         final RecyclerView rview = view.findViewById(R.id.topic_dict_recycler_view);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         rview.setLayoutManager(layoutManager);
@@ -40,5 +37,4 @@ public class DictionaryFragment extends Fragment {
         rview.setAdapter(madapter);
         return view;
     }
-
 }

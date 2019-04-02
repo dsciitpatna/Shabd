@@ -117,7 +117,6 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 });
             }
         });
-
     }
 
     private void setBaseFragment(Bundle savedInstanceState) {
@@ -132,7 +131,6 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_dictionary, firstFragment).commit();
         }
-
     }
 
     private void transactFragment(Fragment frag) {
@@ -140,7 +138,6 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         fragmentManager.replace(R.id.frame_dictionary, frag, frag.getTag())
                 .addToBackStack(frag.getTag())
                 .commit();
-
     }
 
 
@@ -150,14 +147,11 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         word.append(title);
     }
 
-
     @Override
     public void onDictionarySelected() {
 //        NetworkUtils.dictionaryEntries(word.getText().toString());
         transactFragment(MeaningFragment.newInstance(word.getText().toString()));
-
     }
-
 }
 
 
