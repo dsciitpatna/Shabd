@@ -58,9 +58,9 @@
     </string-array>
     <string-array name="Basic_array_res" tools:ignore="TypographyDashes">
         <item>https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png</item>
-        <item>default_card_placeholder</item>
-        <item>card_gradient</item>
-        <item>default_card_placeholder</item>
+        <item>https://www.pngarts.com/files/3/Clothing-PNG-Image-Background.png</item>
+        <item></item>
+        <item></item>
     </string-array>
 
     <!--Food Array-->

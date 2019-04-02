@@ -22,7 +22,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
     final private OnCategorySelectedListener callback;
     private Context context;
     private List<TopicModel> topicList;
-    private String categoryName;
 
     public interface OnCategorySelectedListener {
         void onTopicSelected(String title);
@@ -47,7 +46,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         Log.d(TAG, "#" + position);
 
         holder.topicTitle.setText(topicList.get(position).getTitle());
-        categoryName = topicList.get(position).getTitle();
 
         holder.topicTitle.setOnClickListener(new View.OnClickListener() {
             @Override

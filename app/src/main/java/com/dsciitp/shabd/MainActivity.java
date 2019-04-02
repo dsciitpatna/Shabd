@@ -38,12 +38,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener,
         CategoryFragment.OnFragmentInteractionListener, BasicRecyclerAdapter.OnSubCategorySelectedListener {
 
-    TextToSpeech t1;
+    TextToSpeech tts;
     EditText speakbar;
     ImageView play;
     ImageView del;
     RelativeLayout topbar;
     Resources res;
+
+    private Fragment activeFragment;
 
     private static final String TTS_SPEAK_ID = "SPEAK";
 
@@ -54,21 +56,18 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    topbar = findViewById(R.id.bar);
-                    topbar.setVisibility(View.VISIBLE);
+                    showTopBar();
                     updateFragment(new HomeFragment(), 0);
                     return true;
                 case R.id.navigation_quick:
-                    topbar = findViewById(R.id.bar);
-                    topbar.setVisibility(View.VISIBLE);
+                    showTopBar();
                     updateFragment(new QuickActionFragment(), 1);
                     return true;
                 case R.id.navigation_dictionary:
                     startActivity(new Intent(MainActivity.this, DictionaryActivity.class));
                     return true;
                 case R.id.navigation_settings:
-                    topbar = findViewById(R.id.bar);
-                    topbar.setVisibility(View.GONE);
+                    hideTopBar();
                     updateFragment(new SettingFragment(), 1);
                     return true;
                 case R.id.navigation_learn:
@@ -105,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             firstFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
+            activeFragment = firstFragment;
         }
 
     }
@@ -114,11 +114,22 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         play = findViewById(R.id.play);
         del = findViewById(R.id.del);
 
-        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    t1.setLanguage(Locale.US);
+                if (status == TextToSpeech.SUCCESS) {
+
+                    int result = tts.setLanguage(Locale.US);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                    tts.setPitch(1.0f);
+                    tts.setSpeechRate(0.8f);
+
+                } else {
+                    Log.e("TTS", "Initialization Failed!");
                 }
             }
         });
@@ -126,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             @Override
             public void onClick(View v) {
                 String toSpeak = speakbar.getText().toString();
-                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+                tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             }
         });
         del.setOnLongClickListener(new View.OnLongClickListener() {
@@ -154,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onTopicSelected(String title) {
-        Log.e("mylogmessage", "heyb");
         if (res.getIdentifier(title + "_array", "array", getPackageName()) != 0) {
             Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
             BasicFragment basicFragment = BasicFragment.newInstance(title);
@@ -166,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onSubTopicSelected(final TopicModel model, final View view) {
-        Log.e("mylogmessage", "heyb");
         Toast.makeText(this, model.getTitle(), Toast.LENGTH_SHORT).show();
 
         final float originalX = view.getX();
@@ -180,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             BasicFragment basicFragment = BasicFragment.newInstance(model.getReturnText());
             transactFragment(basicFragment);
         } else {
-            t1.speak(model.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+            tts.speak(model.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             view.setClickable(false);
             view.animate().x(size.x / 3f).y(size.y / 3f).translationZBy(10f).scaleXBy(1.25f).scaleYBy(1.25f).setDuration(750).withEndAction(new Runnable() {
                 @Override
@@ -198,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void transactFragment(Fragment frag) {
+        activeFragment = frag;
         FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
         fragmentManager.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out)
                 .replace(R.id.fragment_container, frag, frag.getTag())
@@ -206,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void updateFragment(Fragment fragment, int bStack) {
+        activeFragment = fragment;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
@@ -228,5 +239,36 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     protected void onStop() {
         super.onStop();
         speakbar.setText("");
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (activeFragment instanceof SettingFragment) {
+            showTopBar();
+        }
+        super.onBackPressed();
+    }
+
+    private void hideTopBar() {
+        if (topbar == null) topbar = findViewById(R.id.bar);
+        if (topbar.getVisibility() == View.VISIBLE) {
+            topbar.setVisibility(View.GONE);
+        }
+    }
+
+    private void showTopBar() {
+        if (topbar == null) topbar = findViewById(R.id.bar);
+        if (topbar.getVisibility() == View.GONE) {
+            topbar.setVisibility(View.VISIBLE);
+        }
     }
 }
