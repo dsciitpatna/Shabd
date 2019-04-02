@@ -11,7 +11,6 @@
     <string name="welcome">Welcome To Shabd</string>
 
 
-
     <string name="url" translatable="false">https://googledictionaryapi.eu-gb.mybluemix.net/?define="</string>
     <string name="query" translatable="false">"</string>
 

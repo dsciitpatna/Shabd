@@ -1,39 +1,27 @@
 package com.dsciitp.shabd.Dictionary;
 
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import com.dsciitp.shabd.R;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 
-public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener {
+public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener, DictionaryFragment.OnCategorySelectedListener {
 
     EditText word;
-    TextView meaning;
     ImageView del;
     TextToSpeech t1;
     View v;
+    FloatingActionButton fab1, search;
     private static final String TTS_SPEAK_ID = "SPEAK";
-    String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
-    final static String PARAM_QUERY = "define";
+    String press = "Press me to know the meaning";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +30,11 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         ActionBar bar = getSupportActionBar();
         if (bar != null)
             getSupportActionBar().hide();
-        RecyclerView rview = findViewById(R.id.topic_dict_recycler_view);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
-        rview.setLayoutManager(layoutManager);
-        ArrayList mylist = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
-        DictionaryAdapter madapter = new DictionaryAdapter(mylist, this, this);
-        rview.setAdapter(madapter);
-        v=findViewById(R.id.dictionary_main);
-        word = findViewById(R.id.speak);
         del = findViewById(R.id.deld);
-        meaning = findViewById(R.id.mean);
-        ImageView search = findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Callback().execute(dictionaryEntries(word.getText().toString()));
-            }
-        });
+        word = findViewById(R.id.speak);
+        search = findViewById(R.id.search);
+        setBaseFragment(savedInstanceState);
+        search.setImageResource(R.drawable.ic_search_black_24dp);
         del.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -68,6 +44,34 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                     word.setSelection(word.getText().length());
                 }
                 return false;
+            }
+        });
+        v = findViewById(R.id.dictionary_main);
+        fab1 = findViewById(R.id.playd);
+        final FloatingActionButton search = findViewById(R.id.search);
+//        Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        display.getSize(size);
+//        final float screenx = size.x;
+//        final float screeny = size.y;
+        final float originalx = ((View)search).getX();
+        final float originaly = ((View)search).getY();
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search.setImageResource(R.color.colorPrimary);
+                search.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                search.animate().x(350f).y(250f).scaleX(6f).scaleY(6f).setDuration(1200).translationZBy(25f).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        ((View) fab1).setVisibility(View.INVISIBLE);
+                        ((View) search).setVisibility(View.INVISIBLE);
+                        onDictionarySelected();
+                        search.animate().x(originalx).y(originaly).scaleX(1f).scaleY(1f).setDuration(1200).translationZBy(-25f);
+                    }
+                });
+                //new DictionaryActivity().Callback().execute(dictionaryEntries(word.getText().toString()));
             }
         });
         del.setOnClickListener(new View.OnClickListener() {
@@ -88,29 +92,58 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 }
             }
         });
-        FloatingActionButton fab1 = findViewById(R.id.playd);
+
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 t1.speak(word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+                search.animate().scaleX(2f).scaleY(2f).setDuration(1000).translationZBy(25f).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        search.animate().scaleX(1f).scaleY(1f).setDuration(1000).translationZBy(-25f).withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                t1.speak(press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+                                search.animate().scaleX(2f).scaleY(2f).setDuration(1000).translationZBy(+25f).withEndAction(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        search.animate().scaleX(1f).scaleY(1f).translationZBy(25f).setDuration(1000);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
+
     }
-    private URL dictionaryEntries(String search) {
-        String language = "en";
-        Uri builtUri = Uri.parse(base).buildUpon()
-                .appendQueryParameter(PARAM_QUERY, search)
-                .build();
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+
+    private void setBaseFragment(Bundle savedInstanceState) {
+
+        if (findViewById(R.id.frame_dictionary) != null) {
+
+            if (savedInstanceState != null) {
+                return;
+            }
+            DictionaryFragment firstFragment = new DictionaryFragment();
+            firstFragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.frame_dictionary, firstFragment).commit();
         }
-        if (url != null)
-            Log.d("uri", url.toString());
-        return url;
+
     }
+
+    private void transactFragment(Fragment frag) {
+        FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
+        fragmentManager.replace(R.id.frame_dictionary, frag, frag.getTag())
+                .addToBackStack(frag.getTag())
+                .commit();
+
+    }
+
+
     @Override
     public void onTopicSelected(String title) {
         t1.speak(title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
@@ -118,43 +151,14 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     }
 
 
-    public class Callback extends AsyncTask<URL, Void, String> {
-        // COMPLETED (26) Override onPreExecute to set the loading indicator to visible
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
+    @Override
+    public void onDictionarySelected() {
+//        NetworkUtils.dictionaryEntries(word.getText().toString());
+        transactFragment(MeaningFragment.newInstance(word.getText().toString()));
 
-        @Override
-        protected String doInBackground(URL... params) {
-            URL searchUrl = params[0];
-            String Results = null;
-            try {
-                Results = NetworkUtils.getResponseFromHttpUrl(searchUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return Results;
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            // COMPLETED (27) As soon as the loading is complete, hide the loading indicator
-            int i;
-            StringBuilder def = new StringBuilder("");
-            meaning.setVisibility(View.VISIBLE);
-            //meaning.setText(result);
-            super.onPostExecute(result);
-            try {
-                JSONObject js = new JSONObject(result);
-                def.append(js.getString("word"));
-                //def.append("/n" + js.getJSONArray("meaning"));
-                meaning.setText(def);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
+
 }
+
 
 
