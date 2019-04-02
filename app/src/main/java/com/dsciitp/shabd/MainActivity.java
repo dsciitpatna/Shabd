@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.dsciitp.shabd.BasicTopic.BasicFragment;
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
 import com.dsciitp.shabd.Category.CategoryFragment;
@@ -31,7 +30,6 @@ import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
-
 import java.util.Locale;
 
 
@@ -168,10 +166,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     public void onSubTopicSelected(final TopicModel model, final View view) {
         Log.e("mylogmessage", "heyb");
         Toast.makeText(this, model.getTitle(), Toast.LENGTH_SHORT).show();
-
         final float originalX = view.getX();
         final float originalY = view.getY();
-
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
         display.getSize(size);
