@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment{
                 if (queryDocumentSnapshots != null) {
                     topicModels = queryDocumentSnapshots.toObjects(TopicModel.class);
                     topicList.addAll(topicModels);
-                    Log.e("mylogmessage", topicList.toString());
                     recyclerAdapter.notifyDataSetChanged();
                 }
 

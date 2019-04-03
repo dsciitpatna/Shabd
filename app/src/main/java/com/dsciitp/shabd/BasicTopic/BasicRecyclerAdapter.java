@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,6 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
 
     @Override
     public void onBindViewHolder(final TopicHolder holder, int position) {
-        Log.d(TAG, "#" + position);
 
         holder.wordTitle.setText(topicList.get(position).getTitle());
 
