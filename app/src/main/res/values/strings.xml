@@ -130,4 +130,12 @@
 
     <string name="default_notification_channel_id" translatable="false">notify</string>
 
+    <string-array name="Quick_Action_array">
+
+    </string-array>
+    <string-array name="Quick_Action_array_res">
+
+
+    </string-array>
+
 </resources>

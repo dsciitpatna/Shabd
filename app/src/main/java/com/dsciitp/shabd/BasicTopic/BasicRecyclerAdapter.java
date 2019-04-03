@@ -29,7 +29,7 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
         void onSubTopicSelected(TopicModel model, View view);
     }
 
-    BasicRecyclerAdapter(Context context, List<TopicModel> topicList, OnSubCategorySelectedListener listener) {
+    public BasicRecyclerAdapter(Context context, List<TopicModel> topicList, OnSubCategorySelectedListener listener) {
         this.context = context;
         callback = listener;
         this.topicList = topicList;
