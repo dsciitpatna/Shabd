@@ -23,4 +23,14 @@
         <item>पीना</item>
         <item>खेलना</item>
     </string-array>
+
+    <string-array name="Food_array">
+        <item>सुबह का नाश्ता</item>
+        <item>दोपहर का भोजन</item>
+        <item>रात का खाना</item>
+        <item>मैं भूखा हूँ</item>
+        <item>मुझे मिठाई चाहिए क्योंकि मुझे यह पसंद है</item>
+        <item>मुझे खाना चाहिये</item>
+        <item>मुझे खाना पसंद हैं</item>
+    </string-array>
 </resources>
