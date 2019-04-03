@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/default_card_placeholder"
+        android:background="@drawable/gradient_3"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
             android:textAlignment="center"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/browser_actions_bg_grey"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,7 +34,7 @@
             android:text="@string/overview"
             android:gravity="center"
             android:textSize="22sp"
-            android:textColor="#000000"/>
+            android:textColor="@color/browser_actions_bg_grey"/>
 
     </LinearLayout>
     <TextView
@@ -58,7 +58,7 @@
             android:text="@string/developer"
             android:gravity="center"
             android:textSize="22sp"
-            android:textColor="#000000"/>
+            android:textColor="@color/browser_actions_bg_grey"/>
 
     </LinearLayout>
 </LinearLayout>
