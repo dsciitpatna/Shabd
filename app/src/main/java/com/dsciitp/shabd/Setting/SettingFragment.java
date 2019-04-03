@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dsciitp.shabd.R;
@@ -28,7 +29,7 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
 
-        TextView about_view = view.findViewById(R.id.about_shabd_button);
+        LinearLayout about_view = view.findViewById(R.id.about_button);
 
              // Set a click listener on that View
         about_view.setOnClickListener(new View.OnClickListener() {
