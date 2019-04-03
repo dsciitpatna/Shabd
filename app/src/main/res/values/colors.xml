@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#FF9800</color>
     <color name="colorAccent">#009688</color>
     <color name="cardBackground">#1330CE</color>
+    <color name="meaningBackground">#FFFFFF</color>
+    <color name="floatingButton">#CCFF9800</color>
+    <color name="searchBackground">#FF9800</color>
 </resources>

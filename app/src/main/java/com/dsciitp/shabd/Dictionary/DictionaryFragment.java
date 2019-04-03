@@ -21,9 +21,6 @@ public class DictionaryFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public interface OnCategorySelectedListener {
-        void onDictionarySelected();
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
