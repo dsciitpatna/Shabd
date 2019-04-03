@@ -65,7 +65,8 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             }
         });
 
-        
+        t1.setPitch(1f);
+        t1.setSpeechRate(0.9f);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
