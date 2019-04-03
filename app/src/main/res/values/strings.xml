@@ -15,7 +15,6 @@
     <string name="overview">Overview</string>
     <string name="developer">Developer</string>
 
-
     <string name="url" translatable="false">https://googledictionaryapi.eu-gb.mybluemix.net/?define="</string>
     <string name="query" translatable="false">"</string>
 

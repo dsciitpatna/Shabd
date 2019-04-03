@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Setting.SettingFragment"
-    >
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".Setting.SettingFragment">
 
 <LinearLayout
 
@@ -153,6 +150,7 @@
             android:src="@drawable/ic_adb_black_24dp"
             android:layout_marginRight="15dp"/>
         <TextView
+            android:id="@+id/about_shabd_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="About Shabd"

@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.dsciitp.shabd.BasicTopic.BasicFragment;
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
 import com.dsciitp.shabd.Category.CategoryFragment;
@@ -31,7 +30,6 @@ import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
-
 import java.util.Locale;
 
 
