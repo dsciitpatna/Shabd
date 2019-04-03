@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -45,11 +45,16 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
 
     @Override
     public void onBindViewHolder(final TopicHolder holder, int position) {
-        Log.d(TAG, "#" + position);
 
         holder.wordTitle.setText(topicList.get(position).getTitle());
 
-        holder.cardLinearLayout.setOnClickListener(new View.OnClickListener() {
+        if(context.getResources().getIdentifier(topicList.get(position).getReturnText() + "_array", "array", context.getPackageName()) != 0){
+            holder.cardLinearLayout.setBackgroundResource(R.drawable.gradient_2);
+        }  else {
+            holder.cardLinearLayout.setBackgroundResource(R.drawable.gradient_1);
+        }
+
+        holder.cardCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()), v);
@@ -61,12 +66,11 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
             Glide.with(context)
                     .load(topicList.get(position).getImageUrl())
                     .centerCrop()
-                    .placeholder(R.drawable.default_card_placeholder)
+                    .placeholder(R.color.transparent)
                     .into(holder.wordImage);
         } else {
             holder.wordImage.setImageResource(topicList.get(holder.getAdapterPosition()).getBackgroundId());
         }
-
     }
 
     @Override
@@ -77,12 +81,14 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
     class TopicHolder extends RecyclerView.ViewHolder {
         TextView wordTitle;
         ImageView wordImage;
-        CardView cardLinearLayout;
+        CardView cardCardView;
+        LinearLayout cardLinearLayout;
 
         TopicHolder(@NonNull View itemView) {
             super(itemView);
             wordTitle = itemView.findViewById(R.id.word_card_text);
             wordImage = itemView.findViewById(R.id.word_card_image);
+            cardCardView = itemView.findViewById(R.id.card_word_cv);
             cardLinearLayout = itemView.findViewById(R.id.card_word_ll);
         }
     }

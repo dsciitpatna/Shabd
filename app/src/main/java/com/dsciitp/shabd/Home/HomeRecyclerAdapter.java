@@ -3,7 +3,6 @@ package com.dsciitp.shabd.Home;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
     final private OnCategorySelectedListener callback;
     private Context context;
     private List<TopicModel> topicList;
-    private String categoryName;
 
     public interface OnCategorySelectedListener {
         void onTopicSelected(String title);
@@ -44,10 +42,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
 
     @Override
     public void onBindViewHolder(final TopicHolder holder, int position) {
-        Log.d(TAG, "#" + position);
 
         holder.topicTitle.setText(topicList.get(position).getTitle());
-        categoryName = topicList.get(position).getTitle();
 
         holder.topicTitle.setOnClickListener(new View.OnClickListener() {
             @Override

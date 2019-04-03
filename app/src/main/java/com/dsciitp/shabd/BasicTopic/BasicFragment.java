@@ -76,6 +76,8 @@ public class BasicFragment extends Fragment {
     private void populateData() {
         topicList = new ArrayList<>();
 
+        String currentLocale = Locale.getDefault().getLanguage();
+
         List<String> words = Arrays.asList(res.getStringArray(
                 res.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
         List<String> resID = Arrays.asList(res.getStringArray(
@@ -86,6 +88,10 @@ public class BasicFragment extends Fragment {
         Resources res1 = new Resources(res.getAssets(), res.getDisplayMetrics(), conf);
         List<String> returnText = Arrays.asList(res1.getStringArray(
                 res1.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
+
+        Configuration config = new Configuration();
+        config.locale = new Locale(currentLocale);
+        res.updateConfiguration(config, null);
 
         for (int i = 0; i < words.size(); i++) {
 
