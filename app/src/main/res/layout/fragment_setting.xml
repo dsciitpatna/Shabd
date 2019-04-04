@@ -109,6 +109,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
+        android:id="@+id/setting_logout_ll"
         android:layout_marginLeft="10dp"
         >
 

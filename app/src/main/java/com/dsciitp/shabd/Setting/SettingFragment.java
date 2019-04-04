@@ -7,9 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.SigninActivity;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +23,6 @@ public class SettingFragment extends Fragment {
     public SettingFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +41,21 @@ public class SettingFragment extends Fragment {
                 startActivity(aboutIntent);
             }
         });
+
+        LinearLayout logout = view.findViewById(R.id.setting_logout_ll);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
         return view;
+    }
+
+    private void logout(){
+        Intent intent = new Intent(getContext(), SigninActivity.class);
+        intent.putExtra("logout_action", "logout");
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).finish();
     }
 }

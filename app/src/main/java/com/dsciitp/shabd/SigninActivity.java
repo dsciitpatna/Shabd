@@ -2,6 +2,7 @@ package com.dsciitp.shabd;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class SigninActivity extends AppCompatActivity {
@@ -34,7 +36,13 @@ public class SigninActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        showSplashScreen();
+        if(getIntent().hasExtra("logout_action") && getIntent().getStringExtra("logout_action").equals("logout")){
+            Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show();
+           logout();
+        } else {
+            showSplashScreen();
+        }
+
     }
 
 
@@ -123,6 +131,16 @@ public class SigninActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    private void logout(){
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        showSplashScreen();
+                    }
+                });
     }
 
 }
