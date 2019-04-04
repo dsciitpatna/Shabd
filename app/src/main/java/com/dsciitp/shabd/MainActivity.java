@@ -33,6 +33,7 @@ import com.dsciitp.shabd.Setting.SettingFragment;
 import java.util.Locale;
 
 
+
 public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener,
         CategoryFragment.OnOnlineWordSelectedListener, BasicRecyclerAdapter.OnSubCategorySelectedListener {
 

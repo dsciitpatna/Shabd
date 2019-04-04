@@ -30,7 +30,7 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
 
-        TextView about_view = view.findViewById(R.id.about_shabd_button);
+        LinearLayout about_view = view.findViewById(R.id.about_button);
 
              // Set a click listener on that View
         about_view.setOnClickListener(new View.OnClickListener() {
