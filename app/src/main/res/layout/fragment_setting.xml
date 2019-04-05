@@ -55,6 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/update_ll"
                     android:layout_marginTop="10dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">

@@ -55,13 +55,13 @@ public class SettingFragment extends Fragment {
             }
         });
 
-//        LinearLayout update = view.findViewById(R.id.update_ll);
-//        update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                updateData();
-//            }
-//        });
+        LinearLayout update = view.findViewById(R.id.update_ll);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateData();
+            }
+        });
 
         ImageView profileImage = view.findViewById(R.id.profile_image);
         Glide.with(getContext())

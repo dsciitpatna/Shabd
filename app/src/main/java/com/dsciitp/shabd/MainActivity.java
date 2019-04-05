@@ -32,6 +32,9 @@ import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
 import com.dsciitp.shabd.database.WordsInRealm;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -202,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     public void onTopicSelected(int id) {
         Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
 
-        if (id != -1) {
+        if (id != (-1)) {
             RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
             query.equalTo("id", id);
             WordsInRealm result = query.findFirst();
@@ -216,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             }
             realm.commitTransaction();
         } else {
-            CategoryFragment categoryFragment = CategoryFragment.newInstance("Holi");
+            CategoryFragment categoryFragment = CategoryFragment.newInstance("holi");
             transactFragment(categoryFragment);
         }
     }
@@ -230,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         WordsInRealm result = query.findFirst();
 
         realm.beginTransaction();
-        if (Objects.requireNonNull(result).getIsItTopic() == 1) {
+        if (result.getIsItTopic() == 1) {
             BasicFragment basicFragment = BasicFragment.newInstance(result.getTitle());
             transactFragment(basicFragment);
         } else {

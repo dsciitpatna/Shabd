@@ -1,10 +1,7 @@
 package com.dsciitp.shabd.database;
 
-import io.realm.annotations.PrimaryKey;
-
 public class WordsFromFirebase {
 
-    @PrimaryKey
     private int id;
     private String title;
     private String description;
