@@ -35,6 +35,8 @@
                 android:paddingBottom="5dp"
                 android:visibility="gone">
 
+       
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,6 +53,7 @@
                     android:textSelectHandle="@drawable/curve_background"
                     android:textSize="22sp"
                     android:theme="@style/AppTheme" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,6 +79,7 @@
                     android:id="@+id/play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/ripple"
                     android:padding="10dip"
                     app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
@@ -104,12 +108,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                     android:background="@drawable/ripple"
                     android:layout_marginTop="4dp"
                     android:padding="10dip"
                     app:srcCompat="@drawable/ic_cancel_black_24dp" />
             </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
+
 
     <FrameLayout
         android:id="@+id/fragment_container"

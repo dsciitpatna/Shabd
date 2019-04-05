@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#61045f</color>
     <color name="colorAccent">#216680</color>
     <color name="cardBackground">#1330CE</color>
+    <color name="lightgreen">#00ff00</color>
+    <color name="white">#ffffff</color>
+    <color name="Darker_grey">#A9A9A9</color>
   
     <color name="meaningBackground">#FFFFFF</color>
     <color name="floatingButton">#aa076b</color>
