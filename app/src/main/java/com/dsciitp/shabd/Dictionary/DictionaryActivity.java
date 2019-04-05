@@ -10,15 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.dsciitp.shabd.R;
+
 import java.util.Locale;
 
 public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener {
 
     EditText word;
-    ImageView del;
+    ImageView del, play;
     TextToSpeech t1;
-    FloatingActionButton fab1, search;
+    FloatingActionButton search;
     private static final String TTS_SPEAK_ID = "SPEAK";
     String press = "Press me to know the meaning";
 
@@ -33,7 +35,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         word = findViewById(R.id.speak);
         search = findViewById(R.id.search);
         setBaseFragment(savedInstanceState);
-        fab1 = findViewById(R.id.playd);
+        play = findViewById(R.id.playd);
         onclicksearch();
         del.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
 
         t1.setPitch(1f);
         t1.setSpeechRate(0.9f);
-        fab1.setOnClickListener(new View.OnClickListener() {
+        play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 t1.speak(word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
@@ -126,16 +128,12 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         transactFragment(fragment);
         final View view = this.getWindow().getDecorView();
 
-        view.setBackgroundColor(getResources().getColor(R.color.searchBackground));
+//        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
-        fab1.setBackgroundColor(getResources().getColor(R.color.floatingButton));
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DictionaryActivity.super.onBackPressed();
-                search.setBackgroundColor(getResources().getColor(R.color.searchBackground));
-                fab1.setBackgroundColor(getResources().getColor(R.color.searchBackground));
-                view.setBackgroundColor(getResources().getColor(R.color.meaningBackground));
                 onclicksearch();
             }
         });
@@ -146,12 +144,12 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                search.setImageResource(R.color.colorPrimary);
-                search.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                search.setImageResource(R.color.floatingButton);
+                search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
                 v.animate().x(350f).y(250f).scaleX(60f).scaleY(60f).setDuration(800).translationZBy(25f).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        v.animate().translationX(0f).translationY(0f).scaleX(1f).scaleY(1f).setDuration(2).translationZBy(-25f).withEndAction(new Runnable() {
+                        v.animate().translationX(0f).translationY(0f).scaleX(1f).scaleY(1f).setDuration(500).translationZBy(-25f).withEndAction(new Runnable() {
                             @Override
                             public void run() {
                                 search.setImageResource(R.drawable.ic_search_black_24dp);
