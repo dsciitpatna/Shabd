@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.dsciitp.shabd.BasicTopic.BasicFragment;
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
 import com.dsciitp.shabd.Category.CategoryFragment;
@@ -30,6 +32,9 @@ import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -37,14 +42,15 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         CategoryFragment.OnOnlineWordSelectedListener, BasicRecyclerAdapter.OnSubCategorySelectedListener {
 
     TextToSpeech tts;
-    EditText speakbar;
+    EditText speak;
     ImageView play;
     ImageView del;
-    RelativeLayout topbar;
+    Toolbar topbar;
     Resources res;
     Point size;
+    RelativeLayout speakbar;
 
-    private Fragment activeFragment;
+    private List<Fragment> activeFragment = new ArrayList<>();
 
     private static final String TTS_SPEAK_ID = "SPEAK";
 
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     showTopBar();
+                    speakbar.setVisibility(View.INVISIBLE);
                     updateFragment(new HomeFragment(), 0);
                     return true;
                 case R.id.navigation_quick:
@@ -83,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         setContentView(R.layout.activity_main);
 
         setLocale();
-
+        speakbar = findViewById(R.id.speakbar);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
-
+        speakbar.setVisibility(View.INVISIBLE);
         setBaseFragment(savedInstanceState);
         initSpeakBar();
 
@@ -107,12 +114,12 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             firstFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
-            activeFragment = firstFragment;
+            activeFragment.add(firstFragment);
         }
 
     }
 
-    private void setLocale(){
+    private void setLocale() {
         res = getResources();
         String deviceLocale = Locale.getDefault().getLanguage();
 
@@ -126,9 +133,10 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void initSpeakBar() {
-        speakbar = findViewById(R.id.speak);
+        speak = findViewById(R.id.speak);
         play = findViewById(R.id.play);
         del = findViewById(R.id.del);
+
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
                     if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("TTS", "This Language is not supported");
-                    } else if (result == TextToSpeech.LANG_MISSING_DATA){
+                    } else if (result == TextToSpeech.LANG_MISSING_DATA) {
                         Log.e("TTS", "This Language is missing data");
                     }
                     tts.setPitch(1.0f);
@@ -153,17 +161,17 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String toSpeak = speakbar.getText().toString();
+                String toSpeak = speak.getText().toString();
                 tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             }
         });
         del.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                String textString = speakbar.getText().toString();
+                String textString = speak.getText().toString();
                 if (textString.length() > 0) {
-                    speakbar.setText("");
-                    speakbar.setSelection(speakbar.getText().length());
+                    speak.setText("");
+                    speak.setSelection(speak.getText().length());
                 }
                 return false;
             }
@@ -171,10 +179,10 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textString = speakbar.getText().toString();
+                String textString = speak.getText().toString();
                 if (textString.length() > 0) {
-                    speakbar.setText(textString.substring(0, textString.length() - 1));
-                    speakbar.setSelection(speakbar.getText().length());//position cursor at the end of the line
+                    speak.setText(textString.substring(0, textString.length() - 1));
+                    speak.setSelection(speak.getText().length());//position cursor at the end of the line
                 }
             }
         });
@@ -202,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         } else {
             tts.speak(model.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             showWordAnimation(view);
-            speakbar.append(model.getTitle() + " ");
+            speak.append(model.getTitle() + " ");
         }
     }
 
@@ -210,10 +218,10 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     public void onOnlineWordSelected(String text, View view) {
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
         showWordAnimation(view);
-        speakbar.append(text + " ");
+        speak.append(text + " ");
     }
 
-    private void showWordAnimation(final View view){
+    private void showWordAnimation(final View view) {
         view.setClickable(false);
         view.animate().x(size.x / 3f).y(size.y / 3f).translationZBy(10f).scaleXBy(1.25f).scaleYBy(1.25f).setDuration(750).withEndAction(new Runnable() {
             @Override
@@ -229,16 +237,22 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void transactFragment(Fragment frag) {
-        activeFragment = frag;
+        activeFragment.add(frag);
         FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
         fragmentManager.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out)
                 .replace(R.id.fragment_container, frag, frag.getTag())
                 .addToBackStack(frag.getTag())
                 .commit();
+        if (frag instanceof BasicFragment) {
+            speakbar.setVisibility(View.VISIBLE);
+        } else {
+            speakbar.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     private void updateFragment(Fragment fragment, int bStack) {
-        activeFragment = fragment;
+        activeFragment.add(fragment);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
@@ -255,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     @Override
     protected void onStop() {
         super.onStop();
-        speakbar.setText("");
+        speak.setText("");
     }
 
     @Override
@@ -269,9 +283,21 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onBackPressed() {
-        if (activeFragment instanceof SettingFragment) {
+        if (activeFragment.get(activeFragment.size() - 1) instanceof SettingFragment) {
             showTopBar();
+
+            if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof BasicFragment) {
+                speakbar.setVisibility(View.VISIBLE);
+            }
+            activeFragment.remove(activeFragment.size() - 1);
+
+        } else if (activeFragment.get(activeFragment.size() - 1) instanceof BasicFragment) {
+            if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof HomeFragment) {
+                speakbar.setVisibility(View.INVISIBLE);
+            }
+            activeFragment.remove(activeFragment.size() - 1);
         }
+
         super.onBackPressed();
     }
 
@@ -287,5 +313,6 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         if (topbar.getVisibility() == View.GONE) {
             topbar.setVisibility(View.VISIBLE);
         }
+
     }
 }

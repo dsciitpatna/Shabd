@@ -2,6 +2,7 @@ package com.dsciitp.shabd.Dictionary;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,14 +23,14 @@ public class DictionaryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
         final RecyclerView rview = view.findViewById(R.id.topic_dict_recycler_view);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         rview.setLayoutManager(layoutManager);
-        ArrayList mylist = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
+        ArrayList<String> mylist = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.alphabets)));
         DictionaryAdapter madapter = new DictionaryAdapter(mylist, getActivity(), (DictionaryAdapter.OnCategorySelectedListener)getActivity());
         rview.setAdapter(madapter);
         return view;

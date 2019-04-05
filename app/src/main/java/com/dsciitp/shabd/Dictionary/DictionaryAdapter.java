@@ -1,4 +1,5 @@
 package com.dsciitp.shabd.Dictionary;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.dsciitp.shabd.R;
+
 import java.util.ArrayList;
 
 
@@ -77,6 +80,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.My
         TextView topicTitle;
         ImageView topicBackground;
         CardView alphabet;
+
         MyHolder(View itemView) {
             super(itemView);
             topicTitle = itemView.findViewById(R.id.topic_title_name);
