@@ -2,10 +2,8 @@ package com.dsciitp.shabd.Dictionary;
 
 import android.net.Uri;
 import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -69,7 +67,6 @@ public class NetworkUtils {
 
     private static String extractJson(String string) {
 
-        int i;
         StringBuilder def = new StringBuilder("");
 
         //meaning.setText(result);
@@ -79,13 +76,11 @@ public class NetworkUtils {
             def.append(js.getString("word"));
             //def.append("/n" + js.getJSONArray("meaning"));
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return def.toString();
     }
 
-    }
+}
 

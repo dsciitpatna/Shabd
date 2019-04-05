@@ -49,5 +49,7 @@
     </string-array>
 
     <string name="default_notification_channel_id" translatable="false">notify</string>
+    <string name="english" translatable="false">E</string>
+    <string name="hindi" translatable="false">H</string>
 
 </resources>
