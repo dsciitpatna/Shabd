@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/setting_logout_ll"
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
@@ -234,16 +235,3 @@
         </ScrollView>
     </LinearLayout>
 </FrameLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-

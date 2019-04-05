@@ -132,4 +132,12 @@
     <string name="english" translatable="false">E</string>
     <string name="hindi" translatable="false">H</string>
 
+    <string-array name="Quick_Action_array">
+
+    </string-array>
+    <string-array name="Quick_Action_array_res">
+
+
+    </string-array>
+
 </resources>
