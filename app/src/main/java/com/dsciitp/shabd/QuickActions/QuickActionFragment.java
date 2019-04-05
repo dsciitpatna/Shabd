@@ -7,18 +7,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
-import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.database.WordsInRealm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,13 +35,20 @@ public class QuickActionFragment extends Fragment {
         // Required empty public constructor
     }
 
+    Realm realm;
+
     Resources res;
-    private List<TopicModel> topicList;
+    private List<WordsInRealm> topicList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         res = Objects.requireNonNull(getContext()).getResources();
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        realm = Realm.getInstance(config);
     }
 
     @Override
@@ -66,21 +78,16 @@ public class QuickActionFragment extends Fragment {
     private void populateData() {
         topicList = new ArrayList<>();
 
-        List<String> words = Arrays.asList(res.getStringArray(
-                res.getIdentifier("Quick_Action_array", "array", getContext().getPackageName())));
-        List<String> resID = Arrays.asList(res.getStringArray(
-                res.getIdentifier("Quick_Action_array_res", "array", getContext().getPackageName())));
+        RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+        query.equalTo("parentClass", "QuickAction");
+        RealmResults<WordsInRealm> result = query.findAll();
 
-        for (int i = 0; i < words.size(); i++) {
-
-            if (res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()) != 0) {
-                topicList.add(new TopicModel(words.get(i),
-                        res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()), words.get(i)));
-            } else {
-                topicList.add(new TopicModel(words.get(i), resID.get(i), words.get(i)));
-            }
-
+        realm.beginTransaction();
+        for(WordsInRealm words : result){
+            topicList.add(words);
+            Log.e("mylog", String.valueOf(words.getId()));
         }
+        realm.commitTransaction();
     }
 
 }

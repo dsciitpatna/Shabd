@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Shabd</string>
+    <string name="app_name">"शब्द "</string>
     <string name="title_home">Home</string>
 
     <string name="title_learn">Learn</string>

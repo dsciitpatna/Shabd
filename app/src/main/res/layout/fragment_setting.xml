@@ -31,6 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:id="@+id/display_name"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="NAME"
                 android:textAlignment="center"
