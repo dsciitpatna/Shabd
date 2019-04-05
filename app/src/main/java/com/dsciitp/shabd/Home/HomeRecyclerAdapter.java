@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.database.WordsInRealm;
 
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
 
     final private OnCategorySelectedListener callback;
     private Context context;
-    private List<TopicModel> topicList;
+    private List<WordsInRealm> topicList;
 
     public interface OnCategorySelectedListener {
-        void onTopicSelected(String title);
+        void onTopicSelected(int id);
     }
 
-    HomeRecyclerAdapter(Context context, List<TopicModel> topicList, OnCategorySelectedListener listener) {
+    HomeRecyclerAdapter(Context context, List<WordsInRealm> topicList, OnCategorySelectedListener listener) {
         this.context = context;
         callback = listener;
         this.topicList = topicList;
@@ -35,7 +36,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
     @Override
     public TopicHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_topic, viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_topic, viewGroup, false);
 
         return new TopicHolder(view);
     }
@@ -48,19 +49,16 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         holder.topicTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onTopicSelected(topicList.get(holder.getAdapterPosition()).getReturnText());
+                callback.onTopicSelected(topicList.get(holder.getAdapterPosition()).getId());
             }
         });
 
-        if(topicList.get(position).hasImage()) {
-            Glide.with(context)
-                    .load(topicList.get(position).getImageUrl())
-                    .centerCrop()
-                    .placeholder(R.drawable.default_card_placeholder)
-                    .into(holder.topicBackground);
-        } else {
-            holder.topicBackground.setImageResource(topicList.get(holder.getAdapterPosition()).getBackgroundId());
-        }
+        Glide.with(context)
+                .load(topicList.get(position).getImageResource())
+                .centerCrop()
+                .placeholder(R.drawable.gradient_2)
+                .into(holder.topicBackground);
+
     }
 
     @Override
@@ -69,8 +67,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
     }
 
 
-
-    class TopicHolder extends RecyclerView.ViewHolder{
+    class TopicHolder extends RecyclerView.ViewHolder {
         TextView topicTitle;
         ImageView topicBackground;
 

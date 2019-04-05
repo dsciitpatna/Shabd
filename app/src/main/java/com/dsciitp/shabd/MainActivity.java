@@ -20,18 +20,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.dsciitp.shabd.BasicTopic.BasicFragment;
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
 import com.dsciitp.shabd.Category.CategoryFragment;
 import com.dsciitp.shabd.Dictionary.DictionaryActivity;
 import com.dsciitp.shabd.Home.HomeFragment;
 import com.dsciitp.shabd.Home.HomeRecyclerAdapter;
-import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.Learn.LearnActivity;
 import com.dsciitp.shabd.QuickActions.QuickActionFragment;
 import com.dsciitp.shabd.Setting.SettingFragment;
-import java.util.Locale;
+import com.dsciitp.shabd.database.WordsInRealm;
 
+import java.util.Locale;
+import java.util.Objects;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
 
 
 public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapter.OnCategorySelectedListener,
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     RelativeLayout topbar;
     Resources res;
     Point size;
+    Realm realm;
 
     private Fragment activeFragment;
 
@@ -88,6 +95,12 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        realm = Realm.getInstance(config);
 
         setBaseFragment(savedInstanceState);
         initSpeakBar();
@@ -182,30 +195,47 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     @Override
-    public void onTopicSelected(String title) {
-        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-        if (res.getIdentifier(title + "_array", "array", getPackageName()) != 0) {
-            BasicFragment basicFragment = BasicFragment.newInstance(title);
-            transactFragment(basicFragment);
+    public void onTopicSelected(int id) {
+        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+
+        if (id != -1) {
+            RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+            query.equalTo("id", id);
+            WordsInRealm result = query.findFirst();
+
+            realm.beginTransaction();
+            if (Objects.requireNonNull(result).getIsItTopic() == 1) {
+                Toast.makeText(this, result.getTitle(), Toast.LENGTH_SHORT).show();
+
+                BasicFragment basicFragment = BasicFragment.newInstance(result.getTitle());
+                transactFragment(basicFragment);
+            }
+            realm.commitTransaction();
         } else {
-            CategoryFragment categoryFragment = CategoryFragment.newInstance(title);
+            CategoryFragment categoryFragment = CategoryFragment.newInstance("Holi");
             transactFragment(categoryFragment);
         }
     }
 
     @Override
-    public void onSubTopicSelected(final TopicModel model, View view) {
-        Toast.makeText(this, model.getTitle(), Toast.LENGTH_SHORT).show();
+    public void onSubTopicSelected(int id, View view) {
+        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
 
-        if (res.getIdentifier(model.getReturnText() + "_array", "array", getPackageName()) != 0) {
-            BasicFragment basicFragment = BasicFragment.newInstance(model.getReturnText());
+        RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+        query.equalTo("id", id);
+        WordsInRealm result = query.findFirst();
+
+        realm.beginTransaction();
+        if (Objects.requireNonNull(result).getIsItTopic() == 1) {
+            BasicFragment basicFragment = BasicFragment.newInstance(result.getTitle());
             transactFragment(basicFragment);
         } else {
-            tts.speak(model.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+            tts.speak(result.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             showWordAnimation(view);
-            speakbar.append(model.getTitle() + " ");
+            speakbar.append(result.getTitle() + " ");
         }
-    }
+                realm.commitTransaction();
+}
 
     @Override
     public void onOnlineWordSelected(String text, View view) {

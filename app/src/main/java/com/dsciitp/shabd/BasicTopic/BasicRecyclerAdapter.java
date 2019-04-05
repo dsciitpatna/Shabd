@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.database.WordsInRealm;
 
 import java.util.List;
 
@@ -23,13 +23,13 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
 
     final private OnSubCategorySelectedListener callback;
     private Context context;
-    private List<TopicModel> topicList;
+    private List<WordsInRealm> topicList;
 
     public interface OnSubCategorySelectedListener {
-        void onSubTopicSelected(TopicModel model, View view);
+        void onSubTopicSelected(int id, View view);
     }
 
-    public BasicRecyclerAdapter(Context context, List<TopicModel> topicList, OnSubCategorySelectedListener listener) {
+    public BasicRecyclerAdapter(Context context, List<WordsInRealm> topicList, OnSubCategorySelectedListener listener) {
         this.context = context;
         callback = listener;
         this.topicList = topicList;
@@ -48,29 +48,25 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
 
         holder.wordTitle.setText(topicList.get(position).getTitle());
 
-        if(context.getResources().getIdentifier(topicList.get(position).getReturnText() + "_array", "array", context.getPackageName()) != 0){
+        if (topicList.get(position).getIsItTopic() == 1) {
             holder.cardLinearLayout.setBackgroundResource(R.drawable.gradient_2);
-        }  else {
+        } else {
             holder.cardLinearLayout.setBackgroundResource(R.drawable.gradient_1);
         }
 
         holder.cardCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()), v);
+                callback.onSubTopicSelected(topicList.get(holder.getAdapterPosition()).getId(), v);
             }
         });
 
 
-        if (topicList.get(position).hasImage()) {
-            Glide.with(context)
-                    .load(topicList.get(position).getImageUrl())
-                    .centerCrop()
-                    .placeholder(R.color.transparent)
-                    .into(holder.wordImage);
-        } else {
-            holder.wordImage.setImageResource(topicList.get(holder.getAdapterPosition()).getBackgroundId());
-        }
+        Glide.with(context)
+                .load(topicList.get(position).getImageResource())
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(holder.wordImage);
     }
 
     @Override

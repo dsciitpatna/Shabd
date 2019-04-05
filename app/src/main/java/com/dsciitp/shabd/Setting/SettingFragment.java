@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
 import com.dsciitp.shabd.SigninActivity;
+import com.dsciitp.shabd.UserConstants;
 
 import java.util.Objects;
 
@@ -19,6 +22,8 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class SettingFragment extends Fragment {
+
+    private final String INTENT_ACTION = "intent_action";
 
     public SettingFragment() {
         // Required empty public constructor
@@ -49,12 +54,35 @@ public class SettingFragment extends Fragment {
                 logout();
             }
         });
+
+//        LinearLayout update = view.findViewById(R.id.update_ll);
+//        update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                updateData();
+//            }
+//        });
+
+        ImageView profileImage = view.findViewById(R.id.profile_image);
+        Glide.with(getContext())
+                .load(UserConstants.photoUri)
+                .centerInside()
+                .placeholder(R.drawable.profile_photo)
+                .into(profileImage);
+        TextView displayName = view.findViewById(R.id.display_name);
+        displayName.setText(UserConstants.displayName);
         return view;
     }
 
     private void logout(){
         Intent intent = new Intent(getContext(), SigninActivity.class);
-        intent.putExtra("logout_action", "logout");
+        intent.putExtra(INTENT_ACTION, "logout");
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).finish();
+    }
+    private void updateData(){
+        Intent intent = new Intent(getContext(), SigninActivity.class);
+        intent.putExtra(INTENT_ACTION, "update");
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();
     }

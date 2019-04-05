@@ -1,5 +1,6 @@
 package com.dsciitp.shabd;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dsciitp.shabd.database.WordsInRealm;
+import com.dsciitp.shabd.database.WordsFromFirebase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,6 +28,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -33,6 +44,12 @@ public class SigninActivity extends AppCompatActivity {
     private final int RC_SIGN_IN = 555;
     SharedPreferences prefs;
     private FirebaseAuth mAuth;
+    ProgressDialog signInDialogue;
+    ProgressDialog progressDialog;
+    Realm realm;
+
+    private final String INTENT_ACTION = "intent_action";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +65,27 @@ public class SigninActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (getIntent().hasExtra("logout_action") && getIntent().getStringExtra("logout_action").equals("logout")) {
+        signInDialogue = new ProgressDialog(this);
+        signInDialogue.setIndeterminate(true);
+        signInDialogue.setMessage("Logging In...");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Downloading Data...");
+
+        if (getIntent().hasExtra(INTENT_ACTION) && getIntent().getStringExtra(INTENT_ACTION).equals("logout")) {
             Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show();
             logout();
+        } else if (getIntent().hasExtra(INTENT_ACTION) && getIntent().getStringExtra(INTENT_ACTION).equals("update")) {
+            downloadData();
         } else {
             showSplashScreen();
         }
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        realm = Realm.getInstance(config);
 
     }
 
@@ -101,6 +133,7 @@ public class SigninActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+            signInDialogue.show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
@@ -111,7 +144,7 @@ public class SigninActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             if (account == null) {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 firebaseAuthWithGoogle(account);
             }
         } catch (ApiException e) {
@@ -142,19 +175,72 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        if (signInDialogue.isShowing()) {
+            signInDialogue.dismiss();
+        }
+
         if (user == null) {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         } else {
 
+            UserConstants.email = user.getEmail();
+            UserConstants.displayName = user.getDisplayName();
+            UserConstants.phone = user.getPhoneNumber();
+            UserConstants.photoUri = user.getPhotoUrl();
+
+            Log.e("mylog", user.getEmail() + user.getDisplayName() + user.getPhoneNumber() + user.getPhotoUrl().toString());
+
             if (prefs.getBoolean("firstRun", true)) {
-//                downloadData();
+                progressDialog.show();
+                downloadData();
+            } else {
+                launchApp();
+            }
+        }
+    }
+
+    private void downloadData() {
+        Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("data")
+                .orderByChild("id");
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                realm.beginTransaction();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    WordsFromFirebase word = dataSnapshot1.getValue(WordsFromFirebase.class);
+
+                    WordsInRealm newWord = realm.createObject(WordsInRealm.class, word.getId());
+                    newWord.setDescription(word.getDescription());
+                    newWord.setTitle(word.getTitle());
+                    newWord.setHindiTitle(word.getHindiTitle());
+                    newWord.setImageResource(word.getImageResource());
+                    newWord.setParentClass(word.getParentClass());
+                    newWord.setIsItTopic(word.getIsItTopic());
+
+                    realm.insertOrUpdate(newWord);
+                }
+
+                realm.commitTransaction();
+                progressDialog.dismiss();
+                prefs.edit().putBoolean("firstRun", false).apply();
+                launchApp();
             }
 
-            Intent intent = new Intent(SigninActivity.this, MainActivity.class);
-            intent.putExtra("account", user);
-            startActivity(intent);
-            finish();
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        query.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void launchApp() {
+        Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void logout() {
@@ -167,5 +253,6 @@ public class SigninActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }
