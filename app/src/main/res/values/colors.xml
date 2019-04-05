@@ -9,7 +9,7 @@
     <color name="Darker_grey">#A9A9A9</color>
   
     <color name="meaningBackground">#FFFFFF</color>
-    <color name="floatingButton">#aa076b</color>
+    <color name="floatingButton">#ab47bc</color>
     <color name="searchBackground">#FF9800</color>
 
     <color name="transparent">@android:color/transparent</color>

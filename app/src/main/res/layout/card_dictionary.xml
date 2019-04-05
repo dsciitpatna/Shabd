@@ -12,7 +12,7 @@
         android:id="@+id/topic_title_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/default_card_placeholder"
+        android:src="@drawable/gradient_4"
         android:contentDescription="Card Background" />
 
     <TextView
