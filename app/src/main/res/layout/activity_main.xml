@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -15,10 +15,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
+        android:animateLayoutChanges="true"
         android:background="@drawable/speakbar"
         android:orientation="horizontal"
         android:padding="2dp"
-        android:animateLayoutChanges="true"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
@@ -29,8 +29,8 @@
             android:id="@+id/play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dip"
             android:background="@drawable/ripple"
+            android:padding="10dip"
             app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
         <EditText
@@ -55,8 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:padding="10dip"
             android:background="@drawable/ripple"
+            android:padding="10dip"
             app:srcCompat="@drawable/ic_cancel_black_24dp" />
     </RelativeLayout>
 

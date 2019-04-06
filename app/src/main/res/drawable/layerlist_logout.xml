@@ -7,5 +7,5 @@
             <size android:width="96dp" android:height="96dp"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/logout_icon"/>
+    <item android:drawable="@drawable/logout_icon" android:height="70dp" android:width="70dp" android:gravity="center"/>
 </layer-list>

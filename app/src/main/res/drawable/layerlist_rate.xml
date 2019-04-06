@@ -3,9 +3,15 @@
         <!--  drawable/circle_card_icon.xml  -->
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="oval">
-            <solid android:color="#097"/>
-            <size android:width="96dp" android:height="96dp"/>
+            <solid android:color="#61045f" />
+            <size
+                android:width="96dp"
+                android:height="96dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/rate_icon"/>
+    <item
+        android:width="70dp"
+        android:height="70dp"
+        android:drawable="@drawable/rate_icon"
+        android:gravity="center" />
 </layer-list>

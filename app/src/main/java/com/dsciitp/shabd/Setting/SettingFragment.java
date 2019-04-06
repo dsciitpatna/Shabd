@@ -22,7 +22,6 @@ public class SettingFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class SettingFragment extends Fragment {
 
         LinearLayout about_view = view.findViewById(R.id.about_button);
 
-             // Set a click listener on that View
+        // Set a click listener on that View
         about_view.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the about shabd View is clicked on.
             @Override
