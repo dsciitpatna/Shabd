@@ -211,6 +211,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             WordsInRealm result = query.findFirst();
 
             realm.beginTransaction();
+            tts.speak(result.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+
             if (Objects.requireNonNull(result).getIsItTopic() == 1) {
                 Toast.makeText(this, result.getTitle(), Toast.LENGTH_SHORT).show();
 
@@ -219,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             }
             realm.commitTransaction();
         } else {
+            tts.speak("holi", TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
             CategoryFragment categoryFragment = CategoryFragment.newInstance("holi");
             transactFragment(categoryFragment);
         }
@@ -233,6 +236,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         WordsInRealm result = query.findFirst();
 
         realm.beginTransaction();
+        tts.speak(result.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+
         if (result.getIsItTopic() == 1) {
             BasicFragment basicFragment = BasicFragment.newInstance(result.getTitle());
             transactFragment(basicFragment);
@@ -241,8 +246,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             showWordAnimation(view);
             speak.append(result.getTitle() + " ");
         }
-                realm.commitTransaction();
-}
+        realm.commitTransaction();
+    }
 
     @Override
     public void onOnlineWordSelected(String text, View view) {

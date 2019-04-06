@@ -6,4 +6,164 @@
     android:layout_height="match_parent"
     tools:context=".Learn.LearnActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/learn_recycler_story"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_3"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/learn_recycler_story"
+        app:layout_constraintVertical_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/learn_card_1"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/learn_title_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="12dp"
+                    android:padding="4dp"
+                    android:translationZ="1dp"
+                    tools:text="Category 1" />
+
+                <ImageView
+                    android:id="@+id/learn_image_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/learn_card_2"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/learn_title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="12dp"
+                    android:padding="4dp"
+                    android:translationZ="1dp"
+                    tools:text="Category 2" />
+
+                <ImageView
+                    android:id="@+id/learn_image_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/learn_card_3"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/learn_title_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="12dp"
+                    android:padding="4dp"
+                    android:translationZ="1dp"
+                    tools:text="Category 4" />
+
+                <ImageView
+                    android:id="@+id/learn_image_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/learn_card_4"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/learn_title_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="12dp"
+                    android:padding="4dp"
+                    android:translationZ="1dp"
+                    tools:text="Category 4" />
+
+                <ImageView
+                    android:id="@+id/learn_image_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/learn_card_5"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/learn_title_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="12dp"
+                    android:padding="4dp"
+                    android:translationZ="1dp"
+                    tools:text="Category 5" />
+
+                <ImageView
+                    android:id="@+id/learn_image_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

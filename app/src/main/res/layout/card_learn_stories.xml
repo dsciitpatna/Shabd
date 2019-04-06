@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_learn_stories_card"
+    android:layout_width="128dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_height="160dp"
+    app:cardCornerRadius="8dp">
+
+    <ImageView
+        android:id="@+id/card_learn_stories_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/card_learn_stories_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="8dp"
+        android:padding="4dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:translationZ="2dp"
+        tools:text="Category 1" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/black"
+        android:alpha="0.5"
+        android:translationZ="1dp"
+        android:layout_height="40dp" />
+
+
+</android.support.v7.widget.CardView>
