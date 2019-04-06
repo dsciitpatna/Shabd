@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/shabd"
             android:textAlignment="center"
-            android:textColor="@color/browser_actions_bg_grey"
+            android:textColor="@color/white"
             android:textSize="50sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -36,7 +36,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/overview"
-            android:textColor="@color/browser_actions_bg_grey"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/Overview_content"
-        android:textColor="@color/browser_actions_text_color"
+        android:textColor="@android:color/black"
         android:textSize="14sp" />
 
     <LinearLayout
@@ -63,7 +64,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/developer"
-            android:textColor="@color/browser_actions_bg_grey"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:textSize="22sp" />
 
     </LinearLayout>

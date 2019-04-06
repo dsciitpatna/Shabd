@@ -1,7 +1,5 @@
 package com.dsciitp.shabd.BasicTopic;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,14 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dsciitp.shabd.Home.TopicModel;
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.database.WordsInRealm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class BasicFragment extends Fragment {
 
@@ -26,12 +26,11 @@ public class BasicFragment extends Fragment {
 
     private String wordTitle;
 
-    private List<TopicModel> topicList;
-    Resources res;
+    private List<WordsInRealm> topicList;
+    Realm realm;
 
-    public BasicFragment() {
-        // Required empty public constructor
-    }
+
+    public BasicFragment() {}
 
     public static BasicFragment newInstance(String title) {
         BasicFragment fragment = new BasicFragment();
@@ -47,7 +46,11 @@ public class BasicFragment extends Fragment {
         if (getArguments() != null) {
             wordTitle = getArguments().getString(WORD_TITLE);
         }
-        res = Objects.requireNonNull(getContext()).getResources();
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        realm = Realm.getInstance(config);
     }
 
     @Override
@@ -76,32 +79,12 @@ public class BasicFragment extends Fragment {
     private void populateData() {
         topicList = new ArrayList<>();
 
-        String currentLocale = Locale.getDefault().getLanguage();
+        RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+        query.equalTo("parentClass", wordTitle);
+        RealmResults<WordsInRealm> result = query.findAll();
 
-        List<String> words = Arrays.asList(res.getStringArray(
-                res.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
-        List<String> resID = Arrays.asList(res.getStringArray(
-                res.getIdentifier(wordTitle + "_array_res", "array", getContext().getPackageName())));
-
-        Configuration conf = new Configuration(res.getConfiguration());
-        conf.setLocale(Locale.ENGLISH);
-        Resources res1 = new Resources(res.getAssets(), res.getDisplayMetrics(), conf);
-        List<String> returnText = Arrays.asList(res1.getStringArray(
-                res1.getIdentifier(wordTitle + "_array", "array", getContext().getPackageName())));
-
-        Configuration config = new Configuration();
-        config.locale = new Locale(currentLocale);
-        res.updateConfiguration(config, null);
-
-        for (int i = 0; i < words.size(); i++) {
-
-            if (res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()) != 0) {
-                topicList.add(new TopicModel(words.get(i),
-                        res.getIdentifier(resID.get(i), "drawable", getContext().getPackageName()), returnText.get(i)));
-            } else {
-                topicList.add(new TopicModel(words.get(i), resID.get(i), returnText.get(i)));
-            }
-
-        }
+        realm.beginTransaction();
+        topicList.addAll(result);
+        realm.commitTransaction();
     }
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
+import com.dsciitp.shabd.database.WordsFromFirebase;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -68,14 +69,14 @@ public class CategoryFragment extends Fragment {
         Query query = FirebaseFirestore.getInstance()
                 .collection(categoryTitle + "_" + currentLocale.getLanguage()).orderBy("position");
 
-        FirestoreRecyclerOptions<CategoryModel> options = new FirestoreRecyclerOptions.Builder<CategoryModel>()
-                .setQuery(query, CategoryModel.class)
+        FirestoreRecyclerOptions<WordsFromFirebase> options = new FirestoreRecyclerOptions.Builder<WordsFromFirebase>()
+                .setQuery(query, WordsFromFirebase.class)
                 .build();
 
-        adapter = new FirestoreRecyclerAdapter<CategoryModel, WordHolder>(options) {
+        adapter = new FirestoreRecyclerAdapter<WordsFromFirebase, WordHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull WordHolder holder, int position, @NonNull final CategoryModel model) {
+            protected void onBindViewHolder(@NonNull WordHolder holder, int position, @NonNull final WordsFromFirebase model) {
 
                 holder.wordTitle.setText(model.getTitle());
 
@@ -84,7 +85,7 @@ public class CategoryFragment extends Fragment {
                 holder.cardLinearLayout.setBackgroundResource(gradientArray[gradientPosition]);
 
                 Glide.with(Objects.requireNonNull(getContext()))
-                        .load(model.getImageUrl())
+                        .load(model.getImageResource())
                         .centerCrop()
                         .placeholder(R.color.transparent)
                         .into(holder.wordImage);

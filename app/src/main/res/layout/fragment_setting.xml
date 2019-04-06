@@ -31,6 +31,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+
+                android:id="@+id/display_name"
+
                 android:background="?android:attr/selectableItemBackground"
                 android:text="NAME"
                 android:textAlignment="center"
@@ -55,6 +58,31 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/layerlist_update"
+                        app:civ_circle_background_color="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Update"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/material_text_title_h6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
 
@@ -87,7 +115,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="15dp"
                         android:src="@drawable/layerlist_translate"
-                        app:civ_circle_background_color="@color/fui_bgEmail" />
+                        app:civ_circle_background_color="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -99,6 +127,9 @@
                 </LinearLayout>
 
                 <LinearLayout
+
+                    android:id="@+id/setting_logout_ll"
+
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
@@ -136,7 +167,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="15dp"
                         android:src="@drawable/layerlist_about"
-                        app:civ_circle_background_color="@color/fui_bgAnonymous" />
+                        app:civ_circle_background_color="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +177,6 @@
                         android:textColor="#000000"
                         android:textSize="20sp" />
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -165,3 +195,6 @@
 
 
 
+
+               
+                    
