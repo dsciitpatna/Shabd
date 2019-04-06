@@ -51,5 +51,12 @@
     <string name="default_notification_channel_id" translatable="false">notify</string>
     <string name="english" translatable="false">E</string>
     <string name="hindi" translatable="false">H</string>
+    <string name="play_draw">Draw</string>
+    <string name="update_setting">Update Data</string>
+    <string name="notification_setting">Daily Notifications</string>
+    <string name="language_setting">Language and Voice</string>
+    <string name="logout_setting">Logout</string>
+    <string name="about_setting">About Shabd</string>
+    <string name="rate_setting">Rate and Review</string>
 
 </resources>
