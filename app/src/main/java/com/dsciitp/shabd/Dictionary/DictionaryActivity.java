@@ -15,13 +15,14 @@ import com.dsciitp.shabd.R;
 
 import java.util.Locale;
 
-public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener {
+public class DictionaryActivity extends AppCompatActivity implements DictionaryAdapter.OnCategorySelectedListener,MeaningFragment.OnMeaningPass {
 
     EditText word;
     ImageView del, play;
-    TextToSpeech t1;
+    TextToSpeech tts;
     FloatingActionButton search;
     private static final String TTS_SPEAK_ID = "SPEAK";
+    Fragment activefragment;
     String press = "Press me to know the meaning";
 
     @Override
@@ -58,28 +59,28 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 return false;
             }
         });
-        t1 = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
-                    t1.setLanguage(Locale.US);
+                    tts.setLanguage(Locale.US);
                 }
             }
         });
 
-        t1.setPitch(1f);
-        t1.setSpeechRate(0.9f);
+        tts.setPitch(1f);
+        tts.setSpeechRate(0.9f);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                t1.speak(word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+                tts.speak(word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
                 search.animate().scaleX(2f).scaleY(2f).setDuration(1000).translationZBy(25f).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         search.animate().scaleX(1f).scaleY(1f).setDuration(1000).translationZBy(-25f).withEndAction(new Runnable() {
                             @Override
                             public void run() {
-                                t1.speak(press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+                                tts.speak(press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
                                 search.animate().scaleX(2f).scaleY(2f).setDuration(1000).translationZBy(+25f).withEndAction(new Runnable() {
                                     @Override
                                     public void run() {
@@ -118,7 +119,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
 
     @Override
     public void onTopicSelected(String title) {
-        t1.speak(title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
+        tts.speak(title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
         word.append(title);
     }
 
@@ -127,7 +128,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         MeaningFragment fragment = MeaningFragment.newInstance(word.getText().toString());
         transactFragment(fragment);
         final View view = this.getWindow().getDecorView();
-
+         activefragment=fragment;
 //        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
         search.setOnClickListener(new View.OnClickListener() {
@@ -146,10 +147,10 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
             public void onClick(final View v) {
                 search.setImageResource(R.color.floatingButton);
                 search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
-                v.animate().x(350f).y(250f).scaleX(60f).scaleY(60f).setDuration(800).translationZBy(25f).withEndAction(new Runnable() {
+                v.animate().x(350f).y(250f).scaleX(40f).scaleY(40f).setDuration(500).translationZBy(25f).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        v.animate().translationX(0f).translationY(0f).scaleX(1f).scaleY(1f).setDuration(500).translationZBy(-25f).withEndAction(new Runnable() {
+                        v.animate().translationX(0f).translationY(0f).scaleX(1f).scaleY(1f).setDuration(300).translationZBy(-25f).withEndAction(new Runnable() {
                             @Override
                             public void run() {
                                 search.setImageResource(R.drawable.ic_search_black_24dp);
@@ -160,6 +161,30 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 });
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(activefragment instanceof MeaningFragment)
+        {
+            onclicksearch();
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onMeaningPass(String data) {
+        tts.setSpeechRate(0.8f);
+        tts.speak(data, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
     }
 }
 

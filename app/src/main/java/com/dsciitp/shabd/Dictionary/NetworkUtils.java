@@ -2,8 +2,11 @@ package com.dsciitp.shabd.Dictionary;
 
 import android.net.Uri;
 import android.util.Log;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -71,9 +74,36 @@ public class NetworkUtils {
 
         //meaning.setText(result);
         try {
+            JSONObject definition;
             JSONObject js = new JSONObject(string);
+            JSONObject meaning=js.getJSONObject("meaning");
+            JSONArray noun=meaning.getJSONArray("noun");
+            if(noun!=null)
+            {
+                definition=noun.getJSONObject(0);
+                def.append("\n").append(definition.getString("definition")).append(",");
+            }
+            JSONArray exclamation=meaning.getJSONArray("exclamation");
+            if(exclamation!=null)
+            {
+                 definition=exclamation.getJSONObject(0);
+                 def.append("\n").append(definition.getString("definition")).append(",");
+            }
 
-            def.append(js.getString("word"));
+            JSONArray verb=meaning.getJSONArray("verb");
+            if(verb!=null)
+            {
+                definition=verb.getJSONObject(0);
+                def.append("\n").append(definition.getString("definition")).append(",");
+            }
+            JSONArray adjective=meaning.getJSONArray("adjective");
+            if(verb!=null)
+            {
+                definition=adjective.getJSONObject(0);
+                def.append("\n").append(definition.getString("definition")).append(",");
+            }
+
+            //def.append(js.getString("word"));
             //def.append("/n" + js.getJSONArray("meaning"));
 
         } catch (JSONException e) {
