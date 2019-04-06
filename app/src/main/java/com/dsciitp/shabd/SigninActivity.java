@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.dsciitp.shabd.database.WordsInRealm;
 import com.dsciitp.shabd.database.WordsFromFirebase;
+import com.dsciitp.shabd.database.WordsInRealm;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -101,7 +102,7 @@ public class SigninActivity extends AppCompatActivity {
         imageView.animate().scaleX(1.5f).scaleY(1.5f).setDuration(1000).withEndAction(new Runnable() {
             @Override
             public void run() {
-                imageView.animate().translationYBy(-500f).setDuration(500).withEndAction(new Runnable() {
+                imageView.animate().y(300f).setDuration(500).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         if (currentUser == null) {
@@ -191,7 +192,6 @@ public class SigninActivity extends AppCompatActivity {
             Log.e("mylog", user.getEmail() + user.getDisplayName() + user.getPhoneNumber() + user.getPhotoUrl().toString());
 
             if (prefs.getBoolean("firstRun", true)) {
-                progressDialog.show();
                 downloadData();
             } else {
                 launchApp();
@@ -200,6 +200,8 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void downloadData() {
+        progressDialog.show();
+
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("data")
@@ -211,16 +213,21 @@ public class SigninActivity extends AppCompatActivity {
                 realm.beginTransaction();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     WordsFromFirebase word = dataSnapshot1.getValue(WordsFromFirebase.class);
+                    RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+                    query.equalTo("id", word.getId());
+                    WordsInRealm result = query.findFirst();
+                    if (result == null) {
+                        WordsInRealm newWord = realm.createObject(WordsInRealm.class, word.getId());
+                        newWord.setDescription(word.getDescription());
+                        newWord.setTitle(word.getTitle());
+                        newWord.setHindiTitle(word.getHindiTitle());
+                        newWord.setImageResource(word.getImageResource());
+                        newWord.setParentClass(word.getParentClass());
+                        newWord.setIsItTopic(word.getIsItTopic());
 
-                    WordsInRealm newWord = realm.createObject(WordsInRealm.class, word.getId());
-                    newWord.setDescription(word.getDescription());
-                    newWord.setTitle(word.getTitle());
-                    newWord.setHindiTitle(word.getHindiTitle());
-                    newWord.setImageResource(word.getImageResource());
-                    newWord.setParentClass(word.getParentClass());
-                    newWord.setIsItTopic(word.getIsItTopic());
-
-                    realm.insertOrUpdate(newWord);
+                        realm.insertOrUpdate(newWord);
+                        Log.e("mylog", word.getTitle());
+                    }
                 }
 
                 realm.commitTransaction();

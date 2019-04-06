@@ -31,7 +31,8 @@
         <activity
             android:name=".Learn.LearnActivity"
             android:label="Learn"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -52,7 +53,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <!--<action android:name="android.intent.action.MAIN" />-->
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>

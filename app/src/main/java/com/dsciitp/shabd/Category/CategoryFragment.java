@@ -67,7 +67,7 @@ public class CategoryFragment extends Fragment {
         Locale currentLocale = Locale.getDefault();
 
         Query query = FirebaseFirestore.getInstance()
-                .collection(categoryTitle + "_" + currentLocale.getLanguage()).orderBy("position");
+                .collection(categoryTitle + "_" + currentLocale.getLanguage());
 
         FirestoreRecyclerOptions<WordsFromFirebase> options = new FirestoreRecyclerOptions.Builder<WordsFromFirebase>()
                 .setQuery(query, WordsFromFirebase.class)

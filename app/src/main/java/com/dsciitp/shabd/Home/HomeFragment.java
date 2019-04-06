@@ -55,8 +55,7 @@ public class HomeFragment extends Fragment{
     private void initFirestore() {
         mFirestore = FirebaseFirestore.getInstance();
 
-        mQuery = mFirestore.collection("topic_card")
-                .orderBy("position");
+        mQuery = mFirestore.collection("topic_card");
     }
 
     @Override
@@ -107,6 +106,7 @@ public class HomeFragment extends Fragment{
                     topicModels = queryDocumentSnapshots.toObjects(WordsFromFirebase.class);
                     for (WordsFromFirebase wordsFromFirebase : topicModels) {
                         WordsInRealm newWord = new WordsInRealm();
+                        newWord.setId(wordsFromFirebase.getId());
                         newWord.setDescription(wordsFromFirebase.getDescription());
                         newWord.setTitle(wordsFromFirebase.getTitle());
                         newWord.setHindiTitle(wordsFromFirebase.getHindiTitle());

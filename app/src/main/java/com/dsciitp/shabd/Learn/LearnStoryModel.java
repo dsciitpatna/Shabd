@@ -1,24 +1,22 @@
-package com.dsciitp.shabd.database;
+package com.dsciitp.shabd.Learn;
 
-public class WordsFromFirebase {
+public class LearnStoryModel {
 
-    private int id;
     private String title;
     private String description;
     private String hindiTitle;
     private String imageResource;
-    private String parentClass;
-    private int isItTopic;
+    private String intent;
 
-    public WordsFromFirebase(){}
+    public LearnStoryModel() {
+    }
 
-    public WordsFromFirebase(String title, String description, String hindiTitle, String imageResource, String parentClass, int isItTopic){
+    public LearnStoryModel(String title, String description, String hindiTitle, String imageResource, String intent) {
         this.title = title;
         this.description = description;
         this.hindiTitle = hindiTitle;
         this.imageResource = imageResource;
-        this.parentClass = parentClass;
-        this.isItTopic = isItTopic;
+        this.intent = intent;
     }
 
     public String getDescription() {
@@ -53,29 +51,11 @@ public class WordsFromFirebase {
         this.title = title;
     }
 
-    public String getParentClass() {
-        return parentClass;
+    public String getIntent() {
+        return intent;
     }
 
-    public void setParentClass(String parentClass) {
-        this.parentClass = parentClass;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setIsItTopic(int isItTopic) {
-        this.isItTopic = isItTopic;
-    }
-
-    public int getIsItTopic() {
-        return isItTopic;
+    public void setIntent(String intent) {
+        this.intent = intent;
     }
 }
-
-
