@@ -1,28 +1,46 @@
 package com.dsciitp.shabd.Dictionary;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dsciitp.shabd.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MeaningFragment extends Fragment {
 
-    ProgressBar progress;
+    AVLoadingIndicatorView progress;
     TextView meaning;
+    final private OnMeaningPass callback = null;
+    OnMeaningPass dataPasser;
     private static final String ARG_PARAM1 = "param1";
     String searchText;
+    private static final String TTS_SPEAK_ID = "SPEAK";
 
     public MeaningFragment() {
         // Required empty public constructor
+    }
+
+    public interface OnMeaningPass {
+        public void onMeaningPass(String data);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        dataPasser = (OnMeaningPass) context;
+    }
+
+    public void passData(String data) {
+        dataPasser.onMeaningPass(data);
     }
 
     public static MeaningFragment newInstance(String param1) {
@@ -49,9 +67,10 @@ public class MeaningFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_meaning, container, false);
         progress = view.findViewById(R.id.progress);
         meaning = view.findViewById(R.id.mean);
-        progress.setVisibility(View.VISIBLE);
-        task(searchText);
+        progress.show();
+        //progress.setVisibility(View.VISIBLE);
 
+        task(searchText);
         return view;
     }
 
@@ -73,11 +92,14 @@ public class MeaningFragment extends Fragment {
 
     // AsyncTaskLoader<>
     private void after(String s) {
-        progress.setVisibility(View.INVISIBLE);
+        //progress.setVisibility(View.INVISIBLE);
+        progress.hide();
         meaning.setVisibility(View.VISIBLE);
         if (s == null)
             meaning.setText("Not Found");
         else
             meaning.setText(s);
+        passData(meaning.getText().toString());
+
     }
 }

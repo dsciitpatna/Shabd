@@ -54,10 +54,10 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.My
             public void onClick(final View v) {
                 final float originalx = holder.alphabet.getX();
                 final float originaly = holder.alphabet.getY();
+                v.setClickable(false);
                 v.animate().x(screenx / 3).y(screeny / 3).translationZBy(25f).scaleX(2.2f).scaleY(2.2f).setDuration(500).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        v.setClickable(false);
                         callback.onTopicSelected(mylist.get(holder.getAdapterPosition()));
                         v.animate().x(originalx).y(originaly).translationZBy(-25f).scaleX(1f).scaleY(1f).setDuration(1000).withEndAction(new Runnable() {
                             @Override
