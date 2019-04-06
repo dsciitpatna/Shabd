@@ -1,240 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Setting.SettingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/curve_background"
         android:orientation="vertical">
+
+        <android.support.design.card.MaterialCardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="24dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/colorAccent"
+            app:cardElevation="16dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="60dp">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/profile_photo"
+                android:translationZ="-1px" />
+
+        </android.support.design.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            tools:text="Amitabh Bacchan"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/material_text_display_h4"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_3"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="match_parent"
-                android:layout_height="116dp"
-                android:layout_gravity="center_horizontal"
-                android:background="?android:attr/selectableItemBackground"
-                android:paddingTop="30dp"
-                android:paddingBottom="10dp"
-                android:src="@drawable/profile_photo"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/display_name"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="NAME"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/update_ll"
-                    android:layout_marginTop="10dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
+                    app:cardBackgroundColor="#FDEE00"
+                    app:cardCornerRadius="20dp">
 
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
+                    <ImageView
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_update"
-                        app:civ_circle_background_color="@color/colorPrimary" />
+                        android:padding="8dp"
+                        android:src="@drawable/notification_icon_setting"
+                        android:tint="@android:color/white" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Update"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_daily_notifictaion"
-                        app:civ_circle_background_color="@color/design_default_color_primary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Daily Notifications"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_translate"
-                        app:civ_circle_background_color="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Language"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/setting_logout_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_logout"
-                        app:civ_circle_background_color="@color/colorAccent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Logout"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_edittext"
-                    android:paddingLeft="15dp"
-                    android:text="Miscellaneous"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="italic" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/notification_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
 
-                <LinearLayout
-                    android:id="@+id/about_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_about"
-                        app:civ_circle_background_color="@color/colorPrimary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="About Shabd"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_rate" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Rate us"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/layerlist_share"
-                        app:civ_circle_background_color="@color/design_default_color_primary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="Share"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/material_text_title_h6" />
-                </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-</FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="#008B8B"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/language_icon_setting"
+                        android:tint="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/language_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/update_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="#ED872D"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/update_icon_setting"
+                        android:tint="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/update_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="#1F75FE"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/about_icon_setting"
+                        android:tint="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/about_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="#536872"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@drawable/review_icon_setting"
+                        android:tint="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/rate_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_logout_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="#E30022"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:scaleX="-1"
+                        android:src="@drawable/logout_icon_setting"
+                        android:tint="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/logout_setting"
+                    android:id="@+id/tv_logout_setting"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/material_text_body1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

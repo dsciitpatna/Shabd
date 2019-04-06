@@ -71,6 +71,9 @@ public class SettingFragment extends Fragment {
                 .into(profileImage);
         TextView displayName = view.findViewById(R.id.display_name);
         displayName.setText(UserConstants.displayName);
+
+        TextView logoutView = view.findViewById(R.id.tv_logout_setting);
+        logoutView.append(" (" + UserConstants.email + ")");
         return view;
     }
 
