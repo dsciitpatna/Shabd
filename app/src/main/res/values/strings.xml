@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Shabd</string>
     <string name="title_home">Home</string>
 
@@ -58,5 +58,6 @@
     <string name="logout_setting">Logout</string>
     <string name="about_setting">About Shabd</string>
     <string name="rate_setting">Rate and Review</string>
+    <string name="play_play_text">Play Piano</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.dsciitp.shabd.Learn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dsciitp.shabd.Learn.Piano.PianoActivity;
 import com.dsciitp.shabd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -69,6 +71,21 @@ public class LearnActivity extends AppCompatActivity {
             }
         };
         storyRecycler.setAdapter(storiesAdapter);
+
+        ImageView learnImage2 = findViewById(R.id.learn_image_2);
+        Glide.with(this)
+                .load(R.raw.play_play)
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(learnImage2);
+
+        CardView pianoCard = findViewById(R.id.learn_card_2);
+        pianoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LearnActivity.this, PianoActivity.class));
+            }
+        });
 
 
     }
