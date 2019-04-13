@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dsciitp.shabd.Learn.Drawing.DrawingActivity;
 import com.dsciitp.shabd.Learn.Piano.PianoActivity;
 import com.dsciitp.shabd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -86,7 +87,13 @@ public class LearnActivity extends AppCompatActivity {
                 startActivity(new Intent(LearnActivity.this, PianoActivity.class));
             }
         });
-
+        CardView drawingCard = findViewById(R.id.learn_card_1);
+        drawingCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LearnActivity.this, DrawingActivity.class));
+            }
+        });
 
     }
 
