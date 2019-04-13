@@ -10,18 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Setting.LanguageSettingActivity">
+
+        </activity>
         <activity
             android:name=".Learn.Drawing.DrawingActivity"
             android:parentActivityName=".Learn.LearnActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Learn.Piano.PianoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".signin.SigninActivity"
             android:screenOrientation="portrait"

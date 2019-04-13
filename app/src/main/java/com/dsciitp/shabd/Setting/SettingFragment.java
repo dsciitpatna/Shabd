@@ -24,7 +24,7 @@ import java.util.Objects;
 public class SettingFragment extends Fragment {
 
     private final String INTENT_ACTION = "intent_action";
-
+private LinearLayout language_setting;
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -74,6 +74,13 @@ public class SettingFragment extends Fragment {
 
         TextView logoutView = view.findViewById(R.id.tv_logout_setting);
         logoutView.append(" (" + UserConstants.email + ")");
+        language_setting=view.findViewById(R.id.language_setting);
+        language_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),LanguageSettingActivity.class));
+            }
+        });
         return view;
     }
 
