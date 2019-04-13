@@ -1,10 +1,8 @@
 package com.dsciitp.shabd.signin;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -71,13 +69,15 @@ public class SigninActivity extends AppCompatActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         signInDialogue = new ProgressDialog(this);
-        signInDialogue.setIndeterminate(true);
-        signInDialogue.setMessage("Logging In...");
         progressDialog = new ProgressDialog(this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Parsing Data...");
 
         splashIcon = findViewById(R.id.splash_icon);
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        realm = Realm.getInstance(config);
 
         if (getIntent().hasExtra(INTENT_ACTION) && getIntent().getStringExtra(INTENT_ACTION).equals("logout")) {
             Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show();
@@ -94,13 +94,6 @@ public class SigninActivity extends AppCompatActivity {
             }
 
         }
-
-        RealmConfiguration config = new RealmConfiguration.Builder()
-                .schemaVersion(2)
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        realm = Realm.getInstance(config);
-
     }
 
     private void showSecondSplash(final FirebaseUser user) {
@@ -156,6 +149,8 @@ public class SigninActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+            signInDialogue.setIndeterminate(true);
+            signInDialogue.setMessage("Logging In...");
             signInDialogue.show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
@@ -220,56 +215,44 @@ public class SigninActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
     private void parseData() {
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Parsing Data...");
         progressDialog.show();
 
+        List<WordsFromFirebase> s = SigninUtils.extractJson(SigninActivity.this);
+        realm.beginTransaction();
+        for (WordsFromFirebase word : s) {
 
-        new AsyncTask<String, Void, List<WordsFromFirebase>>() {
+            RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
+            query.equalTo("id", word.getId());
+            WordsInRealm result = query.findFirst();
+            if (result == null) {
+                WordsInRealm newWord = realm.createObject(WordsInRealm.class, word.getId());
+                newWord.setDescription(word.getDescription());
+                newWord.setTitle(word.getTitle());
+                newWord.setHindiTitle(word.getHindiTitle());
+                newWord.setImageResource(word.getImageResource());
+                newWord.setParentClass(word.getParentClass());
+                newWord.setIsItTopic(word.getIsItTopic());
 
-            @Override
-            protected List<WordsFromFirebase> doInBackground(String... strings) {
-                return SigninUtils.extractJson(SigninActivity.this);
+                realm.insert(newWord);
+                Log.e("mylog", word.getTitle());
+
+            } else {
+                result.setDescription(word.getDescription());
+                result.setTitle(word.getTitle());
+                result.setHindiTitle(word.getHindiTitle());
+                result.setImageResource(word.getImageResource());
+                result.setParentClass(word.getParentClass());
+                result.setIsItTopic(word.getIsItTopic());
+                realm.insertOrUpdate(result);
             }
-
-            @Override
-            protected void onPostExecute(List<WordsFromFirebase> s) {
-
-                realm.beginTransaction();
-                for (WordsFromFirebase word : s) {
-
-                    RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
-                    query.equalTo("id", word.getId());
-                    WordsInRealm result = query.findFirst();
-                    if (result == null) {
-                        WordsInRealm newWord = realm.createObject(WordsInRealm.class, word.getId());
-                        newWord.setDescription(word.getDescription());
-                        newWord.setTitle(word.getTitle());
-                        newWord.setHindiTitle(word.getHindiTitle());
-                        newWord.setImageResource(word.getImageResource());
-                        newWord.setParentClass(word.getParentClass());
-                        newWord.setIsItTopic(word.getIsItTopic());
-
-                        realm.insert(newWord);
-                        Log.e("mylog", word.getTitle());
-
-                    } else {
-                        result.setDescription(word.getDescription());
-                        result.setTitle(word.getTitle());
-                        result.setHindiTitle(word.getHindiTitle());
-                        result.setImageResource(word.getImageResource());
-                        result.setParentClass(word.getParentClass());
-                        result.setIsItTopic(word.getIsItTopic());
-                        realm.insertOrUpdate(result);
-                    }
-                }
-                realm.commitTransaction();
-                progressDialog.dismiss();
-                prefs.edit().putBoolean("firstRun", false).apply();
-                launchApp();
-            }
-        }.execute();
-
+        }
+        realm.commitTransaction();
+        progressDialog.dismiss();
+        prefs.edit().putBoolean("firstRun", false).apply();
+        launchApp();
     }
 
     private void launchApp() {

@@ -65,4 +65,5 @@
     <string name="stroke_decrease">SW- </string>
     <string name="color">Color </string>
 
+    <string name="notification_channel_name" translatable="false">DM</string>
 </resources>
