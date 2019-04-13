@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
-import com.dsciitp.shabd.SigninActivity;
 import com.dsciitp.shabd.UserConstants;
+import com.dsciitp.shabd.signin.SigninActivity;
 
 import java.util.Objects;
 
