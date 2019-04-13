@@ -130,7 +130,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         final View view = this.getWindow().getDecorView();
          activefragment=fragment;
 //        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
+        search.setBackgroundColor(getResources().getColor(R.color.searchBackground));
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,8 +145,8 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                search.setImageResource(R.color.floatingButton);
-                search.setBackgroundColor(getResources().getColor(R.color.floatingButton));
+                search.setImageResource(R.color.searchBackground);
+                search.setBackgroundColor(getResources().getColor(R.color.searchBackground));
                 v.animate().x(350f).y(250f).scaleX(40f).scaleY(40f).setDuration(500).translationZBy(25f).withEndAction(new Runnable() {
                     @Override
                     public void run() {
