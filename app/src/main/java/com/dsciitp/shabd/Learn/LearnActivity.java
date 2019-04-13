@@ -31,6 +31,9 @@ public class LearnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn);
 
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
         RecyclerView storyRecycler = findViewById(R.id.learn_recycler_story);

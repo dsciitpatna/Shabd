@@ -23,7 +23,7 @@
 
         </activity>
         <activity
-            android:name=".SigninActivity"
+            android:name=".signin.SigninActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -43,9 +43,8 @@
         </activity>
         <activity
             android:name=".Learn.LearnActivity"
-            android:label="Learn"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="Tasks"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

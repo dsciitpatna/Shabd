@@ -1,0 +1,155 @@
+{
+  "data" : [ {
+    "description" : "Basic words",
+    "hindiTitle" : "",
+    "id" : 1,
+    "imageResource" : "",
+    "isItTopic" : 1,
+    "parentClass" : "Home",
+    "title" : "Basic"
+  }, {
+    "description" : "Basic words",
+    "hindiTitle" : "",
+    "id" : 2,
+    "imageResource" : "",
+    "isItTopic" : 1,
+    "parentClass" : "Home",
+    "title" : "Advanced"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 3,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Basic",
+    "title" : "Food"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 4,
+    "imageResource" : "https://www.pngarts.com/files/3/Clothing-PNG-Image-Background.png",
+    "isItTopic" : 1,
+    "parentClass" : "Basic",
+    "title" : "Clothes"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 5,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Basic",
+    "title" : "Drink"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 6,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Basic",
+    "title" : "Play"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 7,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Food",
+    "title" : "Breakfast"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 8,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Food",
+    "title" : "Lunch"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 9,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 1,
+    "parentClass" : "Food",
+    "title" : "Dinner"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 10,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I am Hungry"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 11,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I want Sweets because I like them"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 12,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I want food"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 13,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I love eating"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 14,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "I love eating"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 15,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/87-878706_harry-and-his-bucket-full-of-dinosaurs-wiki.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Hello"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 16,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/21-218876_toilet-clipart.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "I want to go to Toilet"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 17,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/85-854864_emergency-light-ig-arrow-key-transparent-emergency-light.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "It's an emergency"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 18,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/19-190744_yes-clip-art-at-clker-yes-clipart-png.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Yes"
+  }, {
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 19,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/115-1154350_vector-illustration-of-school-crossing-guard-stops-crossing.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Stop"
+  } ]
+}
