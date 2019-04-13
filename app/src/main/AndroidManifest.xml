@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.dsciitp.shabd">
 
     <application
@@ -11,10 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".Learn.Drawing.DrawingActivity"
+            android:parentActivityName=".Learn.LearnActivity"
+            android:screenOrientation="portrait">
 
-        <activity android:name=".Learn.Piano.PianoActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".Learn.Piano.PianoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
