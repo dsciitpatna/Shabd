@@ -16,17 +16,12 @@ public class NotificationUtils {
         return c.incrementAndGet();
     }
 
-    public static final String DIRECT_MESSAGE_CHANNEL = "direct_message";
-
-
     public static void createNotificationChannel(Context context){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = context.getString(R.string.notification_channel_name);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(context.getString(R.string.default_notification_channel_id), name, importance);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }

@@ -257,14 +257,14 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void showWordAnimation(final View view) {
-        view.setClickable(false);
+        view.setEnabled(false);
         view.animate().x(size.x / 3f).y(size.y / 4f).translationZBy(10f).scaleXBy(1.25f).scaleYBy(1.25f).setDuration(750).withEndAction(new Runnable() {
             @Override
             public void run() {
                 view.animate().translationX(0f).translationY(0f).translationZBy(-10f).scaleXBy(-1.25f).scaleYBy(-1.25f).setDuration(1000).setStartDelay(500).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        view.setClickable(true);
+                        view.setEnabled(true);
                     }
                 });
             }
