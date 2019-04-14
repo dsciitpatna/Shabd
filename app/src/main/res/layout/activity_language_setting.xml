@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     tools:context=".Setting.LanguageSettingActivity">
 
@@ -11,49 +11,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:background="@color/white"
+        android:background="@drawable/language_card"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="8dp"
             android:text="Language"
             android:textSize="22sp"
             android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/language_change"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_speakbar"
-            android:popupBackground="@drawable/rounded_speakbar" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:layout_marginBottom="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_check_black_24dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:layout_marginBottom="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="िंदी"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
-        android:padding="4dp"
-        android:text="General"
-        android:textColor="@color/Darker_grey"
-        android:textSize="22sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:background="#FFFFFF"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/language_card"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="8dp"
             android:text="Pitch"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -62,13 +70,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="15dp"
-            android:padding="4dp" />
-
-        <TextView
+            android:padding="8dp" />
+    </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:padding="4dp"
+            android:background="@drawable/language_card"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="Speech Rate"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -77,8 +90,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="15dp"
-            android:padding="4dp" />
-
+            android:padding="8dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,6 +99,8 @@
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginRight="2dp"
+                android:background="@drawable/language_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -100,6 +115,7 @@
 
 
             <TextView
+                android:background="@drawable/language_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -113,5 +129,3 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
