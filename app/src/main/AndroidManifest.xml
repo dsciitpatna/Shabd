@@ -10,7 +10,8 @@
         android:roundIcon="@drawable/shabd"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Setting.LanguageSettingActivity">
+        <activity android:name=".Setting.LanguageSettingActivity"
+            android:parentActivityName=".MainActivity">
 
         </activity>
         <activity

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     EditText speak;
     ImageView play;
     ImageView del;
-    Toolbar topbar;
+    Toolbar topBar;
     Resources res;
     Point size;
     Realm realm;
@@ -69,18 +69,18 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 case R.id.navigation_home:
                     showTopBar();
                     speakbar.setVisibility(View.INVISIBLE);
-                    updateFragment(new HomeFragment(), 0);
+                    updateFragment(new HomeFragment(),0);
                     return true;
                 case R.id.navigation_quick:
                     showTopBar();
-                    updateFragment(new QuickActionFragment(), 1);
+                    transactFragment(new QuickActionFragment());
                     return true;
                 case R.id.navigation_dictionary:
                     startActivity(new Intent(MainActivity.this, DictionaryActivity.class));
                     return true;
                 case R.id.navigation_settings:
                     hideTopBar();
-                    updateFragment(new SettingFragment(), 1);
+                    transactFragment(new SettingFragment());
                     return true;
                 case R.id.navigation_learn:
                     startActivity(new Intent(MainActivity.this, LearnActivity.class));
@@ -274,8 +274,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     private void transactFragment(Fragment frag) {
         activeFragment.add(frag);
         FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
-        fragmentManager.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out)
-                .replace(R.id.fragment_container, frag, frag.getTag())
+        fragmentManager.replace(R.id.fragment_container, frag, frag.getTag())
                 .addToBackStack(frag.getTag())
                 .commit();
         if (frag instanceof BasicFragment) {
@@ -318,7 +317,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onBackPressed() {
-        if (activeFragment.get(activeFragment.size() - 1) instanceof SettingFragment) {
+        if (activeFragment.get(activeFragment.size() - 1) instanceof QuickActionFragment)
+        {
+            if (activeFragment.get(activeFragment.size() - 2) instanceof SettingFragment)
+                hideTopBar();
+            activeFragment.remove(activeFragment.size() - 1);
+        }
+        else if (activeFragment.get(activeFragment.size() - 1) instanceof SettingFragment) {
             showTopBar();
 
             if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof BasicFragment) {
@@ -337,16 +342,16 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     }
 
     private void hideTopBar() {
-        if (topbar == null) topbar = findViewById(R.id.bar);
-        if (topbar.getVisibility() == View.VISIBLE) {
-            topbar.setVisibility(View.GONE);
+        if (topBar == null) topBar = findViewById(R.id.bar);
+        if (topBar.getVisibility() == View.VISIBLE) {
+            topBar.setVisibility(View.GONE);
         }
     }
 
     private void showTopBar() {
-        if (topbar == null) topbar = findViewById(R.id.bar);
-        if (topbar.getVisibility() == View.GONE) {
-            topbar.setVisibility(View.VISIBLE);
+        if (topBar == null) topBar = findViewById(R.id.bar);
+        if (topBar.getVisibility() == View.GONE) {
+            topBar.setVisibility(View.VISIBLE);
         }
 
     }
