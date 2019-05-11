@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dsciitp.shabd.Dictionary.DictionaryAdapter;
 import com.dsciitp.shabd.Learn.Drawing.DrawingActivity;
 import com.dsciitp.shabd.Learn.Piano.PianoActivity;
 import com.dsciitp.shabd.R;
@@ -22,9 +23,11 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class LearnActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    FirestoreRecyclerAdapter storiesAdapter;
+public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnCategorySelectedListener{
+
+  LearnAdapter storiesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,47 +37,20 @@ public class LearnActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
 
-        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+
 
         RecyclerView storyRecycler = findViewById(R.id.learn_recycler_story);
         storyRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = mFirestore.collection("stories").orderBy("position");
-
-        FirestoreRecyclerOptions<LearnStoryModel> options = new FirestoreRecyclerOptions.Builder<LearnStoryModel>()
-                .setQuery(query, LearnStoryModel.class)
-                .build();
-
-        storiesAdapter = new FirestoreRecyclerAdapter<LearnStoryModel, StoryHolder>(options) {
-
-            @Override
-            protected void onBindViewHolder(@NonNull StoryHolder holder, int position, @NonNull final LearnStoryModel model) {
-
-                holder.wordTitle.setText(model.getTitle());
-
-                Glide.with(LearnActivity.this)
-                        .load(model.getImageResource())
-                        .centerCrop()
-                        .placeholder(R.color.transparent)
-                        .into(holder.wordImage);
-
-                holder.cardCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-            }
-
-            @NonNull
-            @Override
-            public StoryHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_learn_stories, viewGroup, false);
-
-                return new StoryHolder(view);
-            }
-        };
-        storyRecycler.setAdapter(storiesAdapter);
+        ArrayList<LearnStoryModel> options = new ArrayList<LearnStoryModel>();
+        //options.add( "Draw an apple","dgd","gdfg","https://www.countryplace.com.au/wp-content/uploads/Creative-Painting.jpg","Drawing" );
+        options.add( new LearnStoryModel( "Draw an apple","dgd","gdfg","https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg",DrawingActivity.class ) );
+        options.add( new LearnStoryModel( "Play song","dgd","gdfg","https://www.countryplace.com.au/wp-content/uploads/Creative-Painting.jpg",PianoActivity.class ) );
+        options.add( new LearnStoryModel( "Draw a Bird","dgd","gdfg","https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/white_stork.jpeg?B2LINO47jclcIb3QCW.Bj9nto934Lox4",DrawingActivity.class ) );
+        options.add( new LearnStoryModel( "Listen to a story","dgd","gdfg","https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg",DrawingActivity.class ) );
+        options.add( new LearnStoryModel( "Holiday","dgd","gdfg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEXBiGxKzBLNDhHMmgrR6KBYlOOO2f0SXP5TZ3DS_UthzhOoq",DrawingActivity.class ) );
+        storiesAdapter=new LearnAdapter( options,LearnActivity.this, (LearnAdapter.OnCategorySelectedListener )this);
+         storyRecycler.setAdapter( storiesAdapter );
 
         ImageView learnImage2 = findViewById(R.id.learn_image_2);
         Glide.with(this)
@@ -82,6 +58,12 @@ public class LearnActivity extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.color.transparent)
                 .into(learnImage2);
+        ImageView learnImage3 = findViewById(R.id.learn_image_3);
+        Glide.with(this)
+                .load("https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg")
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(learnImage3);
 
         CardView pianoCard = findViewById(R.id.learn_card_2);
         pianoCard.setOnClickListener(new View.OnClickListener() {
@@ -103,25 +85,18 @@ public class LearnActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        storiesAdapter.stopListening();
+        //storiesAdapter.stopListening();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        storiesAdapter.startListening();
+        //storiesAdapter.startListening();
     }
 
-    private class StoryHolder extends RecyclerView.ViewHolder {
-        TextView wordTitle;
-        ImageView wordImage;
-        CardView cardCardView;
+    @Override
+    public void onTopicSelected(LearnStoryModel title) {
 
-        StoryHolder(@NonNull View itemView) {
-            super(itemView);
-            wordTitle = itemView.findViewById(R.id.card_learn_stories_title);
-            wordImage = itemView.findViewById(R.id.card_learn_stories_image);
-            cardCardView = itemView.findViewById(R.id.card_learn_stories_card);
-        }
+        startActivity(new Intent(LearnActivity.this, title.getIntent()));
     }
 }
