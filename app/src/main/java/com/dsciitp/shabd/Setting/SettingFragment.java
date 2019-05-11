@@ -2,21 +2,34 @@ package com.dsciitp.shabd.Setting;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dsciitp.shabd.MainActivity;
 import com.dsciitp.shabd.R;
 import com.dsciitp.shabd.UserConstants;
 import com.dsciitp.shabd.signin.SigninActivity;
+import com.hsalf.smilerating.BaseRating;
+import com.hsalf.smilerating.SmileRating;
 
 import java.util.Objects;
+
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +37,8 @@ import java.util.Objects;
 public class SettingFragment extends Fragment {
 
     private final String INTENT_ACTION = "intent_action";
-private LinearLayout language_setting;
+    private LinearLayout language_setting;
+    private  int rating;
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -60,6 +74,55 @@ private LinearLayout language_setting;
             @Override
             public void onClick(View v) {
                 updateData();
+            }
+        });
+        final LinearLayout settings_layout = view.findViewById(R.id.settings_fragmenr_layout);
+        LinearLayout rate = view.findViewById(R.id.rate_button);
+        rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.rate_popup, null);
+
+                SmileRating smileRating = (SmileRating)popupView.findViewById(R.id.smile_rating);
+
+
+                smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
+                    @Override
+                    public void onSmileySelected(@BaseRating.Smiley int smiley, boolean reselected) {
+
+                            rating=smiley;
+                        }
+                    }
+                );
+
+
+
+                // create the popup window
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                // show the popup window
+                // which view you pass in doesn't matter, it is only used for the window tolken
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                // dismiss the popup window when touched
+
+                Button submit = popupView.findViewById(R.id.submit_button);
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //int rating will be sent
+                        // text also
+                        popupWindow.dismiss();
+
+                    }
+                });
+
+
             }
         });
 
