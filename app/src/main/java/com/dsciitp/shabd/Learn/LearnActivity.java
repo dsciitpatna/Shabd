@@ -44,11 +44,17 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
 
         ArrayList<LearnStoryModel> options = new ArrayList<LearnStoryModel>();
         //options.add( "Draw an apple","dgd","gdfg","https://www.countryplace.com.au/wp-content/uploads/Creative-Painting.jpg","Drawing" );
-        options.add( new LearnStoryModel( "Draw an apple","dgd","gdfg","https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg",DrawingActivity.class ) );
         options.add( new LearnStoryModel( "Play song","dgd","gdfg","https://www.countryplace.com.au/wp-content/uploads/Creative-Painting.jpg",PianoActivity.class ) );
-        options.add( new LearnStoryModel( "Draw a Bird","dgd","gdfg","https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/white_stork.jpeg?B2LINO47jclcIb3QCW.Bj9nto934Lox4",DrawingActivity.class ) );
         options.add( new LearnStoryModel( "Listen to a story","dgd","gdfg","https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg",DrawingActivity.class ) );
-        options.add( new LearnStoryModel( "Holiday","dgd","gdfg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEXBiGxKzBLNDhHMmgrR6KBYlOOO2f0SXP5TZ3DS_UthzhOoq",DrawingActivity.class ) );
+
+        String draw_resouces[] = getResources().getStringArray(R.array.drawings_source);
+        String picture[] = getResources().getStringArray(R.array.draw_items);
+        for (int i=0;i<10;i++)
+        {
+            options.add( new LearnStoryModel(picture[i],"dgd","gdfg",draw_resouces[i],DrawingActivity.class ));
+        }
+
+
         storiesAdapter=new LearnAdapter( options,LearnActivity.this, (LearnAdapter.OnCategorySelectedListener )this);
          storyRecycler.setAdapter( storiesAdapter );
 
