@@ -47,6 +47,7 @@ public class QuizActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create( QuizActivity.this, R.raw.clock);
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        getSupportActionBar().setTitle( getString( R.string.quiz ) );
         initViews();
 
     }
