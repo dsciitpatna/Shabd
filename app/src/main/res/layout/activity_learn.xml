@@ -148,17 +148,24 @@
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="8dp"
                 app:cardCornerRadius="8dp">
-
                 <TextView
                     android:id="@+id/learn_title_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
                     android:padding="4dp"
-                    android:translationZ="1dp"
-                    tools:text="Category 4" />
-
+                    android:text="Number Quiz"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:translationZ="2dp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:alpha="0.5"
+                    android:background="@android:color/black"
+                    android:translationZ="1dp" />
                 <ImageView
                     android:id="@+id/learn_image_4"
                     android:layout_width="match_parent"

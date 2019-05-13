@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.Dictionary.DictionaryAdapter;
 import com.dsciitp.shabd.Learn.Drawing.DrawingActivity;
 import com.dsciitp.shabd.Learn.Piano.PianoActivity;
+import com.dsciitp.shabd.Learn.Quiz.QuizActivity;
 import com.dsciitp.shabd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -64,6 +65,12 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
                 .centerCrop()
                 .placeholder(R.color.transparent)
                 .into(learnImage3);
+        ImageView learnImage4 = findViewById(R.id.learn_image_4);
+        Glide.with(this)
+                .load("http://clipartmag.com/images/quiz-clipart-24.jpg")
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(learnImage4);
 
         CardView pianoCard = findViewById(R.id.learn_card_2);
         pianoCard.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +84,13 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LearnActivity.this, DrawingActivity.class));
+            }
+        });
+        CardView numberCard = findViewById(R.id.learn_card_4);
+        numberCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LearnActivity.this, QuizActivity.class));
             }
         });
 
