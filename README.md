@@ -58,6 +58,18 @@ It is advisable to clone only the development branch using the following command
      
 #### Rules for contribution
 * Raise an issue before making PR.
+* Follow PR guidelines
+* One commit should be there for every PR. After requested changes you can make extra commits.
 * Make all the PR's in development branch.
 * Contact the mentors at Gitter or Slack channel before contributing.
 
+## Mentors
+* Anmol Chadda 
+* Bhavna Haritsa
+
+## Contributors
+* Aparsh Gupta
+* Neeraj Goyal
+* Vijaya
+* Ayushi
+* Jonish
