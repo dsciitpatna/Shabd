@@ -2,27 +2,20 @@ package com.dsciitp.shabd.Learn;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dsciitp.shabd.Dictionary.DictionaryAdapter;
+import com.dsciitp.shabd.Learn.ColorGame.ColorGameActivity;
 import com.dsciitp.shabd.Learn.Drawing.DrawingActivity;
 import com.dsciitp.shabd.Learn.Piano.PianoActivity;
 import com.dsciitp.shabd.Learn.Quiz.QuizActivity;
 import com.dsciitp.shabd.R;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -71,6 +64,12 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
                 .centerCrop()
                 .placeholder(R.color.transparent)
                 .into(learnImage4);
+        ImageView learnImage5 = findViewById(R.id.learn_image_5);
+        Glide.with(this)
+                .load("https://www.codester.com/static//uploads/items/2658/preview-xl.jpg")
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(learnImage5);
 
         CardView pianoCard = findViewById(R.id.learn_card_2);
         pianoCard.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +92,14 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
                 startActivity(new Intent(LearnActivity.this, QuizActivity.class));
             }
         });
+        CardView colorCard = findViewById(R.id.learn_card_5);
+        colorCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LearnActivity.this, ColorGameActivity.class));
+            }
+        });
+
 
     }
 
