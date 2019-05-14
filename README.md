@@ -61,3 +61,11 @@ It is advisable to clone only the development branch using the following command
 * Make all the PR's in development branch.
 * Contact the mentors at Gitter or Slack channel before contributing.
 
+### Team Members
+* Amartya Mondal
+* Aman Jee
+* Anmol Chaddha
+* Aparsh Gupta
+* Somenath Sarkar
+* Oindrilla
+* Bhavna Haritsa
