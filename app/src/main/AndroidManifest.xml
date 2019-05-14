@@ -14,11 +14,18 @@
         android:roundIcon="@drawable/shabd"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Learn.Quiz.QuizActivity"
-            android:parentActivityName=".Learn.LearnActivity"></activity>
+
+        <activity
+            android:name=".Learn.ColorGame.ColorGameActivity"
+            android:parentActivityName=".Learn.LearnActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Learn.Quiz.QuizActivity"
+            android:parentActivityName=".Learn.LearnActivity" />
         <activity
             android:name=".Setting.LanguageSettingActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Learn.Drawing.DrawingActivity"
             android:parentActivityName=".Learn.LearnActivity"
