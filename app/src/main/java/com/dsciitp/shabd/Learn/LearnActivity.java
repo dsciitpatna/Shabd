@@ -23,7 +23,7 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
 
   LearnAdapter storiesAdapter;
 
-    @Overridegit
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn);
