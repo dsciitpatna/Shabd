@@ -57,5 +57,10 @@ dependencies {
     implementation 'com.pes.materialcolorpicker:library:1.2.0'
     //smilie rating
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
+    //youtuvelib
+    implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.1'
+    // code generator for view
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
 }
 apply plugin: 'com.google.gms.google-services'
