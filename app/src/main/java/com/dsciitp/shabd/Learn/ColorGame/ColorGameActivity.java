@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dsciitp.shabd.Learn.Video.VideoAdapter;
 import com.dsciitp.shabd.R;
 
 import java.util.ArrayList;
@@ -140,7 +141,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
         colorRecycler.setLayoutManager( new GridLayoutManager( this, span ) );
         Random random = new Random();
 
-        int d = random.nextInt( span - 1 );
+        int d = random.nextInt( span*5 - 1 );
         preferences.edit().putInt( "correctanswer", d ).apply();
         a = random.nextInt( 256 );
         b = random.nextInt( 256 );
@@ -154,7 +155,8 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
             else
                 colours.add( color2 );
         }
-        colorAdapter = new ColorAdapter( colours, this, (ColorAdapter.OnCategorySelectedListener) this );
+        colorAdapter = new ColorAdapter( colours, this, (ColorAdapter.OnCategorySelectedListener) this);
+
         colorRecycler.setAdapter( colorAdapter );
     }
 
@@ -168,8 +170,16 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
                 preferences.edit().putInt( "span", ++c ).apply();
             ;
             correctQuestions++;
-        } else
+        } else {
+            final RecyclerView.ViewHolder g =colorRecycler.findViewHolderForAdapterPosition( preferences.getInt( "correctanswer", 0 ));
+            g.itemView.animate().scaleX( 1.3f ).scaleY( 1.3f ).setDuration( 500 ).withEndAction( new Runnable() {
+                @Override
+                public void run() {
+                    g.itemView.animate().setDuration( 200 ).scaleX( 1 ).scaleY( 1 ).start();
+                }
+            } ).start();
             pointsTextView.setBackgroundColor( getResources().getColor( R.color.red ) );
+        }
         totalQuestions++;
         pointsTextView.setText( correctQuestions + "/" + totalQuestions );
         final Handler handler = new Handler();
@@ -181,7 +191,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
                 createQuestion();
 
             }
-        }, 300 );
+        }, 700 );
 
     }
 

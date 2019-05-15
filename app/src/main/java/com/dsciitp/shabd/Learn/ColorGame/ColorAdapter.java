@@ -7,27 +7,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.dsciitp.shabd.Learn.LearnStoryModel;
 import com.dsciitp.shabd.R;
 
 import java.util.ArrayList;
 
-public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorHolder>  {
-
+public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorHolder> {
 
 
     private Context context;
     private ArrayList<Integer> mylist;
     public ColorAdapter.OnCategorySelectedListener callback;
+
     ColorAdapter(ArrayList<Integer> mylist, Context context, ColorAdapter.OnCategorySelectedListener listener) {
         this.mylist = mylist;
-        callback=listener;
+        callback = listener;
         this.context = context;
+
     }
 
     public interface OnCategorySelectedListener {
@@ -37,23 +33,23 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorHolder>
     @NonNull
     @Override
     public ColorAdapter.ColorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.color_card, parent, false);
-        return new ColorHolder(view);
+        View view = LayoutInflater.from( parent.getContext() ).inflate( R.layout.color_card, parent, false );
+        return new ColorHolder( view );
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ColorAdapter.ColorHolder holder, final int position) {
 
-       int e=mylist.get(holder.getAdapterPosition());
-            holder.cardCardView.setCardBackgroundColor( e );
-            holder.cardCardView.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    callback.onTopicSelected( holder.getAdapterPosition() );
+        int e = mylist.get( holder.getAdapterPosition() );
 
-                }
-            } );
+        holder.cardCardView.setCardBackgroundColor( e );
+        holder.cardCardView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onTopicSelected( holder.getAdapterPosition() );
 
+            }
+        } );
 
 
     }
@@ -67,8 +63,8 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorHolder>
         CardView cardCardView;
 
         ColorHolder(@NonNull View itemView) {
-            super(itemView);
-            cardCardView = itemView.findViewById(R.id.card_color);
+            super( itemView );
+            cardCardView = itemView.findViewById( R.id.card_color );
         }
     }
 
