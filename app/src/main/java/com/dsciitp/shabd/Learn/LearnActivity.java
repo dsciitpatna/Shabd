@@ -72,6 +72,15 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
                 .placeholder(R.color.transparent)
                 .into(learnImage5);
 
+        ImageView learnImage6 = findViewById(R.id.learn_image_6);
+        Glide.with(this)
+                .load("https://www.codester.com/static//uploads/items/1612/preview-xl.jpg")
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(learnImage6);
+
+
+
         CardView pianoCard = findViewById(R.id.learn_card_2);
         pianoCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +114,13 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LearnActivity.this, ColorGameActivity.class));
+            }
+        });
+        CardView Tictactoecard = findViewById(R.id.learn_card_6);
+        Tictactoecard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LearnActivity.this,Tic_Tac_Toe.class));
             }
         });
 
