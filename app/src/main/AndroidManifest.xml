@@ -23,8 +23,6 @@
         <activity
             android:name=".Learn.Quiz.QuizActivity"
             android:parentActivityName=".Learn.LearnActivity" />
-        <activity android:name=".Learn.Tic_Tac_Toe"
-            android:parentActivityName=".Learn.LearnActivity"/>
         <activity
             android:name=".Setting.LanguageSettingActivity"
             android:parentActivityName=".MainActivity" />
@@ -41,11 +39,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity
@@ -82,7 +78,6 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
             </intent-filter>
         </activity>
 
