@@ -8,7 +8,6 @@
 
     <color name="meaningBackground">#FFFFFF</color>
     <color name="floatingButton">#ab47bc</color>
-    <color name="lightpink">#ab97bc</color>
     <color name="searchBackground">#FF9800</color>
 
     <color name="transparent">@android:color/transparent</color>
