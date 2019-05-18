@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
     Resources res;
     Point size;
     Realm realm;
-    RelativeLayout speakbar;
+    RelativeLayout speakBar;
 
     private List<Fragment> activeFragment = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     showTopBar();
-                    speakbar.setVisibility(View.INVISIBLE);
+                    speakBar.setVisibility(View.INVISIBLE);
                     updateFragment(new HomeFragment(),0);
                     return true;
                 case R.id.navigation_quick:
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         setContentView(R.layout.activity_main);
 
         setLocale();
-        speakbar = findViewById(R.id.speakbar);
+        speakBar = findViewById(R.id.speakbar);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 .build();
         realm = Realm.getInstance(config);
 
-        speakbar.setVisibility(View.INVISIBLE);
+        speakBar.setVisibility(View.INVISIBLE);
         setBaseFragment(savedInstanceState);
         initSpeakBar();
 
@@ -278,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 .addToBackStack(frag.getTag())
                 .commit();
         if (frag instanceof BasicFragment) {
-            speakbar.setVisibility(View.VISIBLE);
+            speakBar.setVisibility(View.VISIBLE);
         } else {
-            speakbar.setVisibility(View.INVISIBLE);
+            speakBar.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -327,13 +327,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             showTopBar();
 
             if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof BasicFragment) {
-                speakbar.setVisibility(View.VISIBLE);
+                speakBar.setVisibility(View.VISIBLE);
             }
             activeFragment.remove(activeFragment.size() - 1);
 
         } else if (activeFragment.get(activeFragment.size() - 1) instanceof BasicFragment) {
             if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof HomeFragment) {
-                speakbar.setVisibility(View.INVISIBLE);
+                speakBar.setVisibility(View.INVISIBLE);
             }
             activeFragment.remove(activeFragment.size() - 1);
         }

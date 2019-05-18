@@ -15,29 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Learn.Video.VideoActivity"
-            android:parentActivityName=".Learn.LearnActivity"/>
+            android:parentActivityName=".Learn.LearnActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Learn.ColorGame.ColorGameActivity"
             android:parentActivityName=".Learn.LearnActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".Learn.Quiz.QuizActivity"
-            android:parentActivityName=".Learn.LearnActivity" />
+            android:parentActivityName=".Learn.LearnActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".Setting.LanguageSettingActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".Learn.Drawing.DrawingActivity"
             android:parentActivityName=".Learn.LearnActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".Learn.Piano.PianoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".signin.SigninActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +56,8 @@
             android:name=".Dictionary.DictionaryActivity"
             android:label="Dictionary"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

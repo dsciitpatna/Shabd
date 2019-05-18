@@ -18,6 +18,7 @@ import com.dsciitp.shabd.Learn.Video.VideoActivity;
 import com.dsciitp.shabd.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnCategorySelectedListener{
 
@@ -28,7 +29,7 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn);
 
-        getSupportActionBar().setElevation(0f);
+        Objects.requireNonNull( getSupportActionBar() ).setElevation(0f);
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
 
 
@@ -38,12 +39,12 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
 
         ArrayList<LearnStoryModel> options = new ArrayList<LearnStoryModel>();
         //options.add( "Draw an apple","dgd","gdfg","https://www.countryplace.com.au/wp-content/uploads/Creative-Painting.jpg","Drawing" );
-        options.add( new LearnStoryModel( "Draw an apple","dgd","gdfg","https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg",DrawingActivity.class ) );
-        options.add( new LearnStoryModel( "Score 5 points","dgd","gdfg","https://www.codester.com/static//uploads/items/2658/preview-xl.jpg",ColorGameActivity.class ) );
-        options.add( new LearnStoryModel( "Draw a Bird","dgd","gdfg","https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/white_stork.jpeg?B2LINO47jclcIb3QCW.Bj9nto934Lox4",DrawingActivity.class ) );
-        options.add( new LearnStoryModel( "Score 5 points","dgd","gdfg","http://clipartmag.com/images/quiz-clipart-24.jpg",QuizActivity.class ) );
-        options.add( new LearnStoryModel( "Holiday","dgd","gdfg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEXBiGxKzBLNDhHMmgrR6KBYlOOO2f0SXP5TZ3DS_UthzhOoq",null ) );
-        options.add( new LearnStoryModel( "Watch 2 videos","dgd","gdfg","https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg",VideoActivity.class ) );
+        options.add( new LearnStoryModel( "Draw an apple","","gdfg","https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg",DrawingActivity.class ) );
+        options.add( new LearnStoryModel( "Score 5 points","","gdfg","https://www.codester.com/static//uploads/items/2658/preview-xl.jpg",ColorGameActivity.class ) );
+        options.add( new LearnStoryModel( "Draw a Bird","","gdfg","https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/white_stork.jpeg?B2LINO47jclcIb3QCW.Bj9nto934Lox4",DrawingActivity.class ) );
+        options.add( new LearnStoryModel( "Score 5 points","","gdfg","http://clipartmag.com/images/quiz-clipart-24.jpg",QuizActivity.class ) );
+        options.add( new LearnStoryModel( "Holiday","","gdfg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEXBiGxKzBLNDhHMmgrR6KBYlOOO2f0SXP5TZ3DS_UthzhOoq",null ) );
+        options.add( new LearnStoryModel( "Watch 2 videos","","gdfg","https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg",VideoActivity.class ) );
         storiesAdapter=new LearnAdapter( options,LearnActivity.this, (LearnAdapter.OnCategorySelectedListener )this);
          storyRecycler.setAdapter( storiesAdapter );
 
@@ -83,7 +84,9 @@ public class LearnActivity extends AppCompatActivity implements LearnAdapter.OnC
         drawingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LearnActivity.this, DrawingActivity.class));
+                Intent i=new Intent( LearnActivity.this,DrawingActivity.class );
+                i.putExtra( "drawing",1 );
+                startActivity(i);
             }
         });
         CardView numberCard = findViewById(R.id.learn_card_4);

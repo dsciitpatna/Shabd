@@ -34,8 +34,8 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
     TextView resultTextView;
     TextView timeTextView;
     Button playAgainButton;
-    MediaPlayer mediaPlayer;
-
+    MediaPlayer mediaPlayer,mediaPlayer1;
+    CountDownTimer timer;
 
     int highScore;
     TextView highScoreView;
@@ -46,6 +46,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_color_game );
         mediaPlayer = MediaPlayer.create( this, R.raw.clock );
+        mediaPlayer1=MediaPlayer.create( this,R.raw.applause );
         getSupportActionBar().setElevation( 0f );
         getSupportActionBar().setHomeAsUpIndicator( getResources().getDrawable( R.drawable.ic_arrow_back_white_24dp ) );
         getSupportActionBar().setTitle( getString( R.string.quiz ) );
@@ -89,7 +90,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
         correctQuestions = 0;
         pointsTextView.setText( "0/0" );
         resultTextView.setVisibility( View.INVISIBLE );
-        new CountDownTimer( 30100, 1000 ) {
+        timer = new CountDownTimer( 30100, 1000 ) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -125,6 +126,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
             highScore = correctQuestions;
             preferences.edit().putInt( "high_score_color", correctQuestions ).apply();
             message = "CONGRATS\nNew High Score = ";
+            mediaPlayer1.start();
         } else {
             message = "High Score = ";
         }
@@ -141,7 +143,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
         colorRecycler.setLayoutManager( new GridLayoutManager( this, span ) );
         Random random = new Random();
 
-        int d = random.nextInt( span*5 - 1 );
+        int d = random.nextInt( span * 5 - 1 );
         preferences.edit().putInt( "correctanswer", d ).apply();
         a = random.nextInt( 256 );
         b = random.nextInt( 256 );
@@ -155,7 +157,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
             else
                 colours.add( color2 );
         }
-        colorAdapter = new ColorAdapter( colours, this, (ColorAdapter.OnCategorySelectedListener) this);
+        colorAdapter = new ColorAdapter( colours, this, (ColorAdapter.OnCategorySelectedListener) this );
 
         colorRecycler.setAdapter( colorAdapter );
     }
@@ -171,7 +173,7 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
             ;
             correctQuestions++;
         } else {
-            final RecyclerView.ViewHolder g =colorRecycler.findViewHolderForAdapterPosition( preferences.getInt( "correctanswer", 0 ));
+            final RecyclerView.ViewHolder g = colorRecycler.findViewHolderForAdapterPosition( preferences.getInt( "correctanswer", 0 ) );
             g.itemView.animate().scaleX( 1.3f ).scaleY( 1.3f ).setDuration( 500 ).withEndAction( new Runnable() {
                 @Override
                 public void run() {
@@ -197,7 +199,14 @@ public class ColorGameActivity extends AppCompatActivity implements ColorAdapter
 
     @Override
     public void onBackPressed() {
-        mediaPlayer.release();
-        super.onBackPressed();
+        if (highScoreView.getVisibility() == View.VISIBLE) {
+            mediaPlayer.stop();
+            super.onBackPressed();
+            mediaPlayer1.stop();
+        } else {
+            timer.onFinish();
+            timer.cancel();
+            mediaPlayer.stop();
+        }
     }
 }
