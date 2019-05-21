@@ -55,17 +55,24 @@ public class DrawingActivity extends AppCompatActivity {
     private int selectedColorRGB;
     private StorageReference mStorageRef;
     private SharedPreferences counter;
-    private int PERMISSION_REQUEST_CODE=200;
-    private int i=0;
+    private int PERMISSION_REQUEST_CODE = 200;
+    private int i = 0;
+    private Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_drawing2 );
+        submit = findViewById( R.id.submit );
+        int drawing = getIntent().getIntExtra( "drawing", 0 );
+        if (drawing != 1)
+            submit.setVisibility( View.VISIBLE );
+        else
+            submit.setVisibility( View.GONE );
         counter = getSharedPreferences( "i", 0 );
-        Objects.requireNonNull( getSupportActionBar() ).setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        Objects.requireNonNull( getSupportActionBar() ).setHomeAsUpIndicator( getResources().getDrawable( R.drawable.ic_arrow_back_white_24dp ) );
         getSupportActionBar().setTitle( "Draw" );
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        setContentView( R.layout.activity_drawing2 );
         drawableView = findViewById( R.id.paintView );
         Button strokeWidthMinusButton = findViewById( R.id.strokeWidthMinusButton );
         Button strokeWidthPlusButton = findViewById( R.id.strokeWidthPlusButton );
@@ -136,13 +143,21 @@ public class DrawingActivity extends AppCompatActivity {
             }
         } );
         requestPermissionAndContinue();
+        submit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        } );
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if(submit.getVisibility()==View.GONE)
         getMenuInflater().inflate( R.menu.drawingmenu, menu );
         return true;
     }
+
     private void requestPermissionAndContinue() {
         if (ContextCompat.checkSelfPermission( this, WRITE_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission( this, READ_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED) {
@@ -171,6 +186,7 @@ public class DrawingActivity extends AppCompatActivity {
             openActivity();
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -193,7 +209,7 @@ public class DrawingActivity extends AppCompatActivity {
                 finish();
             }
         } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            super.onRequestPermissionsResult( requestCode, permissions, grantResults );
         }
     }
 
@@ -206,57 +222,59 @@ public class DrawingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.save) {
+            save();
+            return super.onOptionsItemSelected( item );
+        }
+        return true;
+    }
 
-            Toast.makeText( this, "success", Toast.LENGTH_SHORT ).show();
-            drawableView.setDrawingCacheEnabled( true );
-            drawableView.setDrawingCacheQuality( View.DRAWING_CACHE_QUALITY_HIGH );
-            Bitmap bitmap = drawableView.getDrawingCache();
-            File f = new File( Environment.getExternalStorageDirectory().getAbsolutePath(), "shabd" );
-            if (!f.exists()) {
-                f.mkdirs();
-            }
-            SharedPreferences.Editor editor = counter.edit();
-            int c = counter.getInt( "i", 1 );
-            editor.putInt( "i", ++c );
-            editor.apply();
-            String s = "image";
-            if (UserConstants.displayName != null)
-                s = UserConstants.displayName;
-            StorageReference mDrawing = mStorageRef.child( "ShabdDrawing" ).child( s+c );
-            File file = new File( f.getAbsolutePath() + "/drawingimage" + c + ".png" );
+    private void save() {
 
-            FileOutputStream ostream;
-            try {
-                file.createNewFile();
-                ostream = new FileOutputStream( file );
-                bitmap.compress( Bitmap.CompressFormat.PNG, 100, ostream );
-                Uri uri = Uri.fromFile( new File( f.getAbsolutePath() + "/drawingimage" + c + ".png" ) );
+        drawableView.setDrawingCacheEnabled( true );
+        drawableView.setDrawingCacheQuality( View.DRAWING_CACHE_QUALITY_HIGH );
+        Bitmap bitmap = drawableView.getDrawingCache();
+        File f = new File( Environment.getExternalStorageDirectory().getAbsolutePath(), "shabd" );
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+        SharedPreferences.Editor editor = counter.edit();
+        int c = counter.getInt( "i", 1 );
+        editor.putInt( "i", ++c );
+        editor.apply();
+        String s = "image";
+        if (UserConstants.displayName != null)
+            s = UserConstants.displayName;
+        StorageReference mDrawing = mStorageRef.child( "ShabdDrawing" ).child( s ).child( c + " " );
+        File file = new File( f.getAbsolutePath() + "/drawingimage" + c + ".png" );
 
+        FileOutputStream ostream;
+        try {
+            file.createNewFile();
+            ostream = new FileOutputStream( file );
+            bitmap.compress( Bitmap.CompressFormat.PNG, 100, ostream );
+            Uri uri = Uri.fromFile( new File( f.getAbsolutePath() + "/drawingimage" + c + ".png" ) );
+
+            if (submit.getVisibility() == View.VISIBLE) {
                 mStorageRef.putFile( uri );
                 UploadTask uploadTask = mDrawing.putFile( uri );
                 uploadTask.addOnFailureListener( new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d( "myStorage", "failure :(" );
-                        Toast.makeText( DrawingActivity.this, "Failure", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( DrawingActivity.this, "Check your network connection.Connect to Internet", Toast.LENGTH_SHORT ).show();
                     }
                 } ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.d( "myStorage", "success!" );
-                        Toast.makeText( DrawingActivity.this, "Successsss", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( DrawingActivity.this, "Your task is successfully submitted", Toast.LENGTH_SHORT ).show();
                     }
                 } );
-                ostream.flush();
-                ostream.close();
-                Toast.makeText( this, "Image saved", Toast.LENGTH_SHORT ).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText( this, "Not saved", Toast.LENGTH_SHORT ).show();
             }
-
-            return super.onOptionsItemSelected( item );
+            ostream.flush();
+            ostream.close();
+            Toast.makeText( this, "Drawing saved to Gallery", Toast.LENGTH_SHORT ).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText( this, "Not saved", Toast.LENGTH_SHORT ).show();
         }
-        return true;
     }
 }

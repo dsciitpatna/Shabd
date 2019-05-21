@@ -16,6 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,7 @@ public class VideoActivity extends AppCompatActivity {
         getSupportActionBar().setElevation( 0f );
         getSupportActionBar().setHomeAsUpIndicator( getResources().getDrawable( R.drawable.ic_arrow_back_white_24dp ) );
         getSupportActionBar().setTitle( "Educational Videos" );
+        getSupportActionBar().hide();
 
         final ArrayList<YoutubeVideo> api = new ArrayList<YoutubeVideo>();
         mFirestore = FirebaseFirestore.getInstance();
@@ -66,7 +68,7 @@ public class VideoActivity extends AppCompatActivity {
                                 video4.setImageUrl( doc.getString( "imageurl" ) );
                                 video4.setTitle( doc.getString( "title" ) );
                                 video4.setVideoId( doc.getString( "id" ) );
-                                api.add( video4 );
+                                api.add(Integer.parseInt( Objects.requireNonNull( doc.getString( "position" ) ) )-1,video4);
 
                             }
                         }
