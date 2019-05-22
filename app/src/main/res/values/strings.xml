@@ -61,6 +61,7 @@
     <string name="rate_setting">Rate and Review</string>
     <string name="play_play_text">Play Piano</string>
     <string name="story_text">Watch Videos</string>
+    <string name="developers" translatable="false">Developed by Mobile App Society of Developer Student Club , Indian Institute of Technology Patna.</string>
 
     <string name="undo">Undo </string>
     <string name="stroke_increase">SW+ </string>
@@ -69,4 +70,8 @@
 
     <string name="notification_channel_name" translatable="false">DM</string>
     <string name="quiz" translatable="false">Quiz</string>
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
 </resources>

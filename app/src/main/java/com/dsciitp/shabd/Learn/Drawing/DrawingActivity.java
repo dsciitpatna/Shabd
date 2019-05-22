@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -63,7 +65,7 @@ public class DrawingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_drawing2 );
-        submit = findViewById( R.id.submit );
+        submit = findViewById( R.id.submit1 );
         int drawing = getIntent().getIntExtra( "drawing", 0 );
         if (drawing != 1)
             submit.setVisibility( View.VISIBLE );
@@ -153,8 +155,14 @@ public class DrawingActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(submit.getVisibility()==View.GONE)
-        getMenuInflater().inflate( R.menu.drawingmenu, menu );
+        if(submit.getVisibility()==View.GONE) {
+            getMenuInflater().inflate( R.menu.drawingmenu, menu );
+            Drawable drawable = menu.findItem( R.id.save ).getIcon();
+
+            drawable = DrawableCompat.wrap( drawable );
+            DrawableCompat.setTint( drawable, ContextCompat.getColor( this, R.color.white) );
+            menu.findItem( R.id.save ).setIcon( drawable );
+        }
         return true;
     }
 

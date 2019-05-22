@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dsciitp.shabd.R;
 
@@ -59,6 +60,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                 return false;
             }
         } );
+        //Locale current = getResources().getConfiguration().locale;
         tts = new TextToSpeech( this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -73,24 +75,26 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         play.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tts.speak( word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
-                search.animate().scaleX( 2f ).scaleY( 2f ).setDuration( 1000 ).translationZBy( 25f ).withEndAction( new Runnable() {
-                    @Override
-                    public void run() {
-                        search.animate().scaleX( 1f ).scaleY( 1f ).setDuration( 1000 ).translationZBy( -25f ).withEndAction( new Runnable() {
-                            @Override
-                            public void run() {
-                                tts.speak( press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
-                                search.animate().scaleX( 2f ).scaleY( 2f ).setDuration( 1000 ).translationZBy( +25f ).withEndAction( new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        search.animate().scaleX( 1f ).scaleY( 1f ).translationZBy( 25f ).setDuration( 1000 );
-                                    }
-                                } );
-                            }
-                        } );
-                    }
-                } );
+                if (!word.getText().toString().equals( "" )) {
+                    tts.speak( word.getText(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
+                    search.animate().scaleX( 2f ).scaleY( 2f ).setDuration( 1000 ).translationZBy( 25f ).withEndAction( new Runnable() {
+                        @Override
+                        public void run() {
+                            search.animate().scaleX( 1f ).scaleY( 1f ).setDuration( 1000 ).translationZBy( -25f ).withEndAction( new Runnable() {
+                                @Override
+                                public void run() {
+                                    tts.speak( press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
+                                    search.animate().scaleX( 2f ).scaleY( 2f ).setDuration( 1000 ).translationZBy( +25f ).withEndAction( new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            search.animate().scaleX( 1f ).scaleY( 1f ).translationZBy( 25f ).setDuration( 1000 );
+                                        }
+                                    } );
+                                }
+                            } );
+                        }
+                    } );
+                }
             }
         } );
     }
@@ -121,6 +125,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     public void onTopicSelected(String title) {
         tts.speak( title, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
         word.append( title );
+
     }
 
     public void onDictionarySelected() {
@@ -142,34 +147,31 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     }
 
     private void onclicksearch() {
-        if (word.getText() == null) {
-            search.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                // TODO:Add proper message to display with translations
-                }
-            } );
-        } else {
             search.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    search.setImageResource( R.color.searchBackground );
-                    search.setBackgroundColor( getResources().getColor( R.color.searchBackground ) );
-                    v.animate().x( 350f ).y( 250f ).scaleX( 40f ).scaleY( 40f ).setDuration( 500 ).translationZBy( 25f ).withEndAction( new Runnable() {
-                        @Override
-                        public void run() {
-                            v.animate().translationX( 0f ).translationY( 0f ).scaleX( 1f ).scaleY( 1f ).setDuration( 300 ).translationZBy( -25f ).withEndAction( new Runnable() {
-                                @Override
-                                public void run() {
-                                    search.setImageResource( R.drawable.ic_search_black_24dp );
-                                }
-                            } );
-                            onDictionarySelected();
-                        }
-                    } );
+                    if (word.getText().toString().equals( "" )) {
+                        Toast.makeText( DictionaryActivity.this, "Type a word to search", Toast.LENGTH_SHORT ).show();
+                        tts.speak( "Type a word to search", TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
+                    } else {
+                        search.setImageResource( R.color.searchBackground );
+                        search.setBackgroundColor( getResources().getColor( R.color.searchBackground ) );
+                        v.animate().x( 350f ).y( 250f ).scaleX( 40f ).scaleY( 40f ).setDuration( 500 ).translationZBy( 25f ).withEndAction( new Runnable() {
+                            @Override
+                            public void run() {
+                                v.animate().translationX( 0f ).translationY( 0f ).scaleX( 1f ).scaleY( 1f ).setDuration( 300 ).translationZBy( -25f ).withEndAction( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        search.setImageResource( R.drawable.ic_search_black_24dp );
+                                    }
+                                } );
+                                onDictionarySelected();
+                            }
+                        } );
+                    }
                 }
             } );
-        }
+
     }
 
     @Override

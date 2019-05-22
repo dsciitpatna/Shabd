@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +23,8 @@ import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 
 import java.util.Objects;
+
+import butterknife.BindView;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -34,6 +37,7 @@ public class SettingFragment extends Fragment {
 private LinearLayout language_setting;
 
     private  int rating;
+
     public SettingFragment() {
         // Required empty public constructor
     }

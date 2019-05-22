@@ -25,8 +25,8 @@ public class NetworkUtils {
         urlConnection.setReadTimeout(2000);*/
         InputStream in = urlConnection.getInputStream();
 
-        Scanner scanner = new Scanner(in);
-        scanner.useDelimiter("\\A");
+        Scanner scanner = new Scanner( in );
+        scanner.useDelimiter( "\\A" );
         try {
             boolean hasInput = scanner.hasNext();
             if (hasInput) {
@@ -42,25 +42,25 @@ public class NetworkUtils {
 
     public static String dictionaryEntries(String search) {
         String language = "en";
-        Uri builtUri = Uri.parse(base).buildUpon()
-                .appendQueryParameter(PARAM_QUERY, search.toLowerCase())
+        Uri builtUri = Uri.parse( base ).buildUpon()
+                .appendQueryParameter( PARAM_QUERY, search.toLowerCase() )
                 .build();
         URL url = null;
         try {
-            url = new URL(builtUri.toString());
+            url = new URL( builtUri.toString() );
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
         if (url == null) return null;
 
-        Log.d("uri", url.toString());
+        Log.d( "uri", url.toString() );
 
         try {
-            String json = getResponseFromHttpUrl(url);
+            String json = getResponseFromHttpUrl( url );
 
             if (json != null) {
-                return extractJson(json);
+                return extractJson( json );
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,41 +70,31 @@ public class NetworkUtils {
 
     private static String extractJson(String string) {
 
-        StringBuilder def = new StringBuilder("");
+        StringBuilder def = new StringBuilder( "" );
 
         //meaning.setText(result);
         try {
             JSONObject definition;
-            JSONObject js = new JSONObject(string);
-            JSONObject meaning=js.getJSONObject("meaning");
-            JSONArray noun=meaning.getJSONArray("noun");
-            if(noun!=null)
-            {
-                definition=noun.getJSONObject(0);
-                def.append("\n").append(definition.getString("definition")).append(",");
-            }
-            JSONArray exclamation=meaning.getJSONArray("exclamation");
-            if(exclamation!=null)
-            {
-                 definition=exclamation.getJSONObject(0);
-                 def.append("\n").append(definition.getString("definition")).append(",");
-            }
 
-            JSONArray verb=meaning.getJSONArray("verb");
-            if(verb!=null)
-            {
-                definition=verb.getJSONObject(0);
-                def.append("\n").append(definition.getString("definition")).append(",");
-            }
-            JSONArray adjective=meaning.getJSONArray("adjective");
-            if(verb!=null)
-            {
-                definition=adjective.getJSONObject(0);
-                def.append("\n").append(definition.getString("definition")).append(",");
-            }
+            JSONObject js = new JSONObject( string );
+            JSONObject meaning = js.getJSONObject( "meaning" );
 
-            //def.append(js.getString("word"));
-            //def.append("/n" + js.getJSONArray("meaning"));
+            if (meaning.has( "noun" )) {
+                JSONArray noun = meaning.getJSONArray( "noun" );
+                def.append( "\n" ).append( noun.getJSONObject( 0 ).getString( "definition" ) ).append( "\n" );
+            }
+            if (meaning.has( "exclamation" )) {
+                JSONArray exclamation = meaning.getJSONArray( "exclamation" );
+                def.append( "\n" ).append( exclamation.getJSONObject( 0 ).getString( "definition" ) ).append( "\n" );
+            }
+            if (meaning.has( "verb" )) {
+                JSONArray verb = meaning.getJSONArray( "verb" );
+                def.append( "\n" ).append( verb.getJSONObject( 0 ).getString( "definition" ) ).append( "\n" );
+            }
+            if (meaning.has( "adjective" )) {
+                JSONArray adjective = meaning.getJSONArray( "adjective" );
+                def.append( "\n" ).append( adjective.getJSONObject( 0 ).getString( "definition" ) ).append( "\n" );
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

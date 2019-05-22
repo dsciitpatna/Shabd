@@ -55,7 +55,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/rounded_edittext">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:layout_width="match_parent"
@@ -63,8 +64,22 @@
             android:gravity="center"
             android:text="@string/developer"
             android:textStyle="bold"
+            android:background="@drawable/rounded_edittext"
             android:textColor="@color/white"
             android:textSize="22sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:text="@string/developers"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/shabd"/>
 
     </LinearLayout>
 </LinearLayout>

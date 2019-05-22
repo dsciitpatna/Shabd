@@ -16,8 +16,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Learn.Video.VideoActivity"
             android:parentActivityName=".Learn.LearnActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"/>
+            android:configChanges="keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Learn.ColorGame.ColorGameActivity"
             android:parentActivityName=".Learn.LearnActivity"
