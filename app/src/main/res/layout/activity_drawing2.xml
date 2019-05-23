@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/undo" />
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/submit1"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_margin="2dp"
