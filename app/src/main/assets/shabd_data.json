@@ -30,7 +30,7 @@
     "imageResource" : "https://www.pngarts.com/files/3/Clothing-PNG-Image-Background.png",
     "isItTopic" : 1,
     "parentClass" : "Basic",
-    "title" : "Clothes"
+    "title" : "Getting Ready"
   }, {
     "description" : "",
     "hindiTitle" : "",
@@ -51,7 +51,7 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 7,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "http://clipart-library.com/data_images/506916.jpg",
     "isItTopic" : 1,
     "parentClass" : "Food",
     "title" : "Breakfast"
@@ -62,20 +62,20 @@
     "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
     "isItTopic" : 1,
     "parentClass" : "Food",
-    "title" : "Lunch"
+    "title" : "Want Food"
   }, {
     "description" : "",
     "hindiTitle" : "",
     "id" : 9,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "http://clipart-library.com/images/rcLnpExRi.png",
     "isItTopic" : 1,
     "parentClass" : "Food",
-    "title" : "Dinner"
+    "title" : "Want Fruit"
   }, {
     "description" : "",
     "hindiTitle" : "",
     "id" : 10,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "http://clipart-library.com/data_images/376510.gif",
     "isItTopic" : 0,
     "parentClass" : "Food",
     "title" : "I am Hungry"
@@ -83,7 +83,7 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 11,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "http://clipart-library.com/images/8TE645z9c.png",
     "isItTopic" : 0,
     "parentClass" : "Food",
     "title" : "I want Sweets because I like them"
@@ -93,13 +93,13 @@
     "id" : 12,
     "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
     "isItTopic" : 0,
-    "parentClass" : "Food",
+    "parentClass" : "Want Food",
     "title" : "I want food"
   }, {
     "description" : "",
     "hindiTitle" : "",
     "id" : 13,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "https://previews.123rf.com/images/lineartestpilot/lineartestpilot1603/lineartestpilot160317083/53662157-freehand-drawn-thought-bubble-cartoon-i-love-food-symbol.jpg",
     "isItTopic" : 0,
     "parentClass" : "Food",
     "title" : "I love eating"
@@ -151,5 +151,293 @@
     "isItTopic" : 0,
     "parentClass" : "QuickAction",
     "title" : "Stop"
-  } ]
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 20,
+    "imageResource" : "http://www.dsource.in/tool/trinetra/img/tool_images/2_1471346756.png",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want idli"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 21,
+    "imageResource" : "http://www.urbanspicekitchen.ca/assets/images/menu/dosa.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want dosa"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 22,
+    "imageResource" : "https://www.justforhearts.org/wp-content/uploads/Untitled-1-copy2.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want upma"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 23,
+    "imageResource" : "https://c7.uihere.com/files/359/269/226/breakfast-sandwich-puri-tiffin-bonda-indian-cuisine-others.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want puris"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 24,
+    "imageResource" : "https://previews.123rf.com/images/cokemomo/cokemomo1208/cokemomo120800028/14827116-parotta-south-indian-layered-flat-bread.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want parathas"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 25,
+    "imageResource" : "http://clipart-library.com/data_images/586968.png",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want sandwich"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 26,
+    "imageResource" : "https://media.istockphoto.com/vectors/drinking-milk-vector-id913968204?k=6&m=913968204&s=612x612&w=0&h=30pgN7uzswcoaQc-47Cc-xVS36GdGks6qnIDl6QZBlQ=",
+    "isItTopic" : 0,
+    "parentClass" : "Breakfast",
+    "title" : "I want milk"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 27,
+    "imageResource" : "http://clipart-library.com/data_images/258170.gif",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "I want rice"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 28,
+    "imageResource" : "https://spng.pngfly.com/20190219/stw/kisspng-corn-tortilla-roti-indian-cuisine-ciudad-mante-cha-nuestros-grupos-de-inters-reporte-de-sostenibi-5c6bc33a38fc67.4661292415505662022334.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "I want roti"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 29,
+    "imageResource" : "https://www.iflkuwait.com/images/tadka_dal.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "I want dal"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 30,
+    "imageResource" : "http://3.bp.blogspot.com/-77du8JkZnh8/VNG5SF-aMGI/AAAAAAAANwg/HiM6DJSyxZs/s1600/FullSizeRender-5.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "I want sabzi"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 31,
+    "imageResource" : "https://us.123rf.com/450wm/altoclassic/altoclassic1805/altoclassic180500008/102210217-stock-illustration-bowl-of-sour-cream-sauce-mayonnaise-closeup-isolated-on-a-white-background-3d-illustration.jpg?ver=6",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "I want curd"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 32,
+    "imageResource" : "https://cognigen-cellular.com/images/salt-clipart.png",
+    "isItTopic" : 0,
+    "parentClass" : "Want Food",
+    "title" : "Please add some salt"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 33,
+    "imageResource" : "http://clipart-library.com/images/rcLnpExRi.png",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want a fruit"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 34,
+    "imageResource" : "https://www.sccpre.cat/mypng/detail/51-517362_banana-clipart-png-banana-clipart.png",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want banana"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 35,
+    "imageResource" : "http://clipart-library.com/data_images/51439.gif",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want apple"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 36,
+    "imageResource" : "https://www.sccpre.cat/mypng/detail/21-213567_mango-clipart-png.png",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want mango"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 37,
+    "imageResource" : "http://clipart-library.com/data_images/161969.png",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want grapes"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 38,
+    "imageResource" : "http://clipart-library.com/data_images/184625.gif",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want watermelon"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 39,
+    "imageResource" : "https://media.istockphoto.com/vectors/florida-orange-vector-id165974969?k=6&m=165974969&s=612x612&w=0&h=bAIbAFJu-cEhHJFzjb_NhbynDvB2TQsUudQjV7vSOSs=",
+    "isItTopic" : 0,
+    "parentClass" : "Want Fruit",
+    "title" : "I want orange"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 40,
+    "imageResource" : "http://clipart-library.com/data_images/290201.png",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I want some snacks"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 41,
+    "imageResource" : "https://classroomclipart.com/images/gallery/Clipart/Food/Drink_and_Beverage_Clipart/TN_boy-holding-glass-of-cola-with-ice-cubes-clipart-1220.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "I want some drinks"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 42,
+    "imageResource" : "https://mostlybrightideas.files.wordpress.com/2010/06/spinach.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Food",
+    "title" : "Food is not good"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 43,
+    "imageResource" : "http://clipart-library.com/img1/938724.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "Where is my dress?"
+  }  ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 44,
+    "imageResource" : "https://clipartion.com/wp-content/uploads/2015/11/get-dressed-clipart-free-clip-art-images.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "Please help me to wear dress"
+  }  ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 45,
+    "imageResource" : "https://clipartstation.com/wp-content/uploads/2017/11/wear-clean-clothes-clipart-3.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "I am wearing a new dress"
+  }  ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 46,
+    "imageResource" : "https://media.istockphoto.com/vectors/indian-woman-in-salwar-kameez-vector-id504600377?k=6&m=504600377&s=612x612&w=0&h=p9XFRigA5jhwGG3tg-faY0tRgQG1Whsp0CAVXY7elDE=",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "I want to wear salwar kameez"
+  }  ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 47,
+    "imageResource" : "http://clipart-library.com/data_images/10285.png",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "I want jeans"
+  }  ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 48,
+    "imageResource" : "https://media.istockphoto.com/vectors/sweatpants-a-vector-illustration-vector-id1050839362?k=6&m=1050839362&s=612x612&w=0&h=bRKwdpWC7wRzpO2Lp3UqzEOHWkqe9vn7XU5DQOGRrl8=",
+    "isItTopic" : 0,
+    "parentClass" : "Dressing",
+    "title" : "I want pant"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 49,
+    "imageResource" : "http://clipart-library.com/data_images/88939.jpg",
+    "isItTopic" : 1,
+    "parentClass" : "Getting Ready",
+    "title" : "Washroom"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 50,
+    "imageResource" : "https://previews.123rf.com/images/sararoom/sararoom1301/sararoom130100053/17478187-illustration-of-boy-dressing.jpg",
+    "isItTopic" : 1,
+    "parentClass" : "Getting Ready",
+    "title" : "Dressing"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 51,
+    "imageResource" : "https://media.istockphoto.com/vectors/cute-boy-brushing-his-teeth-vector-id614432052?k=6&m=614432052&s=612x612&w=0&h=5JFWmJd6BbPnQfTHs2XX0BnpNXYOGK7epU1K-4Y1sDI=",
+    "isItTopic" : 0,
+    "parentClass" : "Washroom",
+    "title" : "I want brush-paste"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 52,
+    "imageResource" : "https://previews.123rf.com/images/rastudio/rastudio1202/rastudio120200100/12372303-cartoon-home-kitchen-towel.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Washroom",
+    "title" : "I want towel"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 53,
+    "imageResource" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZ4vUci_cfpyJxXrSwFWjWWG59hT0U8zpQmIw-0TCBI0O7CL9",
+    "isItTopic" : 0,
+    "parentClass" : "Washroom",
+    "title" : "I want hot water"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 54,
+    "imageResource" : "https://www.pinclipart.com/picdir/middle/178-1789505_shampoo-clipart-png-download.png",
+    "isItTopic" : 0,
+    "parentClass" : "Washroom",
+    "title" : "I want shampoo"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 55,
+    "imageResource" : "http://www.clker.com/cliparts/7/b/d/c/15163397841548291646taking-a-bath-clipart-free.hi.png",
+    "isItTopic" : 0,
+    "parentClass" : "Washroom",
+    "title" : "I want to bath"
+  }  ]
 }

@@ -326,6 +326,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 hideTopBar();
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
+            navigation.setSelectedItemId( R.id.navigation_home );
         } else if (activeFragment.get( activeFragment.size() - 1 ) instanceof SettingFragment) {
             showTopBar();
 
@@ -333,17 +335,17 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 speakBar.setVisibility( View.VISIBLE );
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
+            navigation.setSelectedItemId( R.id.navigation_home );
 
         } else if (activeFragment.get( activeFragment.size() - 1 ) instanceof BasicFragment) {
             if (activeFragment.size() > 1 && activeFragment.get( activeFragment.size() - 2 ) instanceof HomeFragment) {
                 speakBar.setVisibility( View.INVISIBLE );
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
         }
 
-
-        super.onBackPressed();
-        navigation.setSelectedItemId( R.id.navigation_home );
     }
 
     @Override
