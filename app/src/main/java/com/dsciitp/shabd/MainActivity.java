@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                     return true;
                 case R.id.navigation_quick:
                     showTopBar();
+                    speakBar.setVisibility( View.VISIBLE );
                     transactFragment( new QuickActionFragment() );
                     return true;
                 case R.id.navigation_dictionary:
@@ -280,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         fragmentManager.replace( R.id.fragment_container, frag, frag.getTag() )
                 .addToBackStack( frag.getTag() )
                 .commit();
-        if (frag instanceof BasicFragment) {
+        if (frag instanceof BasicFragment || frag instanceof QuickActionFragment) {
             speakBar.setVisibility( View.VISIBLE );
         } else {
             speakBar.setVisibility( View.INVISIBLE );
@@ -326,6 +327,8 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 hideTopBar();
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
+            navigation.setSelectedItemId( R.id.navigation_home );
         } else if (activeFragment.get( activeFragment.size() - 1 ) instanceof SettingFragment) {
             showTopBar();
 
@@ -333,17 +336,17 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                 speakBar.setVisibility( View.VISIBLE );
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
+            navigation.setSelectedItemId( R.id.navigation_home );
 
         } else if (activeFragment.get( activeFragment.size() - 1 ) instanceof BasicFragment) {
             if (activeFragment.size() > 1 && activeFragment.get( activeFragment.size() - 2 ) instanceof HomeFragment) {
                 speakBar.setVisibility( View.INVISIBLE );
             }
             activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
         }
 
-
-        super.onBackPressed();
-        navigation.setSelectedItemId( R.id.navigation_home );
     }
 
     @Override
