@@ -439,5 +439,69 @@
     "isItTopic" : 0,
     "parentClass" : "Washroom",
     "title" : "I want to bath"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 56,
+    "imageResource" : "https://clipground.com/images/familiy-clipart-14.jpg",
+    "isItTopic" : 1,
+    "parentClass" : "Basic",
+    "title" : "My Family"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 57,
+    "imageResource" : "https://i.pinimg.com/originals/26/4e/30/264e30439c42387c1e3c48d2d038429d.png",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "My father is a doctor"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 58,
+    "imageResource" : "https://images.cdn1.stockunlimited.net/preview1300/male-teacher_1818579.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "My uncle is a teacher"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 59,
+    "imageResource" : "https://previews.123rf.com/images/tigatelu/tigatelu1509/tigatelu150900536/45168918-cartoon-happy-family-mother-holding-her-son.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "My mother takes care of me"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 60,
+    "imageResource" : "https://us.123rf.com/450wm/yeletkeshet/yeletkeshet1701/yeletkeshet170100004/69685965-stock-vector-little-girl-hugging-a-baby.jpg?ver=6",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "I have a sister"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 61,
+    "imageResource" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9W8YSZEcZacsYmTl98IWRU4C1MMm6chT8oJWJU7MRJvvvrLfl",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "My grandmother stays with me"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 62,
+    "imageResource" : "https://previews.123rf.com/images/memoangeles/memoangeles1407/memoangeles140700031/30567525-girl-hugging-her-grandmother-vector-clip-art-illustration-with-simple-gradients.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "I want to visit my grandmother"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 63,
+    "imageResource" : "https://i.pinimg.com/originals/00/ad/11/00ad11903c53c7736b47745c58bc8554.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "My Family",
+    "title" : "I want to meet my mother"
   }  ]
 }

@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
                     return true;
                 case R.id.navigation_quick:
                     showTopBar();
+                    speakBar.setVisibility( View.VISIBLE );
                     transactFragment( new QuickActionFragment() );
                     return true;
                 case R.id.navigation_dictionary:
@@ -280,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         fragmentManager.replace( R.id.fragment_container, frag, frag.getTag() )
                 .addToBackStack( frag.getTag() )
                 .commit();
-        if (frag instanceof BasicFragment) {
+        if (frag instanceof BasicFragment || frag instanceof QuickActionFragment) {
             speakBar.setVisibility( View.VISIBLE );
         } else {
             speakBar.setVisibility( View.INVISIBLE );
