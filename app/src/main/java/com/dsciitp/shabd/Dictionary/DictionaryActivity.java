@@ -23,7 +23,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     TextToSpeech tts;
     FloatingActionButton search;
     private static final String TTS_SPEAK_ID = "SPEAK";
-    Fragment activefragment;
+    Fragment activeFragment;
     String press = "Press me to know the meaning";
 
     @Override
@@ -83,7 +83,8 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
                             search.animate().scaleX( 1f ).scaleY( 1f ).setDuration( 1000 ).translationZBy( -25f ).withEndAction( new Runnable() {
                                 @Override
                                 public void run() {
-                                    tts.speak( press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
+                                    if (word.getText().toString().length() < 15)
+                                        tts.speak( press, TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
                                     search.animate().scaleX( 2f ).scaleY( 2f ).setDuration( 1000 ).translationZBy( +25f ).withEndAction( new Runnable() {
                                         @Override
                                         public void run() {
@@ -133,7 +134,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
         MeaningFragment fragment = MeaningFragment.newInstance( word.getText().toString() );
         transactFragment( fragment );
         final View view = this.getWindow().getDecorView();
-        activefragment = fragment;
+        activeFragment = fragment;
 //        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         search.setBackgroundColor( getResources().getColor( R.color.searchBackground ) );
         search.setOnClickListener( new View.OnClickListener() {
@@ -147,30 +148,30 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
     }
 
     private void onclicksearch() {
-            search.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    if (word.getText().toString().equals( "" )) {
-                        Toast.makeText( DictionaryActivity.this, "Type a word to search", Toast.LENGTH_SHORT ).show();
-                        tts.speak( "Type a word to search", TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
-                    } else {
-                        search.setImageResource( R.color.searchBackground );
-                        search.setBackgroundColor( getResources().getColor( R.color.searchBackground ) );
-                        v.animate().x( 350f ).y( 250f ).scaleX( 40f ).scaleY( 40f ).setDuration( 500 ).translationZBy( 25f ).withEndAction( new Runnable() {
-                            @Override
-                            public void run() {
-                                v.animate().translationX( 0f ).translationY( 0f ).scaleX( 1f ).scaleY( 1f ).setDuration( 300 ).translationZBy( -25f ).withEndAction( new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        search.setImageResource( R.drawable.ic_search_black_24dp );
-                                    }
-                                } );
-                                onDictionarySelected();
-                            }
-                        } );
-                    }
+        search.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if (word.getText().toString().equals( "" )) {
+                    Toast.makeText( DictionaryActivity.this, "Type a word to search", Toast.LENGTH_SHORT ).show();
+                    tts.speak( "Type a word to search", TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID );
+                } else {
+                    search.setImageResource( R.color.searchBackground );
+                    search.setBackgroundColor( getResources().getColor( R.color.searchBackground ) );
+                    v.animate().x( 350f ).y( 250f ).scaleX( 40f ).scaleY( 40f ).setDuration( 500 ).translationZBy( 25f ).withEndAction( new Runnable() {
+                        @Override
+                        public void run() {
+                            v.animate().translationX( 0f ).translationY( 0f ).scaleX( 1f ).scaleY( 1f ).setDuration( 300 ).translationZBy( -25f ).withEndAction( new Runnable() {
+                                @Override
+                                public void run() {
+                                    search.setImageResource( R.drawable.ic_search_black_24dp );
+                                }
+                            } );
+                            onDictionarySelected();
+                        }
+                    } );
                 }
-            } );
+            }
+        } );
 
     }
 
@@ -185,7 +186,7 @@ public class DictionaryActivity extends AppCompatActivity implements DictionaryA
 
     @Override
     public void onBackPressed() {
-        if (activefragment instanceof MeaningFragment) {
+        if (activeFragment instanceof MeaningFragment) {
             onclicksearch();
         }
         super.onBackPressed();
