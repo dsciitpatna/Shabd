@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         fragmentManager.replace( R.id.fragment_container, frag, frag.getTag() )
                 .addToBackStack( frag.getTag() )
                 .commit();
-        if (frag instanceof BasicFragment || frag instanceof QuickActionFragment) {
+        if (frag instanceof BasicFragment || frag instanceof QuickActionFragment || frag instanceof CategoryFragment) {
             speakBar.setVisibility( View.VISIBLE );
         } else {
             speakBar.setVisibility( View.INVISIBLE );
@@ -321,7 +321,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onBackPressed() {
-        if (activeFragment.get( activeFragment.size() - 1 ) instanceof QuickActionFragment) {
+        if(activeFragment.get(activeFragment.size()-1)instanceof CategoryFragment)
+        {
+            activeFragment.remove( activeFragment.size() - 1 );
+            super.onBackPressed();
+            navigation.setSelectedItemId( R.id.navigation_home );
+        }
+        else if (activeFragment.get( activeFragment.size() - 1 ) instanceof QuickActionFragment) {
 
             if (activeFragment.get( activeFragment.size() - 2 ) instanceof SettingFragment) {
                 hideTopBar();
@@ -341,11 +347,13 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
         } else if (activeFragment.get( activeFragment.size() - 1 ) instanceof BasicFragment) {
             if (activeFragment.size() > 1 && activeFragment.get( activeFragment.size() - 2 ) instanceof HomeFragment) {
-                speakBar.setVisibility( View.INVISIBLE );
+                //speakBar.setVisibility( View.INVISIBLE );
             }
             activeFragment.remove( activeFragment.size() - 1 );
             super.onBackPressed();
         }
+        else
+            super.onBackPressed();
 
     }
 

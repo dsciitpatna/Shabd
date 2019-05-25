@@ -14,7 +14,7 @@
     "imageResource" : "",
     "isItTopic" : 1,
     "parentClass" : "Home",
-    "title" : "Advanced"
+    "title" : "General"
   }, {
     "description" : "",
     "hindiTitle" : "",
@@ -35,18 +35,18 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 5,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
-    "isItTopic" : 1,
-    "parentClass" : "Basic",
-    "title" : "Drink"
+    "imageResource" : "https://i.pinimg.com/originals/ff/89/2d/ff892d65159c65ae8ab29eb7e1e22c5c.png",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw an elephant"
   }, {
     "description" : "",
     "hindiTitle" : "",
     "id" : 6,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "https://classroomclipart.com/images/gallery/Clipart/Emotions/TN_smiley-face-character-surprise-expression-clipart-2.jpg",
     "isItTopic" : 1,
     "parentClass" : "Basic",
-    "title" : "Play"
+    "title" : "Feelings"
   }, {
     "description" : "",
     "hindiTitle" : "",
@@ -107,10 +107,10 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 14,
-    "imageResource" : "https://www.pinclipart.com/picdir/big/1-19283_snack-healthy-diet-clip-art-transprent-png-clip.png",
+    "imageResource" : "http://clipart-library.com/img/1438508.jpg",
     "isItTopic" : 0,
     "parentClass" : "QuickAction",
-    "title" : "I love eating"
+    "title" : "All the Best"
   }, {
     "description" : "",
     "hindiTitle" : "",
@@ -347,7 +347,7 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 44,
-    "imageResource" : "https://clipartion.com/wp-content/uploads/2015/11/get-dressed-clipart-free-clip-art-images.jpg",
+    "imageResource" : "https://clipartstation.com/wp-content/uploads/2017/11/wear-clean-clothes-clipart-3.jpg",
     "isItTopic" : 0,
     "parentClass" : "Dressing",
     "title" : "Please help me to wear dress"
@@ -355,7 +355,7 @@
     "description" : "",
     "hindiTitle" : "",
     "id" : 45,
-    "imageResource" : "https://clipartstation.com/wp-content/uploads/2017/11/wear-clean-clothes-clipart-3.jpg",
+    "imageResource" : "https://clipartion.com/wp-content/uploads/2015/11/get-dressed-clipart-free-clip-art-images.jpg",
     "isItTopic" : 0,
     "parentClass" : "Dressing",
     "title" : "I am wearing a new dress"
@@ -503,5 +503,381 @@
     "isItTopic" : 0,
     "parentClass" : "My Family",
     "title" : "I want to meet my mother"
-  }  ]
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 64,
+    "imageResource" : "http://clipart-library.com/image_gallery/107636.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Ready",
+    "title" : "I want my bag"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 65,
+    "imageResource" : "http://i1.wp.com/clipartportal.com/wp-content/uploads/2018/12/stationery-clipart-images-3.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Ready",
+    "title" : "I want my stationery"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 66,
+    "imageResource" : "https://previews.123rf.com/images/dazdraperma/dazdraperma1407/dazdraperma140700026/30401803-schoolboy-ready-go-to-school.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Ready",
+    "title" : "Please make me ready fast"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 67,
+    "imageResource" : "http://clipart-library.com/img/834334.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I want to play"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 68,
+    "imageResource" : "http://clipart-library.com/images/LcdoxnnLi.png",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I am feeling bored"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 69,
+    "imageResource" : "http://clipart-library.com/data_images/105053.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I am angry with you"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 70,
+    "imageResource" : "https://i.pinimg.com/originals/56/32/c1/5632c13a0be038a4a219200e6dd2335d.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I am sad to hear that"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 71,
+    "imageResource" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnuHL50qSer8LrhLqm0kzgFM19i7Y96nsuvbUMMawu7PadiF1L",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I want to cry"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 72,
+    "imageResource" : "http://clipart-library.com/image_gallery/412974.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I want to go outside"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 73,
+    "imageResource" : "http://www.amisvegetarian.com/wp-content/uploads/2018/09/scared-clipart-a-girl-shaking-in-horror-clipart-vector-toons-clip-art-for-students.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I am scared"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 74,
+    "imageResource" : "",
+    "isItTopic" : 1,
+    "parentClass" : "Home",
+    "title" : "Getting Started"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 75,
+    "imageResource" : "https://i.pinimg.com/originals/84/1a/b5/841ab5803ed2df9e072509b764b7e0c1.png",
+    "isItTopic" : 0,
+    "parentClass" : "Feelings",
+    "title" : "I am sorry"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 76,
+    "imageResource" : "https://previews.123rf.com/images/blueringmedia/blueringmedia1703/blueringmedia170300310/74311500-two-american-kids-saying-hi-illustration.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Hi"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 77,
+    "imageResource" : "https://clipartstation.com/wp-content/uploads/2018/09/bye-clipart-8.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Bye"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 78,
+    "imageResource" : "http://www.clker.com/cliparts/E/a/A/C/b/M/go-inside-a-circle-hi.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Go"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 79,
+    "imageResource" : "https://us.123rf.com/450wm/iconicbestiary/iconicbestiary1705/iconicbestiary170500104/77358246-stock-vector-businessman-looking-ahead-with-hand-over-his-eyes.jpg?ver=6",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Look"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 80,
+    "imageResource" : "https://www.pinclipart.com/picdir/big/115-1154350_vector-illustration-of-school-crossing-guard-stops-crossing.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Stop"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 81,
+    "imageResource" : "https://us.123rf.com/450wm/martialred/martialred1507/martialred150700939/42621315-stock-vector-thumbs-up-like-line-art-icon-for-apps-and-websites.jpg?ver=6",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "like"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 82,
+    "imageResource" : "http://clipart-library.com/data_images/208821.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "no"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 83,
+    "imageResource" : "http://www.clker.com/cliparts/H/l/8/M/I/c/more-games-hi.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "more"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 84,
+    "imageResource" : "https://listimg.pinclipart.com/picdir/s/0-9482_communication-friendship-face-help-help-me-clip-art.png",
+    "isItTopic" : 0,
+    "parentClass" : "Getting Started",
+    "title" : "Help"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 85,
+    "imageResource" : "http://clipart-library.com/data_images/304113.png",
+    "isItTopic" : 1,
+    "parentClass" : "General",
+    "title" : "Today"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 86,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 1,
+    "parentClass" : "General",
+    "title" : "Days of Week"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 87,
+    "imageResource" : "https://www.pngkey.com/png/full/65-653120_tree-tree-plant-clip-art.png",
+    "isItTopic" : 1,
+    "parentClass" : "General",
+    "title" : "Plants and Trees"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 88,
+    "imageResource" : "http://clipart-library.com/newimages/leaf-clip-art-1.png",
+    "isItTopic" : 0,
+    "parentClass" : "Plants and Trees",
+    "title" : "These leaves are green"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 89,
+    "imageResource" : "http://clipart-library.com/img/1239162.jpg",
+    "isItTopic" : 1,
+    "parentClass" : "General",
+    "title" : "Animals and Birds"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 90,
+    "imageResource" : "https://i.etsystatic.com/9709710/r/il/714bff/802892968/il_794xN.802892968_gia9.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Today",
+    "title" : "Today is a holiday"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 91,
+    "imageResource" : "http://clipart-library.com/img/1221427.png",
+    "isItTopic" : 0,
+    "parentClass" : "Today",
+    "title" : "What day is it today?"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 92,
+    "imageResource" : "http://www.clipartbay.com/cliparts/calendar-date-clipart-free-wtcmewn.png",
+    "isItTopic" : 0,
+    "parentClass" : "Today",
+    "title" : "What is the date today?"
+  } ,{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 93,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Monday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 94,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Tuesday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 95,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Wednesday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 96,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Thursday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 97,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Friday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 98,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Saturday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 99,
+    "imageResource" : "http://clipart-library.com/images/8TG6xX7Gc.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Days of Week",
+    "title" : "Today is Sunday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 100,
+    "imageResource" : "http://clipart-library.com/img/1418792.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Plants and Trees",
+    "title" : "The tree is tall"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 101,
+    "imageResource" : "http://clipart-library.com/images/di48g6jie.png",
+    "isItTopic" : 0,
+    "parentClass" : "Plants and Trees",
+    "title" : "The flower looks pretty"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 102,
+    "imageResource" : "https://www.pngkey.com/png/detail/164-1648116_crow-png-library-black-thing-huge-outline-of.png",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw a crow"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 103,
+    "imageResource" : "https://banner2.kisspng.com/20180107/lye/dog-clip-art-5a523580ac7722.14801650151533708870644816.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw a dog"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 104,
+    "imageResource" : "http://clipart-library.com/data_images/279518.png",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw a cat"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 105,
+    "imageResource" : "https://us.123rf.com/450wm/irwanjos/irwanjos1601/irwanjos160100006/50993708-stock-vector-cute-baby-monkey-hanging-on-tree.jpg?ver=6",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw a monkey"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 106,
+    "imageResource" : "http://www.mascotdesigngallery.com/wp/wp-content/uploads/2013/11/12154415421767612404lemmling_Simple_cartoon_mouse.svg.med_.png",
+    "isItTopic" : 0,
+    "parentClass" : "Animals and Birds",
+    "title" : "I saw a mouse"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 107,
+    "imageResource" : "https://mackinsgroup.com/wp-content/uploads/2017/12/thief-clipart-11-1024x1024.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Their is a thief"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 108,
+    "imageResource" : "http://www.emri.in/wp-content/uploads/2014/06/1081.png",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Call 108"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 109,
+    "imageResource" : "http://clipart-library.com/img/1505372.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Happy Birthday"
+  },{
+    "description" : "",
+    "hindiTitle" : "",
+    "id" : 110,
+    "imageResource" : "https://previews.123rf.com/images/arcady31/arcady311403/arcady31140300044/27239318-do-not-disturb-red-signboard.jpg",
+    "isItTopic" : 0,
+    "parentClass" : "QuickAction",
+    "title" : "Do not Disturb"
+  }]
 }
