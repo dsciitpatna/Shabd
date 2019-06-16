@@ -1,0 +1,51 @@
+{
+  "data" : [ {
+    "title" : "Draw an apple",
+    "hindiTitle" : "ihh",
+    "id" : 1,
+    "imageResource" : "https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg",
+    "description" : "Basic",
+    "intentClass" : "Drawing",
+    "intent": "DrawingActivity"
+  }, {
+    "title" : "Score 5 points",
+    "hindiTitle" : "ghj",
+    "id" : 2,
+    "imageResource" : "https://www.codester.com/static//uploads/items/2658/preview-xl.jpg",
+    "description" : "Basic",
+    "intentClass" : "ColorGame",
+    "intent": "ColorGameActivity"
+  }, {
+    "title" : "Draw a Bird",
+    "hindiTitle" : "ghj",
+    "id" : 3,
+    "imageResource" : "https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/white_stork.jpeg?B2LINO47jclcIb3QCW.Bj9nto934Lox4",
+    "description" : "Basic",
+    "intentClass" : "Drawing",
+    "intent": "DrawingActivity"
+  }, {
+    "title" : "Score 5 points",
+    "hindiTitle" : "ghj",
+    "id" : 4,
+    "imageResource" : "http://clipartmag.com/images/quiz-clipart-24.jpg",
+    "description" : "Basic",
+    "intentClass" : "Quiz",
+    "intent": "QuizActivity"
+  }, {
+    "title" : "Watch 2 videos",
+    "hindiTitle" : "ghj",
+    "id" : 4,
+    "imageResource" : "https://s3.amazonaws.com/media.eremedia.com/wp-content/uploads/2018/04/06122011/story.jpeg",
+    "description" : "Basic",
+    "intentClass" : "Video",
+    "intent": "VideoActivity"
+  }, {
+    "title" : "Holiday",
+    "hindiTitle" : "ghj",
+    "id" : 4,
+    "imageResource" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEXBiGxKzBLNDhHMmgrR6KBYlOOO2f0SXP5TZ3DS_UthzhOoq",
+    "description" : "Basic",
+    "intentClass" : "null",
+    "intent": "null"
+  }   ]
+}
