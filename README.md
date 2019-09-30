@@ -30,11 +30,10 @@
 ### Impact on Society
 The app is mainly made to educate the people those who are suffering from auitsm. It is available completely in free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge of communication. Also they would get something that will accompany them all the time, so that they wont feel lonely. Normal kids at younger age can also use this app to increase their knowledge in communication. 
 ### TODO:
-- [ ] Create basic layout.
-- [ ] Make API to fetch data from google and save it in Firebase.
+- [x] Create basic layout.
+- [x] Make API to fetch data from google and save it in Firebase.
 - [ ] Make use of Google TTS to pronounce words.
 - [ ] Progress bar to check progress of student.
-- [ ] Seperate login portal for parent and student.
 - [ ] Place to add new words in the databse.
 - [ ] Voice recorder and repeater system.
 
