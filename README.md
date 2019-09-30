@@ -32,7 +32,7 @@ The app is mainly made to educate the people those who are suffering from auitsm
 ### TODO:
 - [x] Create basic layout.
 - [x] Make API to fetch data from google and save it in Firebase.
-- [ ] Make use of Google TTS to pronounce words.
+- [x] Make use of Google TTS to pronounce words.
 - [ ] Progress bar to check progress of student.
 - [ ] Place to add new words in the databse.
 - [ ] Voice recorder and repeater system.
