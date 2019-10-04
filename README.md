@@ -7,12 +7,6 @@
 
 # Overview
 "Autism is a complex neurobehavioral condition that includes impairments in social interaction and developmental language and communication skills combined with rigid, repetitive behavior". To overcome this problem we came up with an educational app that helps this people to get educated via a completely free platform. This app can also be used to educated the kids. The UI of the app is user friendly. The app acts like an all time friend for the autism patients, who are often neglected by the society.
-
-
-## Join us at
- 
- Gitter: [`https://gitter.im/dsciitpatna/Shabd`](https://gitter.im/dsciitpatna/Shabd)
- 
   
 ## Features
 * Vocabulary that's fast and efficient.
